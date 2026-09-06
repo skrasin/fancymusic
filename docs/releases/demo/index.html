@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Демо страницы релиза | FANCYMUSIC</title>
+<meta name="description" content="Демонстрационная страница релиза FANCYMUSIC: содержимое условное.">
+<meta property="og:type" content="music.album">
+<meta property="og:title" content="Имя артиста — Название релиза">
+<meta property="og:description" content="Демонстрационная страница релиза FANCYMUSIC: содержимое условное.">
+<meta property="og:image" content="cover.svg">
+<meta property="og:site_name" content="FANCYMUSIC">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/fonts.css">
+<link rel="stylesheet" href="../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/release.css">
+</head>
+<body>
+
+<div class="rl-progress" aria-hidden="true"></div>
+
+<div style="background: var(--fm-ink-800); color: var(--fm-white); padding: var(--fm-space-3) 0">
+  <div class="fm-container">
+    <p class="fm-caption" style="color: var(--fm-white); margin: 0">
+      Демонстрационная страница. Содержимое условное, фактов о реальных релизах здесь нет —
+      это макет вёрстки для согласования дизайна.
+    </p>
+  </div>
+</div>
+
+<!-- ================= ПЕРВЫЙ ЭКРАН ================= -->
+<header class="rl-hero">
+  <div class="fm-container">
+    <p class="fm-eyebrow"><b>FANCYMUSIC</b> · Пресс-релиз · 12.12.2026</p>
+  </div>
+
+  <div class="fm-container">
+    <div class="rl-hero__inner">
+      <div>
+        <h1 class="rl-hero__title">Название релиза</h1>
+        <p class="rl-hero__meta">
+          <span>Имя артиста</span><span>Альбом, 6 пьес</span><span>Современная академическая</span>
+        </p>
+        <div class="rl-hero__cta">
+          <a class="fm-btn fm-btn--solid" href="#player">Слушать</a>
+          <a class="fm-btn fm-btn--outline" href="#">Страница релиза</a>
+        </div>
+      </div>
+      <img class="rl-cover" src="cover.svg"
+           alt="Обложка релиза «Название релиза» — Имя артиста">
+    </div>
+  </div>
+
+  <div class="rl-marquee" aria-hidden="true">
+    <div class="rl-marquee__track">
+      <span><b>Название релиза</b> · Имя артиста · Альбом, 6 пьес · 12.12.2026 ·</span>
+      <span><b>Название релиза</b> · Имя артиста · Альбом, 6 пьес · 12.12.2026 ·</span>
+      <span><b>Название релиза</b> · Имя артиста · Альбом, 6 пьес · 12.12.2026 ·</span>
+      <span><b>Название релиза</b> · Имя артиста · Альбом, 6 пьес · 12.12.2026 ·</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ЛИД И ТЕКСТ ================= -->
+<section class="fm-section">
+  <div class="fm-container fm-stack--wide">
+    <p class="fm-lead rl-reveal">Здесь стоит лид-абзац: что вышло, у кого, когда и почему это событие. Две-три строки, без разгона — журналист решает по ним, читать ли дальше.</p>
+    <div class="rl-reveal"><p>Здесь идёт основной текст: контекст релиза, как он записывался, что в нём необычного. Один абзац — одна мысль, длина строки ограничена, чтобы глаз не терял начало следующей.</p><p>Второй абзац продолжает: состав участников, место записи, значимые детали. Всё, чего нет в присланных материалах, помечается как <code>[УТОЧНИТЬ]</code> и не додумывается.</p></div>
+  </div>
+</section>
+
+<!-- ================= ПРЕДПРОСЛУШИВАНИЕ ================= -->
+<section class="fm-section" id="player">
+  <div class="fm-container fm-stack--wide rl-reveal">
+    <div>
+      <p class="fm-eyebrow">Предпрослушивание</p>
+      <h2>Слушать</h2>
+    </div>
+    <div class="rl-player">
+      <!-- Оставить ОДИН вариант:
+           1) встроенный плеер площадки (Bandcamp / Яндекс Музыка / Spotify)
+           2) локальный файл превью -->
+      <div style="border:2px dashed var(--fm-rule); padding:var(--fm-space-7) var(--fm-space-5); text-align:center; color:var(--fm-text-muted)">Здесь встанет плеер Bandcamp<br><span class="fm-caption">iframe с альбома лейбла</span></div>
+      <!-- <audio controls preload="none" src="preview.mp3">Ваш браузер не поддерживает аудио.</audio> -->
+    </div>
+    <ul class="fm-facts">
+      <li><span>Артист</span><span>Имя артиста</span></li>
+      <li><span>Релиз</span><span>Название релиза</span></li>
+      <li><span>Формат</span><span>Альбом, 6 пьес</span></li>
+      <li><span>Жанр</span><span>Современная академическая</span></li>
+      <li><span>Дата выхода</span><span>12.12.2026</span></li>
+      <li><span>Лейбл</span><span>FANCYMUSIC</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= ЦИТАТА ================= -->
+<section class="rl-quote">
+  <div class="fm-container">
+    <figure>
+      <blockquote>Здесь будет цитата артиста — одна мысль, которую хочется процитировать целиком.</blockquote>
+      <figcaption>Имя артиста, о работе над релизом</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= ТРЕКЛИСТ ================= -->
+<section class="fm-section">
+  <div class="fm-container rl-reveal">
+    <p class="fm-eyebrow">Состав</p>
+    <h2>Треклист</h2>
+    <ol class="rl-tracks"><li>Первая пьеса</li>
+      <li>Вторая пьеса</li>
+      <li>Интерлюдия</li>
+      <li>Четвёртая пьеса</li>
+      <li>Пятая пьеса</li>
+      <li>Кода</li></ol>
+  </div>
+</section>
+
+<!-- ================= ОБ АРТИСТЕ ================= -->
+<section class="fm-section">
+  <div class="fm-container fm-stack--wide rl-reveal">
+    <div>
+      <p class="fm-eyebrow">Справка</p>
+      <h2>Об артисте</h2>
+      <p>Короткая справка об артисте: три-пять предложений. Кто это, откуда, что делал раньше, чем важен именно этот релиз.</p>
+    </div>
+    <div>
+      <h3>Артист в сети</h3>
+      <ul class="rl-links"><li><a href="https://fancymusic.bandcamp.com/">Bandcamp</a></li>
+      <li><a href="#">Telegram артиста</a></li>
+      <li><a href="#">VK артиста</a></li>
+      <li><a href="#">Сайт артиста</a></li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= О ЛЕЙБЛЕ И КОНТАКТЫ ================= -->
+<section class="fm-section fm-invert">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <p class="fm-eyebrow">Издатель</p>
+      <h2>О лейбле</h2>
+      <p>Блок «О лейбле» — постоянный текст, одинаковый во всех пресс-релизах. Формулировка ещё не согласована: <code>[УТОЧНИТЬ]</code>.</p>
+    </div>
+    <div>
+      <h3>Лейбл в сети</h3>
+      <ul class="rl-links"><li><a href="https://fancymusic.ru">fancymusic.ru</a></li>
+      <li><a href="https://t.me/fancymusiclabel">Telegram</a></li>
+      <li><a href="https://vk.ru/fancymusicrecords">VK</a></li>
+      <li><a href="https://instagram.com/fancy_music">Instagram</a></li>
+      <li><a href="https://fancymusic.bandcamp.com/">Bandcamp</a></li></ul>
+    </div>
+    <div>
+      <h3>Контакты для прессы</h3>
+      <p>[УТОЧНИТЬ] — имя, почта и телефон пресс-службы.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
