@@ -42,4 +42,5 @@ FANCYMUSIC — музыкальный рекорд-лейбл, направле�
 
 ## Контакты для прессы
 
-mail@fancymusic.ru · Telegram @s_krasin
+Email: mail@fancymusic.ru
+Telegram: @s_krasin

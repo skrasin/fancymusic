@@ -47,13 +47,10 @@
   <div class="rl-body">
 
     <div>
-      <p class="fm-eyebrow"><b>FANCYMUSIC</b> · Пресс-релиз · {{RELEASE_DATE}}</p>
       <h1 class="rl-title">{{HEADLINE}}</h1>
-      <p class="rl-meta">
-        <span>{{ARTIST}}</span><span>{{FORMAT}}</span><span>{{GENRE}}</span>
-      </p>
+      <p class="rl-meta"><span>{{GENRE}}</span></p>
       <div style="display: flex; flex-wrap: wrap; gap: var(--fm-space-3); margin-top: var(--fm-space-5)">
-        <a class="fm-btn fm-btn--solid" href="{{PREVIEW_URL}}">Слушать</a>
+        <a class="fm-btn fm-btn--solid" href="{{PREVIEW_URL}}">Ссылки на стриминги</a>
         <a class="fm-btn fm-btn--outline" href="{{RELEASE_URL}}">Страница релиза</a>
       </div>
     </div>
@@ -81,19 +78,24 @@
 
     <div>
       <h2>Контакты для прессы</h2>
-      <p>{{PRESS_CONTACTS}}</p>
+      <ul class="rl-contacts">
+        <li><span>Email</span><span>{{PRESS_EMAIL}}</span></li>
+        <li><span>Telegram</span><span>{{PRESS_TELEGRAM}}</span></li>
+      </ul>
 
       <p class="fm-eyebrow" style="margin-top: var(--fm-space-6)">Скачать пресс-релиз</p>
       <div class="rl-download">
         <a href="{{DOCX_URL}}" download>
           <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-doc"/></svg>
-          <span>DOCX<small>{{DOCX_SIZE}}</small></span>
+          <span>DOCX</span><small>{{DOCX_SIZE}}</small>
         </a>
         <a href="{{PDF_URL}}" download>
           <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg>
-          <span>PDF<small>{{PDF_SIZE}}</small></span>
+          <span>PDF</span><small>{{PDF_SIZE}}</small>
         </a>
       </div>
+
+      <p class="fm-eyebrow rl-colophon"><b>FANCYMUSIC</b> · Пресс-релиз · {{RELEASE_DATE}}</p>
     </div>
 
   </div>

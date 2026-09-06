@@ -40,7 +40,7 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  background: var(--fm-ink-700);
+  background: var(--fm-ink-800);
 }
 
 .rl-player { min-width: 0; }
@@ -56,6 +56,7 @@
 .rl-body h2 { font-size: var(--fm-text-h3); }
 
 .rl-title {
+  font-weight: var(--fm-weight-display-bold);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   line-height: 0.95;
   letter-spacing: var(--fm-tracking-display);
@@ -83,7 +84,7 @@
   font-size: var(--fm-text-h2);
   line-height: var(--fm-leading-heading);
   letter-spacing: var(--fm-tracking-heading);
-  max-width: 20ch;
+  max-width: none;
 }
 .rl-quote footer {
   font-family: var(--fm-font-text);
@@ -121,6 +122,26 @@
 .rl-panel .rl-links a { border-color: var(--fm-ink-700); color: var(--fm-white); }
 .rl-panel .rl-links a:hover { border-color: var(--fm-accent); color: var(--fm-accent); }
 
+/* ---- Контакты ------------------------------------------------------------ */
+.rl-contacts { list-style: none; padding: 0; display: grid; gap: var(--fm-space-2); }
+.rl-contacts li { display: flex; gap: var(--fm-space-3); }
+.rl-contacts span:first-child {
+  flex: 0 0 5.5rem;
+  color: var(--fm-text-muted);
+  font-size: var(--fm-text-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--fm-tracking-eyebrow);
+  padding-top: .15em;
+}
+
+/* ---- Колофон внизу страницы ----------------------------------------------
+   Строка «FANCYMUSIC · Пресс-релиз · дата» стоит в конце, а не в начале. */
+.rl-colophon {
+  margin-top: var(--fm-space-8);
+  padding-top: var(--fm-space-4);
+  border-top: var(--fm-border) solid var(--fm-rule);
+}
+
 /* ---- Скачивание пресс-релиза -------------------------------------------- */
 .rl-download {
   display: flex;
@@ -132,25 +153,27 @@
   display: inline-flex;
   align-items: center;
   gap: .5em;
-  padding: var(--fm-space-3) var(--fm-space-4);
+  /* те же отступы и кегль, что у .fm-btn: кнопки скачивания встают
+     в один рост с «Слушать» и «Страница релиза» */
+  padding: var(--fm-space-3) var(--fm-space-5);
   border: var(--fm-border-strong) solid var(--fm-rule-strong);
   border-radius: var(--fm-radius-1);
   text-decoration: none;
   color: var(--fm-text);
   font-size: var(--fm-text-small);
+  font-weight: var(--fm-weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.02em;
   transition: background var(--fm-dur-fast) var(--fm-ease),
               color var(--fm-dur-fast) var(--fm-ease);
 }
 .rl-download a:hover { background: var(--fm-text); color: var(--fm-bg); }
-.rl-download svg { width: 18px; height: 18px; flex: none; }
+.rl-download svg { width: 16px; height: 16px; flex: none; }
 .rl-download small {
-  display: block;
   font-size: var(--fm-text-caption);
   text-transform: none;
   letter-spacing: 0;
-  opacity: .65;
+  opacity: .6;
 }
 
 /* ---- Печать -------------------------------------------------------------
