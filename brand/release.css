@@ -1,219 +1,167 @@
-/* FANCYMUSIC — слой страницы релиза.
+/* FANCYMUSIC — слой страницы релиза. Раскладка «разворот».
    Подключается после base.css. Общий для всех релизов: правится один раз здесь,
    а не копируется в каждую страницу.
 
-   Движение сделано на CSS scroll-driven animations, без библиотек и без JS.
-   Принцип деградации: по умолчанию всё уже в финальном состоянии и видно.
-   Анимации включаются только внутри @supports, поэтому браузер без поддержки
-   показывает обычную статичную страницу, а не пустые блоки.
-   При prefers-reduced-motion движение выключается целиком. */
+   Экран делится пополам. Левая панель тёмная, прибита к верху и остаётся
+   на месте: обложка, плеер и ссылки артиста доступны всё время чтения.
+   Правая половина скроллится текстом. На узком экране колонки складываются,
+   панель становится обычным блоком. */
 
-/* ---- Полоса прогресса чтения ---------------------------------------- */
-.rl-progress {
-  display: none;
-  position: fixed;
-  inset-block-start: 0;
-  inset-inline: 0;
-  height: 3px;
-  background: var(--fm-accent);
-  transform-origin: 0 50%;
-  z-index: var(--fm-z-header);
+.rl-page { display: grid; }
+@media (min-width: 900px) {
+  .rl-page { grid-template-columns: 44% 56%; }
 }
 
-/* ---- Первый экран ---------------------------------------------------- */
-.rl-hero {
-  min-height: 100svh;
+/* ---- Левая панель ---------------------------------------------------- */
+.rl-panel {
+  background: var(--fm-ink-800);
+  color: var(--fm-white);
+  padding: var(--fm-space-7) var(--fm-gutter);
   display: grid;
-  grid-template-rows: auto 1fr auto;
   gap: var(--fm-space-5);
-  padding-block: var(--fm-space-6);
-}
-.rl-hero__inner {
-  display: grid;
-  gap: var(--fm-grid-gap);
-  align-items: center;
+  align-content: center;
 }
 @media (min-width: 900px) {
-  .rl-hero__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); }
+  .rl-panel {
+    position: sticky;
+    top: 0;
+    max-height: 100svh;
+    /* если содержимое панели выше экрана — прокручивается внутри себя,
+       иначе обложка и ссылки просто обрежутся */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 }
-.rl-hero__title {
-  font-size: var(--fm-text-hero);
-  line-height: var(--fm-leading-hero);
-  letter-spacing: var(--fm-tracking-display);
-  text-wrap: balance;
-}
-.rl-hero__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--fm-space-2) var(--fm-space-3);
-  font-size: var(--fm-text-caption);
-  text-transform: uppercase;
-  letter-spacing: var(--fm-tracking-eyebrow);
-  color: var(--fm-text-muted);
-}
-/* разделитель прилипает к предыдущему слову, иначе точка переносится на новую строку */
-.rl-hero__meta span:not(:last-child)::after { content: ' ·'; color: var(--fm-accent); }
-.rl-hero__cta { display: flex; flex-wrap: wrap; gap: var(--fm-space-3); margin-top: var(--fm-space-5); }
+.rl-panel .fm-eyebrow { color: var(--fm-ink-300); }
+.rl-panel .fm-eyebrow b { color: var(--fm-accent); }
 
 .rl-cover {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  background: var(--fm-surface);
-  border: var(--fm-border) solid var(--fm-rule);
+  display: block;
+  background: var(--fm-ink-700);
 }
 
-/* ---- Бегущая строка --------------------------------------------------- */
-.rl-marquee {
-  overflow: hidden;
-  border-block: var(--fm-border) solid var(--fm-rule);
-  padding-block: var(--fm-space-3);
-  user-select: none;
-}
-.rl-marquee__track {
-  display: flex;
-  width: max-content;
-  gap: var(--fm-space-5);
-  font-family: var(--fm-font-display);
-  font-weight: var(--fm-weight-display);
-  font-size: var(--fm-text-h2);
-  text-transform: uppercase;
-  letter-spacing: var(--fm-tracking-heading);
-  white-space: nowrap;
-  animation: rl-marquee 40s linear infinite;
-}
-.rl-marquee__track span { color: var(--fm-text-muted); }
-.rl-marquee__track b { color: var(--fm-text); font-weight: inherit; }
-@keyframes rl-marquee { to { transform: translateX(-50%); } }
-
-/* ---- Экран цитаты ------------------------------------------------------ */
-.rl-quote {
-  background: var(--fm-accent);
-  color: var(--fm-white);
-  min-height: 80svh;
-  display: grid;
-  align-content: center;
-}
-.rl-quote blockquote {
-  font-family: var(--fm-font-display);
-  font-weight: var(--fm-weight-display);
-  text-transform: uppercase;
-  font-size: var(--fm-text-display);
-  line-height: var(--fm-leading-display);
-  letter-spacing: var(--fm-tracking-display);
-  max-width: 22ch;
-  border: 0;
-  padding: 0;
-  text-wrap: balance;
-}
-/* Подпись белым по красному — 3.78:1. Чтобы пройти порог для крупного текста,
-   она набирается полужирным от 19px, а не мелкой строкой. */
-.rl-quote figcaption {
-  font-family: var(--fm-font-text);
-  font-size: 1.1875rem;
-  font-weight: var(--fm-weight-bold);
-  margin-top: var(--fm-space-5);
-  max-width: var(--fm-measure);
-}
-
-/* ---- Плеер -------------------------------------------------------------- */
-.rl-player { max-width: 720px; }
+.rl-player { min-width: 0; }
 .rl-player iframe { width: 100%; border: 0; display: block; }
 .rl-player audio { width: 100%; }
 
-/* ---- Треклист ------------------------------------------------------------ */
-.rl-tracks { list-style: none; padding: 0; counter-reset: track; max-width: var(--fm-measure); }
-.rl-tracks li {
-  counter-increment: track;
-  display: flex;
-  gap: var(--fm-space-4);
-  align-items: baseline;
-  padding-block: var(--fm-space-3);
-  border-bottom: var(--fm-border) solid var(--fm-rule);
-  font-family: var(--fm-font-display);
-  font-weight: var(--fm-weight-display);
-  font-size: var(--fm-text-h3);
-  text-transform: uppercase;
-  letter-spacing: var(--fm-tracking-heading);
+/* ---- Правая половина -------------------------------------------------- */
+.rl-body {
+  padding: var(--fm-section) var(--fm-gutter);
+  max-width: calc(var(--fm-measure) + var(--fm-gutter) * 2);
 }
-.rl-tracks li::before {
-  content: counter(track, decimal-leading-zero);
-  font-family: var(--fm-font-mono);
+.rl-body > * + * { margin-top: var(--fm-space-7); }
+.rl-body h2 { font-size: var(--fm-text-h3); }
+
+.rl-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: var(--fm-tracking-display);
+  text-wrap: balance;
+}
+.rl-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fm-space-3);
+  margin-top: var(--fm-space-4);
   font-size: var(--fm-text-caption);
-  font-weight: 400;
-  letter-spacing: 0;
-  color: var(--fm-accent);
-  flex: 0 0 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: var(--fm-tracking-eyebrow);
+  color: var(--fm-text-muted);
 }
+/* разделитель прилипает к предыдущему слову, иначе точка переносится на строку */
+.rl-meta span:not(:last-child)::after { content: ' ·'; color: var(--fm-accent); }
 
-/* ---- Блоки ссылок --------------------------------------------------------- */
-.rl-links { list-style: none; padding: 0; }
-.rl-links li { border-bottom: var(--fm-border) solid var(--fm-rule); }
-.rl-links a {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--fm-space-4);
-  padding-block: var(--fm-space-3);
-  text-decoration: none;
+.rl-quote {
+  border-left: var(--fm-rule-accent) solid var(--fm-accent);
+  padding-left: var(--fm-space-4);
   font-family: var(--fm-font-display);
   font-weight: var(--fm-weight-display);
-  font-size: var(--fm-text-h3);
   text-transform: uppercase;
+  font-size: var(--fm-text-h2);
+  line-height: var(--fm-leading-heading);
   letter-spacing: var(--fm-tracking-heading);
-  transition: padding-inline-start var(--fm-dur) var(--fm-ease);
+  max-width: 20ch;
 }
-.rl-links a::after { content: '→'; color: var(--fm-accent); }
-.rl-links a:hover { padding-inline-start: var(--fm-space-3); }
-
-/* ---- Движение -------------------------------------------------------------
-   Всё ниже — только надстройка. Без поддержки страница остаётся статичной. */
-@media (prefers-reduced-motion: reduce) {
-  .rl-marquee__track { animation: none; }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .rl-reveal {
-      animation: rl-reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 5% entry 55%;
-    }
-    .rl-cover {
-      animation: rl-cover linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 55%;
-    }
-    .rl-quote blockquote {
-      animation: rl-quote linear both;
-      animation-timeline: view();
-      animation-range: entry 20% cover 50%;
-    }
-  }
+.rl-quote footer {
+  font-family: var(--fm-font-text);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--fm-text-caption);
+  color: var(--fm-text-muted);
+  margin-top: var(--fm-space-3);
 }
 
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .rl-progress {
-      display: block;
-      animation: rl-progress linear;
-      animation-timeline: scroll(root);
-    }
-  }
+/* ---- Мелкие ссылки с пиктограммами ------------------------------------- */
+.rl-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fm-space-2);
+}
+.rl-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  padding: .35rem .6rem;
+  border: var(--fm-border) solid var(--fm-rule);
+  border-radius: var(--fm-radius-pill);
+  text-decoration: none;
+  color: var(--fm-text);
+  font-size: var(--fm-text-caption);
+  line-height: 1;
+  transition: border-color var(--fm-dur-fast) var(--fm-ease),
+              color var(--fm-dur-fast) var(--fm-ease);
+}
+.rl-links a:hover { border-color: var(--fm-accent); color: var(--fm-accent); }
+.rl-links svg { width: 15px; height: 15px; flex: none; }
+.rl-panel .rl-links a { border-color: var(--fm-ink-700); color: var(--fm-white); }
+.rl-panel .rl-links a:hover { border-color: var(--fm-accent); color: var(--fm-accent); }
+
+/* ---- Скачивание пресс-релиза -------------------------------------------- */
+.rl-download {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fm-space-3);
+  margin-top: var(--fm-space-4);
+}
+.rl-download a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding: var(--fm-space-3) var(--fm-space-4);
+  border: var(--fm-border-strong) solid var(--fm-rule-strong);
+  border-radius: var(--fm-radius-1);
+  text-decoration: none;
+  color: var(--fm-text);
+  font-size: var(--fm-text-small);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: background var(--fm-dur-fast) var(--fm-ease),
+              color var(--fm-dur-fast) var(--fm-ease);
+}
+.rl-download a:hover { background: var(--fm-text); color: var(--fm-bg); }
+.rl-download svg { width: 18px; height: 18px; flex: none; }
+.rl-download small {
+  display: block;
+  font-size: var(--fm-text-caption);
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: .65;
 }
 
-@keyframes rl-reveal {
-  from { opacity: 0; transform: translateY(2.5rem); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes rl-cover {
-  from { transform: scale(0.86); }
-  to   { transform: scale(1); }
-}
-@keyframes rl-quote {
-  from { opacity: 0.15; transform: translateY(1.5rem); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes rl-progress {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+/* ---- Печать -------------------------------------------------------------
+   Со страницы можно печатать напрямую: панель разворачивается в поток,
+   плеер и кнопки скачивания уходят. */
+@media print {
+  .rl-page { display: block; }
+  .rl-panel { background: none; color: var(--fm-ink); position: static;
+              max-height: none; padding: 0; }
+  .rl-panel .rl-links a { color: var(--fm-ink); }
+  .rl-player, .rl-download, .rl-links { display: none; }
+  .rl-body { padding: 0; max-width: none; }
+  .rl-cover { max-width: 60mm; }
 }

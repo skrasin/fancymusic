@@ -18,56 +18,17 @@
 </head>
 <body>
 
-<div class="rl-progress" aria-hidden="true"></div>
+<!-- Спрайт пиктограмм встраивается в страницу: Safari не тянет <use>
+     из внешнего файла. Содержимое — копия brand/icons.svg. -->
+{{ICON_SPRITE}}
 
-<!-- ================= ПЕРВЫЙ ЭКРАН ================= -->
-<header class="rl-hero">
-  <div class="fm-container">
-    <p class="fm-eyebrow"><b>FANCYMUSIC</b> · Пресс-релиз · {{RELEASE_DATE}}</p>
-  </div>
+<main class="rl-page">
 
-  <div class="fm-container">
-    <div class="rl-hero__inner">
-      <div>
-        <h1 class="rl-hero__title">{{HEADLINE}}</h1>
-        <p class="rl-hero__meta">
-          <span>{{ARTIST}}</span><span>{{FORMAT}}</span><span>{{GENRE}}</span>
-        </p>
-        <div class="rl-hero__cta">
-          <a class="fm-btn fm-btn--solid" href="{{PREVIEW_URL}}">Слушать</a>
-          <a class="fm-btn fm-btn--outline" href="{{RELEASE_URL}}">Страница релиза</a>
-        </div>
-      </div>
-      <img class="rl-cover" src="{{COVER_URL}}"
-           alt="Обложка релиза «{{RELEASE_TITLE}}» — {{ARTIST}}">
-    </div>
-  </div>
+  <!-- ================= ЛЕВАЯ ПАНЕЛЬ ================= -->
+  <aside class="rl-panel">
+    <img class="rl-cover" src="{{COVER_URL}}"
+         alt="Обложка релиза «{{RELEASE_TITLE}}» — {{ARTIST}}">
 
-  <div class="rl-marquee" aria-hidden="true">
-    <div class="rl-marquee__track">
-      <span><b>{{RELEASE_TITLE}}</b> · {{ARTIST}} · {{FORMAT}} · {{RELEASE_DATE}} ·</span>
-      <span><b>{{RELEASE_TITLE}}</b> · {{ARTIST}} · {{FORMAT}} · {{RELEASE_DATE}} ·</span>
-      <span><b>{{RELEASE_TITLE}}</b> · {{ARTIST}} · {{FORMAT}} · {{RELEASE_DATE}} ·</span>
-      <span><b>{{RELEASE_TITLE}}</b> · {{ARTIST}} · {{FORMAT}} · {{RELEASE_DATE}} ·</span>
-    </div>
-  </div>
-</header>
-
-<!-- ================= ЛИД И ТЕКСТ ================= -->
-<section class="fm-section">
-  <div class="fm-container fm-stack--wide">
-    <p class="fm-lead rl-reveal">{{LEAD}}</p>
-    <div class="rl-reveal">{{BODY}}</div>
-  </div>
-</section>
-
-<!-- ================= ПРЕДПРОСЛУШИВАНИЕ ================= -->
-<section class="fm-section">
-  <div class="fm-container fm-stack--wide rl-reveal">
-    <div>
-      <p class="fm-eyebrow">Предпрослушивание</p>
-      <h2>Слушать</h2>
-    </div>
     <div class="rl-player">
       <!-- Оставить ОДИН вариант:
            1) встроенный плеер площадки (Bandcamp / Яндекс Музыка / Spotify)
@@ -75,69 +36,67 @@
       {{PLAYER_EMBED}}
       <!-- <audio controls preload="none" src="preview.mp3">Ваш браузер не поддерживает аудио.</audio> -->
     </div>
-    <ul class="fm-facts">
-      <li><span>Артист</span><span>{{ARTIST}}</span></li>
-      <li><span>Релиз</span><span>{{RELEASE_TITLE}}</span></li>
-      <li><span>Формат</span><span>{{FORMAT}}</span></li>
-      <li><span>Жанр</span><span>{{GENRE}}</span></li>
-      <li><span>Дата выхода</span><span>{{RELEASE_DATE}}</span></li>
-      <li><span>Лейбл</span><span>FANCYMUSIC</span></li>
-    </ul>
-  </div>
-</section>
 
-<!-- ================= ЦИТАТА ================= -->
-<section class="rl-quote">
-  <div class="fm-container">
-    <figure>
-      <blockquote>{{QUOTE}}</blockquote>
-      <figcaption>{{QUOTE_AUTHOR}}</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ================= ТРЕКЛИСТ ================= -->
-<section class="fm-section">
-  <div class="fm-container rl-reveal">
-    <p class="fm-eyebrow">Состав</p>
-    <h2>Треклист</h2>
-    <ol class="rl-tracks">{{TRACKLIST}}</ol>
-  </div>
-</section>
-
-<!-- ================= ОБ АРТИСТЕ ================= -->
-<section class="fm-section">
-  <div class="fm-container fm-stack--wide rl-reveal">
     <div>
-      <p class="fm-eyebrow">Справка</p>
+      <p class="fm-eyebrow">Артист в сети</p>
+      <ul class="rl-links" style="margin-top: var(--fm-space-3)">{{ARTIST_LINKS}}</ul>
+    </div>
+  </aside>
+
+  <!-- ================= ПРАВАЯ ПОЛОВИНА ================= -->
+  <div class="rl-body">
+
+    <div>
+      <p class="fm-eyebrow"><b>FANCYMUSIC</b> · Пресс-релиз · {{RELEASE_DATE}}</p>
+      <h1 class="rl-title">{{HEADLINE}}</h1>
+      <p class="rl-meta">
+        <span>{{ARTIST}}</span><span>{{FORMAT}}</span><span>{{GENRE}}</span>
+      </p>
+      <p style="margin-top: var(--fm-space-5)">
+        <a class="fm-btn fm-btn--solid" href="{{PREVIEW_URL}}">Слушать</a>
+      </p>
+    </div>
+
+    <div>
+      <p class="fm-lead">{{LEAD}}</p>
+      {{BODY}}
+    </div>
+
+    <blockquote class="rl-quote">
+      {{QUOTE}}
+      <footer>{{QUOTE_AUTHOR}}</footer>
+    </blockquote>
+
+    <div>
       <h2>Об артисте</h2>
       {{ABOUT_ARTIST}}
     </div>
-    <div>
-      <h3>Артист в сети</h3>
-      <ul class="rl-links">{{ARTIST_LINKS}}</ul>
-    </div>
-  </div>
-</section>
 
-<!-- ================= О ЛЕЙБЛЕ И КОНТАКТЫ ================= -->
-<section class="fm-section fm-invert">
-  <div class="fm-container fm-stack--wide">
     <div>
-      <p class="fm-eyebrow">Издатель</p>
       <h2>О лейбле</h2>
       {{ABOUT_LABEL}}
+      <ul class="rl-links" style="margin-top: var(--fm-space-4)">{{LABEL_LINKS}}</ul>
     </div>
+
     <div>
-      <h3>Лейбл в сети</h3>
-      <ul class="rl-links">{{LABEL_LINKS}}</ul>
-    </div>
-    <div>
-      <h3>Контакты для прессы</h3>
+      <h2>Контакты для прессы</h2>
       <p>{{PRESS_CONTACTS}}</p>
+
+      <p class="fm-eyebrow" style="margin-top: var(--fm-space-6)">Скачать пресс-релиз</p>
+      <div class="rl-download">
+        <a href="{{DOCX_URL}}" download>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-doc"/></svg>
+          <span>DOCX<small>{{DOCX_SIZE}}</small></span>
+        </a>
+        <a href="{{PDF_URL}}" download>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg>
+          <span>PDF<small>{{PDF_SIZE}}</small></span>
+        </a>
+      </div>
     </div>
+
   </div>
-</section>
+</main>
 
 </body>
 </html>

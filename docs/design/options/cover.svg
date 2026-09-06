@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img"
-     aria-label="Условная обложка демонстрационного релиза">
-  <rect width="600" height="600" fill="#2e2e2e"/>
-  <circle cx="300" cy="270" r="150" fill="none" stroke="#ff2626" stroke-width="24"/>
-  <rect x="60" y="255" width="480" height="30" fill="#ff2626"/>
-  <rect x="60" y="470" width="290" height="14" fill="#ffffff"/>
-  <rect x="60" y="502" width="180" height="14" fill="#ffffff" opacity="0.5"/>
-</svg>

@@ -46,4 +46,15 @@
     <text x="12" y="16.6" text-anchor="middle" fill="currentColor"
           font-family="Bebas Neue, Impact, sans-serif" font-size="11">F</text>
   </symbol>
+
+  <symbol id="i-doc" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="1.8"
+          d="M14 2.5H6.5A1.5 1.5 0 0 0 5 4v16a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 20V7.5L14 2.5Z"/>
+    <path fill="none" stroke="currentColor" stroke-width="1.8" d="M13.8 2.6V8h5.1"/>
+  </symbol>
+
+  <symbol id="i-download" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19.5h16"/>
+  </symbol>
 </svg>
