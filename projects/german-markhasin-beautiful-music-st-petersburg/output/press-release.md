@@ -30,17 +30,3 @@
 ## О лейбле
 
 FANCYMUSIC — музыкальный рекорд-лейбл, направленный на издание новой актуальной русской музыки различных направлений. Это свободная платформа для широкого спектра современных российских композиторов и музыкантов, а также основа для появления новых имён.
-
-## Ссылки
-
-- Слушать на всех площадках: https://band.link/i5gTx
-- Страница релиза: https://fancymusic.ru/german-markhasin-beautiful-music-st-petersburg/
-- Bandcamp: https://fancymusic.bandcamp.com/album/beautiful-music-st-petersburg
-- Сайт артиста: https://germanmarkhasin.ru
-- Telegram артиста: https://t.me/markhasing
-- FANCYMUSIC: https://fancymusic.ru
-
-## Контакты для прессы
-
-Email: mail@fancymusic.ru
-Telegram: @s_krasin
