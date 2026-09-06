@@ -18,7 +18,8 @@
     "PRESS_EMAIL": "<a href=\"mailto:mail@fancymusic.ru\">mail@fancymusic.ru</a>",
     "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
     "DOCX_URL": "press-release.docx",
-    "PDF_URL": "press-release.pdf"
+    "PDF_URL": "press-release.pdf",
+    "COVER_ALT": "Обложка релиза «Прекрасная музыка. Петербург» Германа Мархасина: смазанный снимок петербургского дома на фоне светлого неба с проводами"
   },
   "artist_links": [
     [
