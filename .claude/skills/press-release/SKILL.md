@@ -55,7 +55,8 @@ python3 tools/build-release-page.py {slug}
 ```
 
 Сборщик подставит данные в `templates/release-page.html`, встроит спрайт
-пиктограмм и размеры файлов. `docs/releases/{slug}/index.html` руками
+пиктограмм и размеры файлов, а из обложки сделает иконку вкладки
+(`favicon-32.png` и `apple-touch-icon.png` рядом со страницей). `docs/releases/{slug}/index.html` руками
 не править — он перезаписывается.
 
 Раскладка «разворот»: слева тёмная панель с обложкой, плеером и ссылками

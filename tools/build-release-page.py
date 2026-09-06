@@ -42,6 +42,28 @@ def size_kb(path: Path) -> str:
     return f"{path.stat().st_size // 1024} КБ" if path.exists() else ""
 
 
+def build_favicons(cover: Path, out_dir: Path) -> str:
+    """Делает иконку вкладки из обложки релиза.
+
+    Класть в таб саму обложку расточительно: браузер тянет её ради 16×16.
+    Поэтому рядом со страницей кладутся уменьшенные копии — 32 и 180 px,
+    последняя нужна для иконки на домашнем экране iOS.
+    Если обложки нет, страница берёт общий знак лейбла.
+    """
+    if not cover.exists():
+        return ('<link rel="icon" href="../../favicon.svg" type="image/svg+xml">')
+
+    from PIL import Image
+    src = Image.open(cover).convert("RGB")
+    for size, name in ((32, "favicon-32.png"), (180, "apple-touch-icon.png")):
+        src.resize((size, size), Image.LANCZOS).save(out_dir / name, "PNG", optimize=True)
+    # знак лейбла в SVG сюда не подставляется: браузер предпочёл бы его
+    # растровой обложке, и иконка релиза не появилась бы
+    return ('<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">\n'
+            '<link rel="icon" href="apple-touch-icon.png" sizes="180x180" type="image/png">\n'
+            '<link rel="apple-touch-icon" href="apple-touch-icon.png">')
+
+
 def main() -> int:
     if len(sys.argv) != 2:
         print(__doc__)
@@ -63,6 +85,9 @@ def main() -> int:
 
     prose = release_content.load(ROOT, slug)
     values = dict(data["values"])
+    cover_name = values.get("COVER_FILE") or ""
+    values["FAVICON_TAGS"] = build_favicons(out_dir / cover_name, out_dir) if cover_name \
+        else '<link rel="icon" href="../../favicon.svg" type="image/svg+xml">'
     values["HEADLINE"] = prose["title"]
     values["LEAD"] = release_content.bold_to_html(prose["lead"])
     values["BODY"] = release_content.blocks_to_html(prose["body"])
