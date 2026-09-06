@@ -1,41 +1,137 @@
 /* FANCYMUSIC — дизайн-токены.
-   Единственное место, где задаются цвета, шрифты и ритм страниц релизов.
-   ВНИМАНИЕ: значения ниже — стартовые, собраны из брендовых констант.
-   Шрифты и метрики подлежат сверке с fancymusic.ru (см. brand/BRAND.md). */
+   Единственный источник правды по цвету, типографике и ритму.
+   Никаких значений мимо этого файла: в разметке только var(--fm-*).
+
+   Построено на трёх фирменных цветах:
+     красный #ff2626 — выделение
+     тёмно-серый #2e2e2e — текст
+     белый #ffffff — фон
+   Всё остальное — производные, выведенные из них. */
 
 :root {
-  /* Цвет */
-  --fm-white: #ffffff;
-  --fm-ink: #2e2e2e;
+  /* ---- Базовые цвета бренда ---------------------------------------- */
   --fm-red: #ff2626;
+  --fm-ink: #2e2e2e;
+  --fm-white: #ffffff;
 
-  --fm-bg: var(--fm-white);
-  --fm-text: var(--fm-ink);
-  --fm-text-muted: #6f6f6f;
-  --fm-accent: var(--fm-red);
-  --fm-rule: #e2e2e2;
-  --fm-surface: #f6f6f6;
+  /* ---- Производные красного ----------------------------------------
+     #ff2626 на белом даёт контраст 3.78:1 — этого хватает крупному тексту
+     (от 24px, или от 19px полужирным) и границам элементов, но НЕ хватает
+     обычному тексту и мелким подписям по WCAG AA.
+     Поэтому красный разведён на три роли. */
+  --fm-red-accent: var(--fm-red);   /* плашки, крупные заголовки, линии    */
+  --fm-red-ink:    #e62222;         /* красный текст мелким кеглем, 4.55:1 */
+  --fm-red-deep:   #b81b1b;         /* наведение и нажатие, 6.54:1         */
+  --fm-red-wash:   #fff1f1;         /* мягкая подложка блока              */
 
-  /* Типографика */
-  --fm-font-display: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --fm-font-text: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --fm-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* ---- Серая шкала (от #2e2e2e к белому) ---------------------------- */
+  --fm-ink-900: #1c1c1c;
+  --fm-ink-800: var(--fm-ink);
+  --fm-ink-700: #4a4a4a;
+  --fm-ink-600: #6f6f6f;   /* минимальный серый для текста, 5.02:1        */
+  --fm-ink-400: #9b9b9b;   /* только для декора, не для текста            */
+  --fm-ink-300: #d4d4d4;
+  --fm-ink-200: #e8e8e8;
+  --fm-ink-100: #f2f2f2;
+  --fm-ink-050: #f8f8f8;
 
-  --fm-size-eyebrow: 0.75rem;
-  --fm-size-body: 1.0625rem;
-  --fm-size-lead: 1.25rem;
-  --fm-size-h2: 1.375rem;
-  --fm-size-h1: clamp(2rem, 6vw, 3.5rem);
+  /* ---- Смысловые роли ----------------------------------------------
+     Именно их используют компоненты. Инверсная секция переопределяет
+     этот блок целиком — см. .fm-invert в base.css. */
+  --fm-bg:           var(--fm-white);
+  --fm-bg-subtle:    var(--fm-ink-050);
+  --fm-surface:      var(--fm-ink-100);
+  --fm-text:         var(--fm-ink-800);
+  --fm-text-muted:   var(--fm-ink-600);
+  --fm-text-invert:  var(--fm-white);
+  --fm-accent:       var(--fm-red-accent);
+  --fm-accent-text:  var(--fm-red-ink);
+  --fm-accent-hover: var(--fm-red-deep);
+  --fm-rule:         var(--fm-ink-200);
+  --fm-rule-strong:  var(--fm-ink-800);
+  --fm-focus:        var(--fm-red-deep);
 
-  --fm-leading-tight: 1.08;
+  /* ---- Шрифтовые стеки ----------------------------------------------
+     FM Display — Bebas (латиница) + Oswald (кириллица), см. fonts.css.
+     Helvetica Neue стоит первой: на macOS и iOS подхватывается системная,
+     на остальных платформах работает Inter. Разница в метриках заметна,
+     но так требует бренд — подробности в brand/BRAND.md. */
+  --fm-font-display: 'FM Display', 'Bebas Neue', 'Oswald', Impact, sans-serif;
+  --fm-font-text: 'Helvetica Neue', 'FM Text', Inter, Helvetica, Arial, sans-serif;
+  --fm-font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ---- Типографическая шкала ----------------------------------------
+     Дисплейные размеры текучие: clamp(мобильный, вьюпорт, десктопный). */
+  --fm-text-hero:    clamp(3.5rem, 12vw, 9rem);
+  --fm-text-display: clamp(2.75rem, 8vw, 6rem);
+  --fm-text-h1:      clamp(2.25rem, 5.5vw, 4rem);
+  --fm-text-h2:      clamp(1.75rem, 3.5vw, 2.75rem);
+  --fm-text-h3:      clamp(1.375rem, 2.2vw, 1.75rem);
+  --fm-text-lead:    clamp(1.125rem, 1.6vw, 1.375rem);
+  --fm-text-body:    1.0625rem;
+  --fm-text-small:   0.9375rem;
+  --fm-text-caption: 0.8125rem;
+  --fm-text-eyebrow: 0.75rem;
+
+  /* ---- Интерлиньяж и трекинг ----------------------------------------
+     Дисплейный шрифт узкий и только заглавный: ему нужны плотная строка
+     и небольшой положительный трекинг, иначе прописные слипаются. */
+  --fm-leading-hero: 0.86;
+  --fm-leading-display: 0.92;
+  --fm-leading-heading: 1.05;
+  --fm-leading-lead: 1.35;
   --fm-leading-body: 1.6;
-  --fm-tracking-display: -0.02em;
-  --fm-tracking-eyebrow: 0.14em;
 
-  /* Ритм и геометрия */
-  --fm-measure: 68ch;
-  --fm-page: 900px;
-  --fm-gap: 1rem;
-  --fm-block: 3rem;
-  --fm-radius: 2px;
+  --fm-tracking-display: 0.005em;
+  --fm-tracking-heading: 0.01em;
+  --fm-tracking-body: 0;
+  --fm-tracking-eyebrow: 0.16em;
+
+  --fm-weight-text: 400;
+  --fm-weight-medium: 500;
+  --fm-weight-bold: 700;
+
+  /* ---- Ритм (шаг 4px) ------------------------------------------------ */
+  --fm-space-1: 0.25rem;
+  --fm-space-2: 0.5rem;
+  --fm-space-3: 0.75rem;
+  --fm-space-4: 1rem;
+  --fm-space-5: 1.5rem;
+  --fm-space-6: 2rem;
+  --fm-space-7: 3rem;
+  --fm-space-8: 4rem;
+  --fm-space-9: 6rem;
+  --fm-space-10: 8rem;
+  --fm-section: clamp(4rem, 10vw, 8rem);   /* вертикальные поля секции */
+
+  /* ---- Раскладка ------------------------------------------------------ */
+  --fm-container: 1240px;
+  --fm-container-narrow: 720px;
+  --fm-measure: 68ch;                        /* длина строки текста      */
+  --fm-gutter: clamp(1.25rem, 5vw, 4rem);
+  --fm-grid-gap: clamp(1rem, 2.5vw, 2rem);
+
+  /* ---- Геометрия и штрих ---------------------------------------------
+     Бренд плоский: скругления почти нулевые, глубина — контрастом, не тенью. */
+  --fm-radius-0: 0;
+  --fm-radius-1: 2px;
+  --fm-radius-2: 4px;
+  --fm-radius-pill: 999px;
+  --fm-border: 1px;
+  --fm-border-strong: 2px;
+  --fm-rule-accent: 3px;                     /* красная отбивка          */
+
+  /* ---- Движение -------------------------------------------------------- */
+  --fm-ease: cubic-bezier(0.2, 0, 0.1, 1);
+  --fm-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --fm-dur-fast: 120ms;
+  --fm-dur: 220ms;
+  --fm-dur-slow: 420ms;
+
+  /* ---- Слои -------------------------------------------------------------- */
+  --fm-z-base: 0;
+  --fm-z-sticky: 100;
+  --fm-z-header: 200;
+  --fm-z-overlay: 300;
+  --fm-z-modal: 400;
 }

@@ -1,0 +1,246 @@
+/* FANCYMUSIC — базовый слой: сброс, элементы, компоненты посадочных страниц.
+   Подключать после fonts.css и design-tokens.css.
+   Все значения берутся из токенов; хардкод здесь — ошибка. */
+
+/* ---- Сброс ---------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--fm-bg);
+  color: var(--fm-text);
+  font-family: var(--fm-font-text);
+  font-size: var(--fm-text-body);
+  line-height: var(--fm-leading-body);
+  font-weight: var(--fm-weight-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+
+:focus-visible {
+  outline: var(--fm-border-strong) solid var(--fm-focus);
+  outline-offset: 2px;
+}
+
+/* ---- Типографика ----------------------------------------------------
+   Дисплейный шрифт только заглавный — иначе Bebas отдаёт строчные
+   как уменьшенные прописные, а Oswald рисует настоящие строчные,
+   и латиница с кириллицей в одной строке расходятся. */
+.fm-hero, .fm-display, h1, h2, h3, .fm-h1, .fm-h2, .fm-h3 {
+  font-family: var(--fm-font-display);
+  font-weight: var(--fm-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--fm-tracking-heading);
+  line-height: var(--fm-leading-heading);
+  text-wrap: balance;
+}
+
+.fm-hero {
+  font-size: var(--fm-text-hero);
+  line-height: var(--fm-leading-hero);
+  letter-spacing: var(--fm-tracking-display);
+}
+.fm-display { font-size: var(--fm-text-display); line-height: var(--fm-leading-display); }
+h1, .fm-h1 { font-size: var(--fm-text-h1); }
+h2, .fm-h2 { font-size: var(--fm-text-h2); }
+h3, .fm-h3 { font-size: var(--fm-text-h3); }
+
+.fm-eyebrow {
+  font-family: var(--fm-font-text);
+  font-size: var(--fm-text-eyebrow);
+  font-weight: var(--fm-weight-medium);
+  letter-spacing: var(--fm-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fm-text-muted);
+}
+.fm-eyebrow b, .fm-eyebrow strong { color: var(--fm-accent-text); font-weight: var(--fm-weight-bold); }
+
+.fm-lead {
+  font-size: var(--fm-text-lead);
+  line-height: var(--fm-leading-lead);
+  max-width: var(--fm-measure);
+}
+.fm-small { font-size: var(--fm-text-small); }
+.fm-caption { font-size: var(--fm-text-caption); color: var(--fm-text-muted); }
+.fm-mono { font-family: var(--fm-font-mono); font-size: var(--fm-text-small); }
+
+p { max-width: var(--fm-measure); }
+p + p { margin-top: var(--fm-space-4); }
+
+a {
+  color: var(--fm-accent-text);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--fm-dur-fast) var(--fm-ease);
+}
+a:hover { color: var(--fm-accent-hover); }
+
+::selection { background: var(--fm-accent); color: var(--fm-white); }
+
+/* ---- Раскладка -------------------------------------------------------- */
+.fm-container {
+  width: 100%;
+  max-width: var(--fm-container);
+  margin-inline: auto;
+  padding-inline: var(--fm-gutter);
+}
+.fm-container--narrow { max-width: var(--fm-container-narrow); }
+
+.fm-section { padding-block: var(--fm-section); }
+[id] { scroll-margin-top: var(--fm-space-8); }
+.fm-section + .fm-section { border-top: var(--fm-border) solid var(--fm-rule); }
+
+.fm-stack > * + * { margin-top: var(--fm-space-4); }
+.fm-stack--wide > * + * { margin-top: var(--fm-space-6); }
+
+.fm-grid {
+  display: grid;
+  gap: var(--fm-grid-gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+.fm-split {
+  display: grid;
+  gap: var(--fm-grid-gap);
+  align-items: start;
+}
+@media (min-width: 900px) { .fm-split { grid-template-columns: 1fr 1fr; } }
+
+/* ---- Инверсная секция -------------------------------------------------
+   Меняет только смысловые роли, компоненты внутри ничего не знают о теме. */
+.fm-invert {
+  --fm-bg: var(--fm-ink-800);
+  --fm-bg-subtle: var(--fm-ink-900);
+  --fm-surface: var(--fm-ink-700);
+  --fm-text: var(--fm-white);
+  --fm-text-muted: var(--fm-ink-300);
+  --fm-accent-text: var(--fm-red);        /* на тёмном ярко-красный читается */
+  --fm-accent-hover: var(--fm-white);
+  --fm-rule: var(--fm-ink-700);
+  --fm-rule-strong: var(--fm-white);
+  --fm-focus: var(--fm-white);
+  background: var(--fm-bg);
+  color: var(--fm-text);
+}
+
+/* ---- Красная отбивка --------------------------------------------------- */
+.fm-rule-accent {
+  border: 0;
+  border-top: var(--fm-rule-accent) solid var(--fm-accent);
+  width: var(--fm-space-8);
+  margin-block: var(--fm-space-5);
+}
+.fm-mark { color: var(--fm-accent); }
+.fm-mark-bg {
+  background: var(--fm-accent);
+  color: var(--fm-white);
+  padding-inline: 0.2em;
+  box-decoration-break: clone;
+}
+
+/* ---- Кнопки ------------------------------------------------------------ */
+.fm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fm-space-2);
+  padding: var(--fm-space-3) var(--fm-space-5);
+  font-family: var(--fm-font-text);
+  font-size: var(--fm-text-small);
+  font-weight: var(--fm-weight-medium);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: var(--fm-border-strong) solid transparent;
+  border-radius: var(--fm-radius-1);
+  cursor: pointer;
+  transition: background var(--fm-dur-fast) var(--fm-ease),
+              color var(--fm-dur-fast) var(--fm-ease),
+              border-color var(--fm-dur-fast) var(--fm-ease);
+}
+.fm-btn--solid {
+  background: var(--fm-accent);
+  border-color: var(--fm-accent);
+  color: var(--fm-white);
+}
+.fm-btn--solid:hover { background: var(--fm-accent-hover); border-color: var(--fm-accent-hover); color: var(--fm-white); }
+
+.fm-btn--outline {
+  background: transparent;
+  border-color: var(--fm-rule-strong);
+  color: var(--fm-text);
+}
+.fm-btn--outline:hover { background: var(--fm-text); color: var(--fm-bg); }
+
+.fm-btn--ghost { background: transparent; border-color: transparent; color: var(--fm-accent-text); padding-inline: 0; }
+.fm-btn--ghost:hover { color: var(--fm-accent-hover); }
+
+/* ---- Карточка ---------------------------------------------------------- */
+.fm-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fm-space-3);
+  padding: var(--fm-space-5);
+  background: var(--fm-bg);
+  border: var(--fm-border) solid var(--fm-rule);
+  border-radius: var(--fm-radius-1);
+  transition: border-color var(--fm-dur) var(--fm-ease), transform var(--fm-dur) var(--fm-ease-out);
+}
+.fm-card:hover { border-color: var(--fm-accent); }
+.fm-card--link:hover { transform: translateY(-2px); }
+.fm-card__media { aspect-ratio: 1 / 1; object-fit: cover; background: var(--fm-surface); }
+
+/* ---- Строки фактов ------------------------------------------------------ */
+.fm-facts { list-style: none; padding: 0; }
+.fm-facts li {
+  display: flex;
+  gap: var(--fm-space-4);
+  padding-block: var(--fm-space-2);
+  border-bottom: var(--fm-border) solid var(--fm-rule);
+  font-size: var(--fm-text-small);
+}
+.fm-facts dt, .fm-facts li > :first-child { flex: 0 0 9rem; color: var(--fm-text-muted); }
+
+/* ---- Цитата -------------------------------------------------------------- */
+.fm-quote {
+  border-left: var(--fm-rule-accent) solid var(--fm-accent);
+  padding-left: var(--fm-space-5);
+  font-family: var(--fm-font-display);
+  text-transform: uppercase;
+  font-size: var(--fm-text-h3);
+  line-height: var(--fm-leading-heading);
+  letter-spacing: var(--fm-tracking-heading);
+  max-width: var(--fm-measure);
+}
+.fm-quote footer {
+  font-family: var(--fm-font-text);
+  text-transform: none;
+  font-size: var(--fm-text-small);
+  letter-spacing: 0;
+  color: var(--fm-text-muted);
+  margin-top: var(--fm-space-3);
+}
+
+/* ---- Утилиты ------------------------------------------------------------- */
+.fm-visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.fm-scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }

@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дизайн-система FANCYMUSIC</title>
+<meta name="description" content="Цвет, типографика, ритм и компоненты посадочных страниц FANCYMUSIC.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/design-tokens.css">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* Стили только этой страницы-спецификации. В систему не входят. */
+  .spec-nav { position: sticky; top: 0; z-index: var(--fm-z-header);
+    background: var(--fm-bg); border-bottom: var(--fm-border) solid var(--fm-rule); }
+  .spec-nav ul { display: flex; flex-wrap: wrap; gap: var(--fm-space-4);
+    list-style: none; padding: var(--fm-space-3) 0; margin: 0; }
+  .spec-nav a { font-size: var(--fm-text-caption); text-transform: uppercase;
+    letter-spacing: var(--fm-tracking-eyebrow); text-decoration: none; color: var(--fm-text-muted); }
+  .spec-nav a:hover { color: var(--fm-accent-text); }
+
+  .swatches { display: grid; gap: var(--fm-space-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
+  .swatch__chip { height: 88px; border: var(--fm-border) solid var(--fm-rule); }
+  .swatch dl { display: grid; grid-template-columns: auto 1fr; gap: 0 var(--fm-space-3);
+    margin-top: var(--fm-space-2); font-size: var(--fm-text-caption); }
+  .swatch dt { color: var(--fm-text-muted); }
+  .swatch dd { margin: 0; font-family: var(--fm-font-mono); }
+
+  .pass { color: #1a7f37; font-weight: 700; }
+  .fail { color: var(--fm-accent-text); font-weight: 700; }
+
+  .scale-row { display: grid; gap: var(--fm-space-2); padding-block: var(--fm-space-4);
+    border-bottom: var(--fm-border) solid var(--fm-rule); }
+  .scale-row__meta { font-family: var(--fm-font-mono); font-size: var(--fm-text-caption);
+    color: var(--fm-text-muted); }
+
+  .space-bar { background: var(--fm-accent); height: 14px; }
+  .space-row { display: grid; grid-template-columns: 7rem 1fr; align-items: center;
+    gap: var(--fm-space-3); padding-block: var(--fm-space-2);
+    font-family: var(--fm-font-mono); font-size: var(--fm-text-caption); }
+
+  pre { background: var(--fm-ink-900); color: var(--fm-ink-100); padding: var(--fm-space-4);
+    overflow-x: auto; font-family: var(--fm-font-mono); font-size: var(--fm-text-caption);
+    line-height: 1.5; border-radius: var(--fm-radius-1); }
+  .fm-invert pre { background: var(--fm-ink-900); }
+  code { font-family: var(--fm-font-mono); font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<nav class="spec-nav">
+  <div class="fm-container">
+    <ul>
+      <li><a href="#colour">Цвет</a></li>
+      <li><a href="#type">Типографика</a></li>
+      <li><a href="#fonts">Шрифты</a></li>
+      <li><a href="#space">Ритм</a></li>
+      <li><a href="#components">Компоненты</a></li>
+      <li><a href="#invert">Инверсия</a></li>
+      <li><a href="#usage">Как подключать</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="fm-section">
+  <div class="fm-container">
+    <p class="fm-eyebrow"><b>FANCYMUSIC</b> · Дизайн-система</p>
+    <h1 class="fm-hero">Три цвета,<br>два шрифта,<br><span class="fm-mark">один ритм</span></h1>
+    <hr class="fm-rule-accent">
+    <p class="fm-lead">Система для посадочных страниц лейбла: красный на выделение,
+      тёмно-серый на текст, белый на фон. Всё остальное выведено из них и живёт
+      в CSS-переменных — в разметке хардкод-значений быть не должно.</p>
+  </div>
+</header>
+
+<!-- ================= ЦВЕТ ================= -->
+<section class="fm-section" id="colour">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <p class="fm-eyebrow">01 — Цвет</p>
+      <h2>Палитра</h2>
+    </div>
+
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch__chip" style="background: var(--fm-red)"></div>
+        <dl><dt>Токен</dt><dd>--fm-red</dd>
+            <dt>Hex</dt><dd>#ff2626</dd>
+            <dt>Роль</dt><dd>выделение</dd></dl>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background: var(--fm-ink)"></div>
+        <dl><dt>Токен</dt><dd>--fm-ink</dd>
+            <dt>Hex</dt><dd>#2e2e2e</dd>
+            <dt>Роль</dt><dd>текст</dd></dl>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background: var(--fm-white)"></div>
+        <dl><dt>Токен</dt><dd>--fm-white</dd>
+            <dt>Hex</dt><dd>#ffffff</dd>
+            <dt>Роль</dt><dd>фон</dd></dl>
+      </div>
+    </div>
+
+    <div>
+      <h3>Красный разведён на три роли</h3>
+      <p>Фирменный <code>#ff2626</code> на белом даёт контраст <b>3.78:1</b>. По WCAG AA
+        этого достаточно крупному тексту (от 24px, или от 19px полужирным), границам
+        и элементам управления — и <b>недостаточно</b> обычному тексту и мелким подписям.
+        Поэтому в системе три красных, и выбор между ними не на глаз, а по роли.</p>
+
+      <div class="swatches" style="margin-top: var(--fm-space-5)">
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--fm-red-accent)"></div>
+          <dl><dt>Токен</dt><dd>--fm-red-accent</dd>
+              <dt>Hex</dt><dd>#ff2626</dd>
+              <dt>Контраст</dt><dd>3.78:1</dd>
+              <dt>Куда</dt><dd>плашки, крупные заголовки, линии</dd></dl>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--fm-red-ink)"></div>
+          <dl><dt>Токен</dt><dd>--fm-red-ink</dd>
+              <dt>Hex</dt><dd>#e62222</dd>
+              <dt>Контраст</dt><dd class="pass">4.55:1 — AA</dd>
+              <dt>Куда</dt><dd>красный текст, ссылки</dd></dl>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--fm-red-deep)"></div>
+          <dl><dt>Токен</dt><dd>--fm-red-deep</dd>
+              <dt>Hex</dt><dd>#b81b1b</dd>
+              <dt>Контраст</dt><dd class="pass">6.54:1 — AAA</dd>
+              <dt>Куда</dt><dd>наведение, нажатие</dd></dl>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Проверенные пары</h3>
+      <ul class="fm-facts">
+        <li><span>#2e2e2e на белом</span><span><b>13.58:1</b> <span class="pass">AAA</span> — основной текст</span></li>
+        <li><span>#6f6f6f на белом</span><span><b>5.02:1</b> <span class="pass">AA</span> — приглушённый текст, светлее не уходить</span></li>
+        <li><span>#e62222 на белом</span><span><b>4.55:1</b> <span class="pass">AA</span> — красный текст</span></li>
+        <li><span>#ff2626 на белом</span><span><b>3.78:1</b> <span class="fail">только крупный текст</span></span></li>
+        <li><span>белый на #ff2626</span><span><b>3.78:1</b> <span class="fail">подпись кнопки — от 19px полужирным</span></span></li>
+        <li><span>белый на #2e2e2e</span><span><b>13.58:1</b> <span class="pass">AAA</span> — инверсная секция</span></li>
+        <li><span>#ff2626 на #2e2e2e</span><span><b>3.59:1</b> <span class="fail">только акценты, не текст</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ТИПОГРАФИКА ================= -->
+<section class="fm-section" id="type">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <p class="fm-eyebrow">02 — Типографика</p>
+      <h2>Шкала</h2>
+      <p>Дисплейные размеры текучие: <code>clamp()</code> от мобильного к десктопному,
+        без брейкпоинтов. Ширина окна браузера меняет кегль плавно — попробуй потянуть.</p>
+    </div>
+
+    <div>
+      <div class="scale-row">
+        <span class="fm-hero">Hero</span>
+        <span class="scale-row__meta">--fm-text-hero · clamp(3.5rem, 12vw, 9rem) · line-height 0.86</span>
+      </div>
+      <div class="scale-row">
+        <span class="fm-display">Display</span>
+        <span class="scale-row__meta">--fm-text-display · clamp(2.75rem, 8vw, 6rem) · line-height 0.92</span>
+      </div>
+      <div class="scale-row">
+        <span class="fm-h1">Заголовок H1</span>
+        <span class="scale-row__meta">--fm-text-h1 · clamp(2.25rem, 5.5vw, 4rem)</span>
+      </div>
+      <div class="scale-row">
+        <span class="fm-h2">Заголовок H2</span>
+        <span class="scale-row__meta">--fm-text-h2 · clamp(1.75rem, 3.5vw, 2.75rem)</span>
+      </div>
+      <div class="scale-row">
+        <span class="fm-h3">Заголовок H3</span>
+        <span class="scale-row__meta">--fm-text-h3 · clamp(1.375rem, 2.2vw, 1.75rem)</span>
+      </div>
+      <div class="scale-row">
+        <span class="fm-eyebrow">Надзаголовок · Eyebrow</span>
+        <span class="scale-row__meta">--fm-text-eyebrow · 12px · трекинг 0.16em</span>
+      </div>
+      <div class="scale-row">
+        <p class="fm-lead">Лид-абзац: им открывается секция и им же начинается пресс-релиз.</p>
+        <span class="scale-row__meta">--fm-text-lead · clamp(1.125rem, 1.6vw, 1.375rem)</span>
+      </div>
+      <div class="scale-row">
+        <p>Основной текст. Длина строки ограничена 68 знаками — глазу тяжело возвращаться
+          к началу более длинной строки, и на широком экране колонка не расползается.</p>
+        <span class="scale-row__meta">--fm-text-body · 17px · line-height 1.6 · max-width 68ch</span>
+      </div>
+      <div class="scale-row">
+        <p class="fm-caption">Подпись под изображением, сноска, служебная строка.</p>
+        <span class="scale-row__meta">--fm-text-caption · 13px</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ШРИФТЫ ================= -->
+<section class="fm-section" id="fonts">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <p class="fm-eyebrow">03 — Шрифты</p>
+      <h2>Как устроен дисплейный шрифт</h2>
+      <p>У Bebas Neue нет кириллицы — её не существует в оригинальной гарнитуре.
+        Поэтому <code>FM Display</code> собран из двух источников: латиницу рисует Bebas,
+        кириллицу — Oswald, подогнанный по высоте прописных
+        (<code>size-adjust: 86.42%</code>: 0.700em против 0.810em) и по строчному боксу
+        (<code>ascent/descent-override</code>). Браузер выбирает файл сам по
+        <code>unicode-range</code>, так что смешанная строка набирается однородно.</p>
+    </div>
+
+    <div class="fm-stack">
+      <p class="fm-display">FANCYMUSIC — НОВЫЙ РЕЛИЗ</p>
+      <p class="fm-caption">Одна строка, два файла: латиница Bebas, кириллица Oswald.
+        Стык проходит по пробелу перед «НОВЫЙ» — высота прописных совпадает.</p>
+      <p class="fm-h1">АЛФАВИТ АБВГДЕЁЖЗ · ABCDEFGH · 0123456789</p>
+    </div>
+
+    <div>
+      <h3>Текстовый шрифт</h3>
+      <p>Стек <code>--fm-font-text</code> начинается с Helvetica Neue: на macOS и iOS
+        подхватывается системная, на остальных платформах работает Inter.
+        Метрики у них разные, поэтому одна и та же страница на Mac и на Windows
+        набирается чуть по-разному — это осознанный размен в пользу бренда.
+        Чтобы вид был одинаковым везде, нужна веб-лицензия Helvetica Neue
+        либо отказ от неё в пользу Inter на всех платформах.</p>
+      <p style="font-family: var(--fm-font-text)">Съешь же ещё этих мягких французских булок,
+        да выпей чаю. The quick brown fox jumps over the lazy dog. 0123456789</p>
+    </div>
+
+    <div>
+      <h3>Правило</h3>
+      <p>Дисплейный шрифт — <b>только заглавными</b>. Bebas отдаёт строчные как
+        уменьшенные прописные, а Oswald рисует настоящие строчные: в смешанной строке
+        это разъедется. Поэтому <code>text-transform: uppercase</code> прошит
+        в базовый слой для всех заголовков.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= РИТМ ================= -->
+<section class="fm-section" id="space">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <p class="fm-eyebrow">04 — Ритм</p>
+      <h2>Шаг сетки</h2>
+      <p>Базовый шаг — 4px. Промежуточных значений нет: если нужного размера в шкале
+        не нашлось, берётся соседний, а не новое число.</p>
+    </div>
+    <div>
+      <div class="space-row"><span>--fm-space-1</span><span class="space-bar" style="width: var(--fm-space-1)"></span></div>
+      <div class="space-row"><span>--fm-space-2</span><span class="space-bar" style="width: var(--fm-space-2)"></span></div>
+      <div class="space-row"><span>--fm-space-3</span><span class="space-bar" style="width: var(--fm-space-3)"></span></div>
+      <div class="space-row"><span>--fm-space-4</span><span class="space-bar" style="width: var(--fm-space-4)"></span></div>
+      <div class="space-row"><span>--fm-space-5</span><span class="space-bar" style="width: var(--fm-space-5)"></span></div>
+      <div class="space-row"><span>--fm-space-6</span><span class="space-bar" style="width: var(--fm-space-6)"></span></div>
+      <div class="space-row"><span>--fm-space-7</span><span class="space-bar" style="width: var(--fm-space-7)"></span></div>
+      <div class="space-row"><span>--fm-space-8</span><span class="space-bar" style="width: var(--fm-space-8)"></span></div>
+      <div class="space-row"><span>--fm-space-9</span><span class="space-bar" style="width: var(--fm-space-9)"></span></div>
+      <div class="space-row"><span>--fm-space-10</span><span class="space-bar" style="width: var(--fm-space-10)"></span></div>
+    </div>
+    <p class="fm-caption">Вертикальные поля секции — <code>--fm-section</code>,
+      clamp(4rem, 10vw, 8rem). Поля по краям — <code>--fm-gutter</code>,
+      clamp(1.25rem, 5vw, 4rem). Контейнер — 1240px, узкий — 720px.</p>
+  </div>
+</section>
+
+<!-- ================= КОМПОНЕНТЫ ================= -->
+<section class="fm-section" id="components">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <p class="fm-eyebrow">05 — Компоненты</p>
+      <h2>Строительные блоки</h2>
+    </div>
+
+    <div>
+      <h3>Кнопки</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--fm-space-3); align-items: center">
+        <a class="fm-btn fm-btn--solid" href="#components">Слушать релиз</a>
+        <a class="fm-btn fm-btn--outline" href="#components">Скачать пресс-кит</a>
+        <a class="fm-btn fm-btn--ghost" href="#components">Все релизы →</a>
+      </div>
+    </div>
+
+    <div>
+      <h3>Карточки</h3>
+      <div class="fm-grid">
+        <article class="fm-card fm-card--link">
+          <div class="fm-card__media"></div>
+          <p class="fm-eyebrow">Сингл</p>
+          <h3 class="fm-h3">Название релиза</h3>
+          <p class="fm-small">Короткое описание в одну-две строки, без переноса смысла на третью.</p>
+        </article>
+        <article class="fm-card fm-card--link">
+          <div class="fm-card__media"></div>
+          <p class="fm-eyebrow">Альбом</p>
+          <h3 class="fm-h3">Название релиза</h3>
+          <p class="fm-small">Короткое описание в одну-две строки, без переноса смысла на третью.</p>
+        </article>
+        <article class="fm-card fm-card--link">
+          <div class="fm-card__media"></div>
+          <p class="fm-eyebrow">EP</p>
+          <h3 class="fm-h3">Название релиза</h3>
+          <p class="fm-small">Короткое описание в одну-две строки, без переноса смысла на третью.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="fm-split">
+      <div>
+        <h3>Цитата</h3>
+        <blockquote class="fm-quote">
+          Мы записали это за четыре дня в пустом зале — и оставили всё, что обычно вычищают.
+          <footer>Имя артиста, о работе над альбомом</footer>
+        </blockquote>
+      </div>
+      <div>
+        <h3>Строки фактов</h3>
+        <ul class="fm-facts">
+          <li><span>Артист</span><span>Имя артиста</span></li>
+          <li><span>Формат</span><span>Альбом, 9 треков</span></li>
+          <li><span>Жанр</span><span>Современная академическая музыка</span></li>
+          <li><span>Дата выхода</span><span>12.12.2026</span></li>
+          <li><span>Лейбл</span><span>FANCYMUSIC</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h3>Выделение в тексте</h3>
+      <p>Красным выделяется <span class="fm-mark">одно понятие на экран</span>, не больше —
+        иначе акцент перестаёт работать. Плашкой
+        <span class="fm-mark-bg">выделяется главное слово</span> в заголовке.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ИНВЕРСИЯ ================= -->
+<section class="fm-section fm-invert" id="invert">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <p class="fm-eyebrow">06 — Инверсия</p>
+      <h2>Тёмная секция</h2>
+      <p>Класс <code>.fm-invert</code> переопределяет только смысловые токены —
+        фон, текст, линии. Компоненты внутри не знают, что оказались на тёмном,
+        и не требуют отдельных стилей. Так набирается ритм страницы:
+        светлые секции, одна тёмная на разрыв.</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: var(--fm-space-3)">
+      <a class="fm-btn fm-btn--solid" href="#invert">Слушать релиз</a>
+      <a class="fm-btn fm-btn--outline" href="#invert">Скачать пресс-кит</a>
+    </div>
+    <p class="fm-caption">На тёмном фоне красный текст берётся ярким (#ff2626):
+      приглушённый вариант на сером читается хуже.</p>
+  </div>
+</section>
+
+<!-- ================= ПОДКЛЮЧЕНИЕ ================= -->
+<section class="fm-section" id="usage">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <p class="fm-eyebrow">07 — Как подключать</p>
+      <h2>Три файла, один порядок</h2>
+    </div>
+    <pre><code>&lt;link rel="stylesheet" href="/assets/fonts.css"&gt;
+&lt;link rel="stylesheet" href="/assets/design-tokens.css"&gt;
+&lt;link rel="stylesheet" href="/assets/base.css"&gt;</code></pre>
+    <p>Порядок обязателен: <code>fonts.css</code> объявляет семейства,
+      <code>design-tokens.css</code> задаёт переменные, <code>base.css</code> их применяет.
+      Дальше в разметке — только классы <code>.fm-*</code> и переменные
+      <code>var(--fm-*)</code>.</p>
+
+    <h3>Каркас посадочной страницы</h3>
+    <pre><code>&lt;section class="fm-section"&gt;
+  &lt;div class="fm-container fm-stack--wide"&gt;
+    &lt;p class="fm-eyebrow"&gt;&lt;b&gt;FANCYMUSIC&lt;/b&gt; · Новый релиз&lt;/p&gt;
+    &lt;h1 class="fm-hero"&gt;Название &lt;span class="fm-mark"&gt;релиза&lt;/span&gt;&lt;/h1&gt;
+    &lt;hr class="fm-rule-accent"&gt;
+    &lt;p class="fm-lead"&gt;Лид в две-три строки.&lt;/p&gt;
+    &lt;a class="fm-btn fm-btn--solid" href="#"&gt;Слушать&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <h3>Чего не делать</h3>
+    <ul class="fm-facts">
+      <li><span>Не писать цвет</span><span>только <code>var(--fm-*)</code>, hex в разметке — ошибка</span></li>
+      <li><span>Не набирать</span><span>дисплейный шрифт строчными</span></li>
+      <li><span>Не ставить</span><span>#ff2626 на мелкий текст — для этого <code>--fm-red-ink</code></span></li>
+      <li><span>Не изобретать</span><span>отступы мимо шкалы <code>--fm-space-*</code></span></li>
+      <li><span>Не править</span><span><code>fonts.css</code> руками — он собирается скриптом</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="fm-section fm-invert">
+  <div class="fm-container">
+    <p class="fm-eyebrow"><b>FANCYMUSIC</b></p>
+    <div style="display: flex; flex-wrap: wrap; gap: var(--fm-space-4); margin-top: var(--fm-space-4)">
+      <a href="https://fancymusic.ru">fancymusic.ru</a>
+      <a href="https://t.me/fancymusiclabel">Telegram</a>
+      <a href="https://vk.ru/fancymusicrecords">VK</a>
+      <a href="https://instagram.com/fancy_music">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -10,155 +10,116 @@
 <meta property="og:description" content="{{LEAD_SHORT}}">
 <meta property="og:image" content="{{COVER_URL}}">
 <meta property="og:site_name" content="FANCYMUSIC">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/fonts.css">
 <link rel="stylesheet" href="../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--fm-bg);
-    color: var(--fm-text);
-    font-family: var(--fm-font-text);
-    font-size: var(--fm-size-body);
-    line-height: var(--fm-leading-body);
-  }
-  .page { max-width: var(--fm-page); margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
-
-  .eyebrow {
-    font-size: var(--fm-size-eyebrow);
-    letter-spacing: var(--fm-tracking-eyebrow);
-    text-transform: uppercase;
-    color: var(--fm-text-muted);
-    margin: 0 0 1.25rem;
-  }
-  .eyebrow b { color: var(--fm-accent); font-weight: 600; }
-
-  h1 {
-    font-family: var(--fm-font-display);
-    font-size: var(--fm-size-h1);
-    line-height: var(--fm-leading-tight);
-    letter-spacing: var(--fm-tracking-display);
-    font-weight: 700;
-    margin: 0 0 .5rem;
-  }
-  .artist { font-size: var(--fm-size-lead); color: var(--fm-text-muted); margin: 0 0 var(--fm-block); }
-
-  h2 {
-    font-family: var(--fm-font-display);
-    font-size: var(--fm-size-h2);
-    letter-spacing: var(--fm-tracking-display);
-    margin: var(--fm-block) 0 .75rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--fm-rule);
-  }
-
-  p { max-width: var(--fm-measure); margin: 0 0 1rem; }
-  .lead { font-size: var(--fm-size-lead); line-height: 1.45; }
-  a { color: var(--fm-accent); text-underline-offset: 3px; }
-
-  /* Обложка + предпрослушивание */
-  .listen { display: grid; gap: 1.5rem; margin: var(--fm-block) 0; }
-  @media (min-width: 720px) { .listen { grid-template-columns: 320px 1fr; align-items: start; } }
-  .cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: var(--fm-surface); border-radius: var(--fm-radius); }
-  .player { min-width: 0; }
-  .player iframe { width: 100%; border: 0; display: block; }
-  .player audio { width: 100%; margin-bottom: 1rem; }
-  .facts { list-style: none; margin: 1rem 0 0; padding: 0; font-size: .9375rem; color: var(--fm-text-muted); }
-  .facts li { display: flex; gap: .75rem; padding: .375rem 0; border-bottom: 1px solid var(--fm-rule); }
-  .facts span:first-child { flex: 0 0 8rem; }
-  .facts span:last-child { color: var(--fm-text); }
-
-  blockquote {
-    margin: var(--fm-block) 0;
-    padding-left: 1.25rem;
-    border-left: 3px solid var(--fm-accent);
-    font-family: var(--fm-font-display);
-    font-size: var(--fm-size-lead);
-    line-height: 1.4;
-  }
-  blockquote footer { font-family: var(--fm-font-text); font-size: .9375rem; color: var(--fm-text-muted); margin-top: .75rem; }
-
-  ol.tracks { padding-left: 1.25rem; max-width: var(--fm-measure); }
-  ol.tracks li { padding: .25rem 0; }
-
-  ul.links { list-style: none; padding: 0; max-width: var(--fm-measure); }
-  ul.links li { padding: .5rem 0; border-bottom: 1px solid var(--fm-rule); }
-
-  .contacts { background: var(--fm-surface); padding: 1.25rem; border-radius: var(--fm-radius); max-width: var(--fm-measure); }
-
-  footer.site { margin-top: var(--fm-block); padding-top: 1rem; border-top: 1px solid var(--fm-rule); font-size: .875rem; color: var(--fm-text-muted); }
-  footer.site a { margin-right: 1rem; display: inline-block; }
-
+  /* Раскладка страницы релиза. Значения — только из токенов. */
+  .release-listen { display: grid; gap: var(--fm-grid-gap); align-items: start; }
+  @media (min-width: 860px) { .release-listen { grid-template-columns: 360px 1fr; } }
+  .release-cover { aspect-ratio: 1 / 1; object-fit: cover; background: var(--fm-surface);
+    border: var(--fm-border) solid var(--fm-rule); }
+  .release-player iframe { width: 100%; border: 0; display: block; }
+  .release-player audio { width: 100%; }
+  .release-tracks { padding-left: 1.25rem; max-width: var(--fm-measure); }
+  .release-tracks li { padding-block: var(--fm-space-1); }
+  .release-links { list-style: none; padding: 0; max-width: var(--fm-measure); }
+  .release-links li { padding-block: var(--fm-space-3);
+    border-bottom: var(--fm-border) solid var(--fm-rule); }
   @media print {
-    .player, .listen iframe { display: none; }
-    body { font-size: 11pt; }
+    .release-player { display: none; }
     a { color: var(--fm-ink); }
   }
 </style>
 </head>
 <body>
-<main class="page">
 
-  <p class="eyebrow"><b>FANCYMUSIC</b> · Пресс-релиз · {{RELEASE_DATE}}</p>
+<header class="fm-section">
+  <div class="fm-container">
+    <p class="fm-eyebrow"><b>FANCYMUSIC</b> · Пресс-релиз · {{RELEASE_DATE}}</p>
+    <h1 class="fm-display">{{HEADLINE}}</h1>
+    <hr class="fm-rule-accent">
+    <p class="fm-lead">{{LEAD}}</p>
+  </div>
+</header>
 
-  <h1>{{HEADLINE}}</h1>
-  <p class="artist">{{ARTIST}} — «{{RELEASE_TITLE}}»</p>
-
-  <section class="listen">
-    <img class="cover" src="{{COVER_URL}}" alt="Обложка релиза «{{RELEASE_TITLE}}» — {{ARTIST}}">
-    <div class="player">
-      <!-- Предпрослушивание. Оставить ОДИН из вариантов:
-           1) встроенный плеер площадки (Bandcamp / Яндекс Музыка / Spotify)
-           2) локальный файл превью -->
-      {{PLAYER_EMBED}}
-      <!-- <audio controls preload="none" src="preview.mp3">Ваш браузер не поддерживает аудио.</audio> -->
-
-      <ul class="facts">
-        <li><span>Артист</span><span>{{ARTIST}}</span></li>
-        <li><span>Релиз</span><span>{{RELEASE_TITLE}}</span></li>
-        <li><span>Формат</span><span>{{FORMAT}}</span></li>
-        <li><span>Жанр</span><span>{{GENRE}}</span></li>
-        <li><span>Дата выхода</span><span>{{RELEASE_DATE}}</span></li>
-        <li><span>Лейбл</span><span>FANCYMUSIC</span></li>
-      </ul>
+<section class="fm-section">
+  <div class="fm-container">
+    <div class="release-listen">
+      <img class="release-cover" src="{{COVER_URL}}"
+           alt="Обложка релиза «{{RELEASE_TITLE}}» — {{ARTIST}}">
+      <div class="fm-stack">
+        <div class="release-player">
+          <!-- Предпрослушивание. Оставить ОДИН вариант:
+               1) встроенный плеер площадки (Bandcamp / Яндекс Музыка / Spotify)
+               2) локальный файл превью -->
+          {{PLAYER_EMBED}}
+          <!-- <audio controls preload="none" src="preview.mp3">Ваш браузер не поддерживает аудио.</audio> -->
+        </div>
+        <ul class="fm-facts">
+          <li><span>Артист</span><span>{{ARTIST}}</span></li>
+          <li><span>Релиз</span><span>{{RELEASE_TITLE}}</span></li>
+          <li><span>Формат</span><span>{{FORMAT}}</span></li>
+          <li><span>Жанр</span><span>{{GENRE}}</span></li>
+          <li><span>Дата выхода</span><span>{{RELEASE_DATE}}</span></li>
+          <li><span>Лейбл</span><span>FANCYMUSIC</span></li>
+        </ul>
+        <a class="fm-btn fm-btn--solid" href="{{PREVIEW_URL}}">Слушать</a>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <p class="lead">{{LEAD}}</p>
+<section class="fm-section">
+  <div class="fm-container fm-stack--wide">
+    {{BODY}}
 
-  {{BODY}}
+    <blockquote class="fm-quote">
+      {{QUOTE}}
+      <footer>{{QUOTE_AUTHOR}}</footer>
+    </blockquote>
 
-  <blockquote>
-    {{QUOTE}}
-    <footer>{{QUOTE_AUTHOR}}</footer>
-  </blockquote>
+    <div>
+      <h2>Треклист</h2>
+      <ol class="release-tracks">{{TRACKLIST}}</ol>
+    </div>
 
-  <h2>Треклист</h2>
-  <ol class="tracks">
-    {{TRACKLIST}}
-  </ol>
+    <div>
+      <h2>Об артисте</h2>
+      {{ABOUT_ARTIST}}
+    </div>
+  </div>
+</section>
 
-  <h2>Об артисте</h2>
-  {{ABOUT_ARTIST}}
+<section class="fm-section fm-invert">
+  <div class="fm-container fm-stack--wide">
+    <div>
+      <h2>О лейбле</h2>
+      {{ABOUT_LABEL}}
+    </div>
+    <div>
+      <h2>Ссылки</h2>
+      <ul class="release-links">{{LINKS}}</ul>
+    </div>
+    <div>
+      <h2>Контакты для прессы</h2>
+      <p>{{PRESS_CONTACTS}}</p>
+    </div>
+  </div>
+</section>
 
-  <h2>О лейбле</h2>
-  {{ABOUT_LABEL}}
+<footer class="fm-section">
+  <div class="fm-container">
+    <p class="fm-eyebrow"><b>FANCYMUSIC</b></p>
+    <div style="display: flex; flex-wrap: wrap; gap: var(--fm-space-4); margin-top: var(--fm-space-4)">
+      <a href="https://fancymusic.ru">fancymusic.ru</a>
+      <a href="https://t.me/fancymusiclabel">Telegram</a>
+      <a href="https://vk.ru/fancymusicrecords">VK</a>
+      <a href="https://instagram.com/fancy_music">Instagram</a>
+    </div>
+  </div>
+</footer>
 
-  <h2>Ссылки</h2>
-  <ul class="links">
-    {{LINKS}}
-  </ul>
-
-  <h2>Контакты для прессы</h2>
-  <div class="contacts">{{PRESS_CONTACTS}}</div>
-
-  <footer class="site">
-    <a href="https://fancymusic.ru">fancymusic.ru</a>
-    <a href="https://t.me/fancymusiclabel">Telegram</a>
-    <a href="https://vk.ru/fancymusicrecords">VK</a>
-    <a href="https://instagram.com/fancy_music">Instagram</a>
-  </footer>
-
-</main>
 </body>
 </html>

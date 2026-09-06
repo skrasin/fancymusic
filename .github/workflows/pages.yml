@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - 'docs/**'
-      - 'brand/design-tokens.css'
+      - 'brand/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -27,8 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # токены живут в brand/, на Pages уезжает их копия
-      - run: ./tools/sync-tokens.sh
+      # шрифты и стили живут в brand/, на Pages уезжает их копия
+      - run: ./tools/sync-brand.sh
 
       # Pages включается вручную: Settings -> Pages -> Source: GitHub Actions.
       # enablement: true здесь не работает — токену workflow не разрешено

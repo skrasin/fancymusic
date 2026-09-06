@@ -8,7 +8,7 @@ PR-агент лейбла [FANCYMUSIC](https://fancymusic.ru): пресс-ре�
 | Что | Где |
 |---|---|
 | Инструкция агенту | `CLAUDE.md` |
-| Дизайн-система и брендовые константы | `brand/` |
+| Дизайн-система: токены, шрифты, компоненты | `brand/`, живая спецификация — `/design/` |
 | Шаблоны текста, соцсетей и страницы | `templates/` |
 | Материалы и тексты по релизам | `releases/{slug}/` |
 | Опубликованные страницы (GitHub Pages) | `docs/` |
@@ -22,7 +22,7 @@ PR-агент лейбла [FANCYMUSIC](https://fancymusic.ru): пресс-ре�
 
 ## Публикация
 
-Пуш в `main` с изменениями в `docs/` запускает workflow `.github/workflows/pages.yml`
+Пуш в `main` с изменениями в `docs/` или `brand/` запускает workflow `.github/workflows/pages.yml`
 и выкладывает страницы на GitHub Pages. Ссылка на релиз:
 `https://skrasin.github.io/fancymusic/releases/{slug}/`.
 
