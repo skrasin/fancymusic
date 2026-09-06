@@ -11,7 +11,7 @@ description: Собрать пресс-релиз FANCYMUSIC из сырых м�
 ## 1. Разобрать материалы
 
 Определить `slug` (латиница, kebab-case: `artist-release-name`), создать
-`releases/{slug}/raw-materials/` и сложить туда присланное как есть.
+`projects/{slug}/raw-materials/` и сложить туда присланное как есть.
 
 Заполнить `raw-materials/meta.yml` по образцу `templates/meta.yml`. Каждый факт —
 только из материалов. Чего нет — `[УТОЧНИТЬ]`, цитаты нет — `[ЦИТАТА]`.
@@ -31,9 +31,9 @@ description: Собрать пресс-релиз FANCYMUSIC из сырых м�
 
 ## 3. Написать тексты
 
-- `releases/{slug}/output/press-release.md` — по структуре из `CLAUDE.md`,
+- `projects/{slug}/output/press-release.md` — по структуре из `CLAUDE.md`,
   на основе `templates/press-release.md`
-- `releases/{slug}/output/social.md` — на основе `templates/social.md`,
+- `projects/{slug}/output/social.md` — на основе `templates/social.md`,
   если соцсети нужны
 
 Один финальный вариант, без «вот три версии на выбор».
