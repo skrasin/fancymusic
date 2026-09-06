@@ -19,3 +19,36 @@
 Музыка другого петербургского мастера, Анатолия Королёва, только в последние годы стала исполняться так часто, как заслуживает. На FANCYMUSIC выходила его пьеса для струнных «Баланс белого», теперь настало время виртуозных фортепианных опусов. Виртуозна не только игра пианиста, но также игра композитора с музыкальной стариной. В двух циклах Королёв заново изобретает русские народные песни и переоткрывает жанр партиты — в эпоху барокко так называли цепь танцевальных пьес. К барочному жанру обращается и Алиса Духовлинова, ученица Королёва. В пассакалии «В песках» она вспоминает не только европейский XVI век, но также японский роман ХХ века «Женщина в песках», музыку американских минималистов, музыку своего учителя — и, соединяя их, заглядывает в будущее.
 
 Все эти сочинения Герман Мархасин исполнял в разных городах в серии концертов «Прекрасная музыка». Под этим названием они впервые публикуются в профессиональной записи.
+
+## Ссылки и код плеера (как присланы)
+
+- Обложка: `Cover700-84.jpg` — https://fancymusic.ru/wp-content/uploads/2012/12/Cover700-84.jpg
+- Единая ссылка на стриминги: https://band.link/i5gTx
+- Страница релиза: https://fancymusic.ru/german-markhasin-beautiful-music-st-petersburg/
+
+Встраиваемый плеер Bandcamp:
+
+```html
+<iframe style="border: 0; width: 100%; height: 42px;"
+  src="https://bandcamp.com/EmbeddedPlayer/album=2651736364/size=small/bgcol=ffffff/linkcol=ff2626/artwork=none/transparent=true/"
+  seamless><a href="https://fancymusic.bandcamp.com/album/beautiful-music-st-petersburg">Beautiful Music. St. Petersburg by German Markhasin</a></iframe>
+```
+
+Ссылки артиста: сайт https://germanmarkhasin.ru · Instagram https://www.instagram.com/markhasing ·
+Telegram https://t.me/markhasing · Facebook https://www.facebook.com/german.markhasin/ ·
+VK https://vk.ru/markhasing
+
+Ссылки лейбла: https://www.instagram.com/fancy_music · https://www.facebook.com/fancymusiclabel ·
+https://vk.com/fancymusicrecords · https://t.me/fancymusiclabel ·
+https://www.youtube.com/user/TheFancymusic · https://fancymusic.ru
+
+Контакты: mail@fancymusic.ru · Telegram @s_krasin
+
+## Чего в материалах нет
+
+- **Дата выхода** — блокирует публикацию
+- Количество треков
+- Собственная цитата артиста (есть только цитаты прессы)
+
+Проверить фактуру на fancymusic.ru, Bandcamp, band.link и germanmarkhasin.ru
+из рабочего окружения нельзя: все четыре домена закрыты сетевой политикой.
