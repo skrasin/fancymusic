@@ -16,10 +16,14 @@
 .rl-panel {
   background: var(--fm-bg);
   color: var(--fm-text);
-  padding: var(--fm-space-7) var(--fm-gutter);
+  /* верхнее поле то же, что у текстовой колонки: обложка и заголовок
+     начинаются на одной высоте на любом экране */
+  padding: var(--fm-section) var(--fm-gutter);
   display: grid;
   gap: var(--fm-space-5);
-  align-content: center;
+  /* не center: при центрировании отступ до обложки зависел от высоты окна,
+     а на низком экране верх обложки уезжал за границу прокрутки панели */
+  align-content: start;
 }
 @media (min-width: 900px) {
   .rl-panel {
