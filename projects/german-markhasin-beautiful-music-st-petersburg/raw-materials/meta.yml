@@ -6,7 +6,7 @@ release_title_en: Beautiful Music. St. Petersburg
 format: Альбом
 tracks_count: "[УТОЧНИТЬ]"      # количество треков в материалах не указано
 genre: Современная академическая музыка   # классификация выведена из материалов, не прислана
-release_date: "[УТОЧНИТЬ]"      # даты выхода в материалах нет — блокирует публикацию
+release_date: "04.09.2026"
 
 composers:
   - Юрий Красавин — «Вертер», «Круг песен»
@@ -37,7 +37,8 @@ links:
     facebook: https://www.facebook.com/german.markhasin/
     vk: https://vk.ru/markhasing
 
-cover: "[УТОЧНИТЬ]"   # назван файл Cover700-84.jpg, но он не приложен
+cover: https://fancymusic.ru/wp-content/uploads/2012/12/Cover700-84.jpg
+# файл не приложен: страница тянет обложку по прямой ссылке с сайта лейбла
 
 press_contacts:
   email: mail@fancymusic.ru
