@@ -1,77 +1,70 @@
 /* FANCYMUSIC — подключение шрифтов.
-   Сгенерировано tools/fetch-fonts.sh, руками не править.
+   Сгенерировано tools/build-fonts.sh, руками не править.
 
-   FM Display — составное семейство: латиница из Bebas Neue, кириллица из Oswald,
-   подогнанного по высоте прописных (size-adjust) и по строчному боксу
-   (ascent/descent-override). Браузер сам берёт нужный файл по unicode-range,
-   поэтому смешанная строка «FANCYMUSIC — Новый релиз» набирается однородно.
-   Шрифт только заглавный: текст задавать в text-transform: uppercase.
+   FM Display — Bebas Neue, пять начертаний, латиница и кириллица в одном файле.
+   Шрифт целиком заглавный по рисунку: строчные буквы нарисованы прописными,
+   поэтому регистр исходного текста на вид не влияет.
 
-   FM Text — Inter, переменный. Работает запасным для Helvetica Neue,
-   которая проприетарная и в репозиторий не кладётся (см. brand/BRAND.md).
+   Веса переназначены относительно файлов: Thin 100, Light 200, Book 300,
+   Regular 400, Bold 700. В самих .otf и Book, и Regular помечены весом 400,
+   хотя рисунок у них разный.
 
-   Лицензии: Bebas Neue, Oswald, Inter — SIL Open Font License 1.1. */
+   FM Text — Inter, переменный. Запасной для Helvetica Neue, которая
+   проприетарная и в репозиторий не кладётся (см. brand/BRAND.md).
 
-/* Bebas Neue — latin-ext */
+   Лицензии: Bebas Neue и Inter — SIL Open Font License 1.1. */
+
+/* Bebas Neue Thin */
 @font-face {
   font-family: 'FM Display';
   font-style: normal;
+  font-weight: 100;
   font-display: swap;
-  font-weight: 400 700;
-  ascent-override: 90%;
-  descent-override: 30%;
-  line-gap-override: 0%;
-  src: url(fonts/bebas-neue-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url(fonts/bebas-neue-100.woff2) format('woff2');
 }
 
-/* Bebas Neue — latin */
+/* Bebas Neue Light */
 @font-face {
   font-family: 'FM Display';
   font-style: normal;
+  font-weight: 200;
   font-display: swap;
-  font-weight: 400 700;
-  ascent-override: 90%;
-  descent-override: 30%;
-  line-gap-override: 0%;
-  src: url(fonts/bebas-neue-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(fonts/bebas-neue-200.woff2) format('woff2');
 }
 
-/* Oswald — cyrillic-ext */
+/* Bebas Neue Book */
 @font-face {
   font-family: 'FM Display';
   font-style: normal;
+  font-weight: 300;
   font-display: swap;
-  font-weight: 400 700;
-  size-adjust: 86.42%;
-  ascent-override: 90%;
-  descent-override: 30%;
-  line-gap-override: 0%;
-  src: url(fonts/oswald-cyrillic-ext.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  src: url(fonts/bebas-neue-300.woff2) format('woff2');
 }
 
-/* Oswald — cyrillic */
+/* Bebas Neue Regular */
 @font-face {
   font-family: 'FM Display';
   font-style: normal;
+  font-weight: 400;
   font-display: swap;
-  font-weight: 400 700;
-  size-adjust: 86.42%;
-  ascent-override: 90%;
-  descent-override: 30%;
-  line-gap-override: 0%;
-  src: url(fonts/oswald-cyrillic.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  src: url(fonts/bebas-neue-400.woff2) format('woff2');
+}
+
+/* Bebas Neue Bold */
+@font-face {
+  font-family: 'FM Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/bebas-neue-700.woff2) format('woff2');
 }
 
 /* Inter — cyrillic-ext */
 @font-face {
   font-family: 'FM Text';
   font-style: normal;
-  font-display: swap;
   font-weight: 100 900;
+  font-display: swap;
   src: url(fonts/inter-cyrillic-ext.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
@@ -80,8 +73,8 @@
 @font-face {
   font-family: 'FM Text';
   font-style: normal;
-  font-display: swap;
   font-weight: 100 900;
+  font-display: swap;
   src: url(fonts/inter-cyrillic.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
@@ -90,8 +83,8 @@
 @font-face {
   font-family: 'FM Text';
   font-style: normal;
-  font-display: swap;
   font-weight: 100 900;
+  font-display: swap;
   src: url(fonts/inter-latin-ext.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -100,8 +93,8 @@
 @font-face {
   font-family: 'FM Text';
   font-style: normal;
-  font-display: swap;
   font-weight: 100 900;
+  font-display: swap;
   src: url(fonts/inter-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }

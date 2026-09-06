@@ -195,20 +195,50 @@
   <div class="fm-container fm-stack--wide">
     <div>
       <p class="fm-eyebrow">03 — Шрифты</p>
-      <h2>Как устроен дисплейный шрифт</h2>
-      <p>У Bebas Neue нет кириллицы — её не существует в оригинальной гарнитуре.
-        Поэтому <code>FM Display</code> собран из двух источников: латиницу рисует Bebas,
-        кириллицу — Oswald, подогнанный по высоте прописных
-        (<code>size-adjust: 86.42%</code>: 0.700em против 0.810em) и по строчному боксу
-        (<code>ascent/descent-override</code>). Браузер выбирает файл сам по
-        <code>unicode-range</code>, так что смешанная строка набирается однородно.</p>
+      <h2>Дисплейный шрифт</h2>
+      <p>Bebas Neue, пять начертаний, латиница и кириллица в одном файле.
+        Рисовал Ryoichi Tsunekawa, Dharma Type; лицензия SIL OFL 1.1 —
+        <code>@font-face</code> разрешён прямо в лицензионной записи файла.</p>
+      <p>Шрифт целиком заглавный по рисунку: строчные буквы нарисованы
+        прописными, поэтому регистр исходного текста на вид не влияет.</p>
     </div>
 
     <div class="fm-stack">
       <p class="fm-display">FANCYMUSIC — НОВЫЙ РЕЛИЗ</p>
-      <p class="fm-caption">Одна строка, два файла: латиница Bebas, кириллица Oswald.
-        Стык проходит по пробелу перед «НОВЫЙ» — высота прописных совпадает.</p>
       <p class="fm-h1">АЛФАВИТ АБВГДЕЁЖЗ · ABCDEFGH · 0123456789</p>
+      <p class="fm-caption">Одна гарнитура на латиницу и кириллицу — стыка нет.</p>
+    </div>
+
+    <div>
+      <h3>Начертания</h3>
+      <p>В самих файлах и Book, и Regular помечены весом 400, хотя рисунок
+        у них разный. Веса назначены заново так, чтобы 400 доставался Regular —
+        каноническому Bebas, которого от 400 и ждут.</p>
+      <div style="margin-top: var(--fm-space-5)">
+        <div class="scale-row">
+          <span class="fm-display" style="font-weight: 100">Thin</span>
+          <span class="scale-row__meta">font-weight: 100 · очень крупный кегль</span>
+        </div>
+        <div class="scale-row">
+          <span class="fm-display" style="font-weight: 200">Light</span>
+          <span class="scale-row__meta">font-weight: 200 · --fm-weight-display-light</span>
+        </div>
+        <div class="scale-row">
+          <span class="fm-display" style="font-weight: 300">Book</span>
+          <span class="scale-row__meta">font-weight: 300</span>
+        </div>
+        <div class="scale-row">
+          <span class="fm-display" style="font-weight: 400">Regular</span>
+          <span class="scale-row__meta">font-weight: 400 · --fm-weight-display, рабочее для заголовков</span>
+        </div>
+        <div class="scale-row">
+          <span class="fm-display" style="font-weight: 700">Bold</span>
+          <span class="scale-row__meta">font-weight: 700 · --fm-weight-display-bold</span>
+        </div>
+      </div>
+      <p class="fm-caption" style="margin-top: var(--fm-space-4)">Каждое начертание —
+        отдельный файл 18–26 КБ. Браузер качает только те, что реально
+        встретились на странице.</p>
     </div>
 
     <div>
@@ -224,11 +254,12 @@
     </div>
 
     <div>
-      <h3>Правило</h3>
-      <p>Дисплейный шрифт — <b>только заглавными</b>. Bebas отдаёт строчные как
-        уменьшенные прописные, а Oswald рисует настоящие строчные: в смешанной строке
-        это разъедется. Поэтому <code>text-transform: uppercase</code> прошит
-        в базовый слой для всех заголовков.</p>
+      <h3>Про регистр</h3>
+      <p>В <code>base.css</code> у заголовков стоит <code>text-transform: uppercase</code>.
+        Для самого Bebas это ничего не меняет — он и так весь заглавный по рисунку.
+        Правило оставлено ради запасного шрифта: если Bebas не загрузится,
+        <code>Impact</code> или системный гротеск отрисуют строку так же,
+        и вёрстка не поедет.</p>
     </div>
   </div>
 </section>
@@ -379,10 +410,10 @@
     <h3>Чего не делать</h3>
     <ul class="fm-facts">
       <li><span>Не писать цвет</span><span>только <code>var(--fm-*)</code>, hex в разметке — ошибка</span></li>
-      <li><span>Не набирать</span><span>дисплейный шрифт строчными</span></li>
       <li><span>Не ставить</span><span>красный на мелкий текст — только от 24px, или от 19px полужирным</span></li>
       <li><span>Не изобретать</span><span>отступы мимо шкалы <code>--fm-space-*</code></span></li>
-      <li><span>Не править</span><span><code>fonts.css</code> руками — он собирается скриптом</span></li>
+      <li><span>Не править</span><span><code>fonts.css</code> руками — он собирается <code>tools/build-fonts.sh</code></span></li>
+      <li><span>Не брать</span><span>Thin и Light на мелком кегле — рассыпаются</span></li>
     </ul>
   </div>
 </section>

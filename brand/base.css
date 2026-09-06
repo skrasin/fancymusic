@@ -40,12 +40,12 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 }
 
 /* ---- Типографика ----------------------------------------------------
-   Дисплейный шрифт только заглавный — иначе Bebas отдаёт строчные
-   как уменьшенные прописные, а Oswald рисует настоящие строчные,
-   и латиница с кириллицей в одной строке расходятся. */
+   Bebas Neue целиком заглавный по рисунку: строчные буквы нарисованы
+   прописными, так что регистр исходного текста на вид не влияет.
+   uppercase оставлен, чтобы запасной шрифт вёл себя так же. */
 .fm-hero, .fm-display, h1, h2, h3, .fm-h1, .fm-h2, .fm-h3 {
   font-family: var(--fm-font-display);
-  font-weight: var(--fm-weight-medium);
+  font-weight: var(--fm-weight-display);
   text-transform: uppercase;
   letter-spacing: var(--fm-tracking-heading);
   line-height: var(--fm-leading-heading);
