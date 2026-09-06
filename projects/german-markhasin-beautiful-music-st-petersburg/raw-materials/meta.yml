@@ -1,0 +1,44 @@
+# Факты релиза. Всё, чего нет в присланных материалах, — [УТОЧНИТЬ].
+slug: german-markhasin-beautiful-music-st-petersburg
+artist: Герман Мархасин
+release_title: Прекрасная музыка. Петербург
+release_title_en: Beautiful Music. St. Petersburg
+format: Альбом
+tracks_count: "[УТОЧНИТЬ]"      # количество треков в материалах не указано
+genre: Современная академическая музыка   # классификация выведена из материалов, не прислана
+release_date: "[УТОЧНИТЬ]"      # даты выхода в материалах нет — блокирует публикацию
+
+composers:
+  - Юрий Красавин — «Вертер», «Круг песен»
+  - Анатолий Королёв — два цикла: русские народные песни, партита
+  - Алиса Духовлинова — пассакалия «В песках»
+
+participants:
+  - Герман Мархасин — фортепиано
+  - Кристина Курвиц — скрипка (солистка Квартета имени Глинки), участие в записи
+
+quote_artist: "[ЦИТАТА]"        # собственной цитаты артиста в материалах нет
+press:
+  - text: Мархасин виртуозно лавировал между разными композиторскими эстетиками
+      и очень убедительно играл на всех частях инструмента
+    source: Музыкальная жизнь
+  - text: Виртуозная и с чисто музыкальной, и с актерской точки зрения работа
+    source: Colta.ru
+
+links:
+  streaming_all: https://band.link/i5gTx
+  release_page: https://fancymusic.ru/german-markhasin-beautiful-music-st-petersburg/
+  bandcamp_album: https://fancymusic.bandcamp.com/album/beautiful-music-st-petersburg
+  bandcamp_embed_id: "2651736364"
+  artist:
+    website: https://germanmarkhasin.ru
+    instagram: https://www.instagram.com/markhasing
+    telegram: https://t.me/markhasing
+    facebook: https://www.facebook.com/german.markhasin/
+    vk: https://vk.ru/markhasing
+
+cover: "[УТОЧНИТЬ]"   # назван файл Cover700-84.jpg, но он не приложен
+
+press_contacts:
+  email: mail@fancymusic.ru
+  telegram: "@s_krasin"

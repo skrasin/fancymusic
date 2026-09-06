@@ -47,6 +47,11 @@
           font-family="Bebas Neue, Impact, sans-serif" font-size="11">F</text>
   </symbol>
 
+  <symbol id="i-yt" viewBox="0 0 24 24">
+    <rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path fill="currentColor" d="M10.2 8.8v6.4L15.6 12l-5.4-3.2Z"/>
+  </symbol>
+
   <symbol id="i-doc" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-width="1.8"
           d="M14 2.5H6.5A1.5 1.5 0 0 0 5 4v16a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 20V7.5L14 2.5Z"/>
