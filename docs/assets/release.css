@@ -16,9 +16,9 @@
 .rl-panel {
   background: var(--fm-bg);
   color: var(--fm-text);
-  /* верхнее поле то же, что у текстовой колонки: обложка и заголовок
-     начинаются на одной высоте на любом экране */
-  padding: var(--fm-section) var(--fm-gutter);
+  /* верхнее поле равно боковому: отступ до обложки такой же, как от края
+     страницы слева. Нижнее остаётся крупным — там конец колонки. */
+  padding: var(--fm-gutter) var(--fm-gutter) var(--fm-section);
   display: grid;
   gap: var(--fm-space-5);
   /* не center: при центрировании отступ до обложки зависел от высоты окна,
@@ -55,7 +55,8 @@
 
 /* ---- Правая половина -------------------------------------------------- */
 .rl-body {
-  padding: var(--fm-section) var(--fm-gutter);
+  /* то же верхнее поле, что у панели: обложка и заголовок на одной высоте */
+  padding: var(--fm-gutter) var(--fm-gutter) var(--fm-section);
   max-width: calc(var(--fm-measure) + var(--fm-gutter) * 2);
 }
 .rl-body > * + * { margin-top: var(--fm-space-7); }
