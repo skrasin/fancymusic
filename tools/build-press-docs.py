@@ -344,6 +344,8 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
 
 
 # --------------------------------------------------------------------- main
+SITE_BASE = "https://skrasin.github.io/fancymusic"
+
 GDOC_CSS = """
 body { font-family: Arial, sans-serif; font-size: 11pt; color: #2e2e2e; }
 h1 { font-size: 20pt; text-transform: uppercase; margin: 0 0 6pt; }
@@ -354,14 +356,20 @@ blockquote { border-left: 3pt solid #ff2626; margin: 10pt 0; padding-left: 10pt;
 """
 
 
-def build_gdoc_html(doc_data: dict, page: dict, dst: Path) -> None:
+def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
     """Разметка для импорта в Google Docs.
 
-    Google при конвертации выбрасывает почти весь CSS и не тянет картинки
-    по ссылке, поэтому здесь простая разметка без обложки: заголовок,
-    ссылки, текст, справки, списки ссылок, контакты, выходные данные.
+    Google при конвертации выбрасывает почти весь CSS, поэтому разметка
+    простая. Обложка даётся публичной ссылкой на нашу копию с GitHub Pages:
+    локальный файл конвертер не видит, а картинку по http достаёт сам.
     """
     values = page["values"]
+    cover_html = ""
+    cover_name = values.get("COVER_FILE")
+    if cover_name:
+        url = f"{SITE_BASE}/releases/{slug}/{cover_name}"
+        cover_html = f'<p><img src="{url}" width="260" height="260" alt=""></p>'
+
     quote = ""
     if doc_data["quote"]:
         body_q, author_q = doc_data["quote"]
@@ -377,6 +385,7 @@ def build_gdoc_html(doc_data: dict, page: dict, dst: Path) -> None:
 
     html = f"""<!doctype html><html lang="ru"><head><meta charset="utf-8">
 <title>{doc_data['title']}</title><style>{GDOC_CSS}</style></head><body>
+{cover_html}
 <h1>{doc_data['title']}</h1>
 <p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a><br>
 <b>Страница релиза:</b> <a href="{values['RELEASE_URL']}">{values['RELEASE_URL']}</a></p>
@@ -423,7 +432,7 @@ def main() -> int:
     build_docx(doc_data, page, cover, docx_path)
     build_pdf(doc_data, page, cover, pdf_path)
     gdoc_path = out_dir / "press-release.gdoc.html"
-    build_gdoc_html(doc_data, page, gdoc_path)
+    build_gdoc_html(doc_data, page, slug, gdoc_path)
 
     page_dir = ROOT / "docs/releases" / slug
     if page_dir.exists():
