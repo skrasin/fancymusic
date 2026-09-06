@@ -1,0 +1,41 @@
+/* FANCYMUSIC — дизайн-токены.
+   Единственное место, где задаются цвета, шрифты и ритм страниц релизов.
+   ВНИМАНИЕ: значения ниже — стартовые, собраны из брендовых констант.
+   Шрифты и метрики подлежат сверке с fancymusic.ru (см. brand/BRAND.md). */
+
+:root {
+  /* Цвет */
+  --fm-white: #ffffff;
+  --fm-ink: #2e2e2e;
+  --fm-red: #ff2626;
+
+  --fm-bg: var(--fm-white);
+  --fm-text: var(--fm-ink);
+  --fm-text-muted: #6f6f6f;
+  --fm-accent: var(--fm-red);
+  --fm-rule: #e2e2e2;
+  --fm-surface: #f6f6f6;
+
+  /* Типографика */
+  --fm-font-display: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fm-font-text: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fm-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --fm-size-eyebrow: 0.75rem;
+  --fm-size-body: 1.0625rem;
+  --fm-size-lead: 1.25rem;
+  --fm-size-h2: 1.375rem;
+  --fm-size-h1: clamp(2rem, 6vw, 3.5rem);
+
+  --fm-leading-tight: 1.08;
+  --fm-leading-body: 1.6;
+  --fm-tracking-display: -0.02em;
+  --fm-tracking-eyebrow: 0.14em;
+
+  /* Ритм и геометрия */
+  --fm-measure: 68ch;
+  --fm-page: 900px;
+  --fm-gap: 1rem;
+  --fm-block: 3rem;
+  --fm-radius: 2px;
+}

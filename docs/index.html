@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пресс-релизы FANCYMUSIC</title>
+<link rel="stylesheet" href="assets/design-tokens.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--fm-bg); color: var(--fm-text);
+         font-family: var(--fm-font-text); font-size: var(--fm-size-body);
+         line-height: var(--fm-leading-body); }
+  .page { max-width: var(--fm-page); margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+  .eyebrow { font-size: var(--fm-size-eyebrow); letter-spacing: var(--fm-tracking-eyebrow);
+             text-transform: uppercase; color: var(--fm-text-muted); margin: 0 0 1rem; }
+  .eyebrow b { color: var(--fm-accent); font-weight: 600; }
+  h1 { font-family: var(--fm-font-display); font-size: var(--fm-size-h1);
+       line-height: var(--fm-leading-tight); letter-spacing: var(--fm-tracking-display);
+       margin: 0 0 2rem; }
+  ul { list-style: none; padding: 0; max-width: var(--fm-measure); }
+  li { padding: .875rem 0; border-bottom: 1px solid var(--fm-rule); }
+  a { color: var(--fm-accent); text-underline-offset: 3px; }
+  .empty { color: var(--fm-text-muted); }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--fm-rule);
+           font-size: .875rem; color: var(--fm-text-muted); }
+  footer a { margin-right: 1rem; }
+</style>
+</head>
+<body>
+<main class="page">
+  <p class="eyebrow"><b>FANCYMUSIC</b> · Пресс-центр</p>
+  <h1>Пресс-релизы</h1>
+  <ul>
+    <li class="empty">Пока ни одного опубликованного релиза.</li>
+    <!-- Каждый новый релиз добавляется строкой:
+    <li><a href="releases/{slug}/">{Артист} — «{Название}»</a> · {дата}</li>
+    -->
+  </ul>
+  <footer>
+    <a href="https://fancymusic.ru">fancymusic.ru</a>
+    <a href="https://t.me/fancymusiclabel">Telegram</a>
+    <a href="https://vk.ru/fancymusicrecords">VK</a>
+    <a href="https://instagram.com/fancy_music">Instagram</a>
+  </footer>
+</main>
+</body>
+</html>
