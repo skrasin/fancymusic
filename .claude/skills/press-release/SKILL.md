@@ -13,9 +13,13 @@ description: Собрать пресс-релиз FANCYMUSIC из сырых м�
 Определить `slug` (латиница, kebab-case: `artist-release-name`), создать
 `projects/{slug}/raw-materials/` и сложить туда присланное как есть.
 
-Заполнить `raw-materials/meta.yml` по образцу `templates/meta.yml`. Каждый факт —
-только из материалов. Чего нет — `[УТОЧНИТЬ]`, цитаты нет — `[ЦИТАТА]`.
-Ничего не додумывать: ни жанр, ни дату, ни состав участников.
+Заполнить `raw-materials/meta.yml` по образцу `templates/meta.yml` — это рабочая
+опись: что получено и чего не хватает. Каждый факт только из материалов.
+Чего нет — `[УТОЧНИТЬ]`, цитаты нет — `[ЦИТАТА]`. Ничего не додумывать:
+ни жанр, ни дату, ни состав участников.
+
+Источником для сборки `meta.yml` не является: страница и документы собираются
+из `output/press-release.md` и `page.json`.
 
 ## 2. Задать один вопрос
 
@@ -31,8 +35,11 @@ description: Собрать пресс-релиз FANCYMUSIC из сырых м�
 
 ## 3. Написать тексты
 
-- `projects/{slug}/output/press-release.md` — по структуре из `CLAUDE.md`,
-  на основе `templates/press-release.md`
+- `projects/{slug}/output/press-release.md` — на основе
+  `templates/press-release.md`. Это единственный источник текста: из него
+  собираются и страница, и DOCX, и PDF. Заголовок первого уровня — тот же,
+  что должен стоять на странице; строку формата и жанра не писать.
+  Комментарии `<!-- -->` в файле допустимы, в вывод они не попадают
 - `projects/{slug}/output/social.md` — на основе `templates/social.md`,
   если соцсети нужны
 
@@ -40,7 +47,8 @@ description: Собрать пресс-релиз FANCYMUSIC из сырых м�
 
 ## 4. Сверстать страницу
 
-Заполнить `projects/{slug}/page.json` и собрать страницу:
+Скопировать `templates/page.json` в `projects/{slug}/page.json`, заполнить
+и собрать страницу:
 
 ```
 python3 tools/build-release-page.py {slug}

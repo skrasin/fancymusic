@@ -32,6 +32,9 @@ SERVICE_SECTIONS = {"Ссылки", "Контакты для прессы"}
 
 def parse(md: str) -> dict:
     """Делит исходник на лид, основной текст, цитату и разделы."""
+    # комментарии-подсказки в исходнике не должны попадать ни в разметку,
+    # ни тем более в DOCX и PDF, где они видны обычным текстом
+    md = re.sub(r"<!--.*?-->", "", md, flags=re.S)
     blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
     doc = {"title": "", "lead": "", "body": [], "quote": None, "sections": []}
     current = None

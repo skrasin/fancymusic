@@ -1,0 +1,34 @@
+{
+  "_комментарий": "Фактура релиза. Проза — в output/press-release.md, здесь её нет. Порядок в artist_links и label_links = порядок чипов на странице. Пиктограммы: i-web, i-tg, i-vk, i-ig, i-fb, i-yt, i-bc, i-sp, i-mail.",
+  "values": {
+    "ARTIST": "Имя артиста",
+    "RELEASE_TITLE": "Название релиза",
+    "LEAD_SHORT": "Одно предложение для поисковиков и превью в соцсетях.",
+    "RELEASE_DATE": "[УТОЧНИТЬ]",
+    "COVER_URL": "cover.jpg",
+    "COVER_FILE": "cover.jpg",
+    "COVER_ALT": "Обложка релиза «Название» Имени Артиста: краткое описание изображения",
+    "PREVIEW_URL": "[УТОЧНИТЬ]",
+    "RELEASE_URL": "[УТОЧНИТЬ]",
+    "PLAYER_EMBED": "<iframe style=\"border: 0; width: 100%; height: 42px;\" src=\"https://bandcamp.com/EmbeddedPlayer/album=ID/size=small/bgcol=ffffff/linkcol=ff2626/artwork=none/transparent=true/\" seamless title=\"Название — предпрослушивание на Bandcamp\"><a href=\"[УТОЧНИТЬ]\">Album by Artist</a></iframe>",
+    "PRESS_EMAIL": "<a href=\"mailto:mail@fancymusic.ru\">mail@fancymusic.ru</a>",
+    "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
+    "DOCX_URL": "press-release.docx",
+    "PDF_URL": "press-release.pdf"
+  },
+  "artist_links": [
+    ["i-ig", "Instagram", "[УТОЧНИТЬ]"],
+    ["i-tg", "Telegram", "[УТОЧНИТЬ]"],
+    ["i-vk", "VK", "[УТОЧНИТЬ]"],
+    ["i-fb", "Facebook", "[УТОЧНИТЬ]"],
+    ["i-web", "сайт-артиста.ru", "[УТОЧНИТЬ]"]
+  ],
+  "label_links": [
+    ["i-ig", "Instagram", "https://www.instagram.com/fancy_music"],
+    ["i-tg", "Telegram", "https://t.me/fancymusiclabel"],
+    ["i-vk", "VK", "https://vk.com/fancymusicrecords"],
+    ["i-fb", "Facebook", "https://www.facebook.com/fancymusiclabel"],
+    ["i-yt", "YouTube", "https://www.youtube.com/user/TheFancymusic"],
+    ["i-web", "fancymusic.ru", "https://fancymusic.ru"]
+  ]
+}
