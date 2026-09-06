@@ -53,11 +53,11 @@
 
   /* ---- Шрифтовые стеки ----------------------------------------------
      FM Display — Bebas Neue, пять начертаний с кириллицей, см. fonts.css.
-     Helvetica Neue стоит первой: на macOS и iOS подхватывается системная,
-     на остальных платформах работает Inter. Разница в метриках заметна,
-     но так требует бренд — подробности в brand/BRAND.md. */
+     FM Text — Inter, лежит в репозитории и грузится с сайта. Стоит первым
+     сознательно: так страница набирается одинаково на всех платформах.
+     Системные шрифты идут дальше и включаются, только если Inter не загрузился. */
   --fm-font-display: 'FM Display', 'Bebas Neue', Impact, sans-serif;
-  --fm-font-text: 'Helvetica Neue', 'FM Text', Inter, Helvetica, Arial, sans-serif;
+  --fm-font-text: 'FM Text', Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --fm-font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
 
   /* ---- Типографическая шкала ----------------------------------------

@@ -215,7 +215,7 @@ a:hover { text-decoration-thickness: 4px; }
 .fm-card__media { aspect-ratio: 1 / 1; object-fit: cover; background: var(--fm-surface); }
 
 /* ---- Строки фактов ------------------------------------------------------ */
-.fm-facts { list-style: none; padding: 0; }
+.fm-facts { list-style: none; padding: 0; font-variant-numeric: tabular-nums; }
 .fm-facts li {
   display: flex;
   gap: var(--fm-space-4);
