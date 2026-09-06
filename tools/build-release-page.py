@@ -4,22 +4,29 @@
     python3 tools/build-release-page.py <slug>
 
 Читает  templates/release-page.html
-        projects/<slug>/page.json
+        projects/<slug>/page.json — фактура: заголовок, дата, ссылки, обложка
+        projects/<slug>/output/press-release.md — вся проза
 Пишет   docs/releases/<slug>/index.html
 
-Правки вёрстки идут в шаблон и в brand/release.css, правки содержания —
-в page.json. Руками index.html не трогать: он перезаписывается.
+Текст живёт только в Markdown: и страница, и DOCX с PDF собираются из него
+одним разбором (tools/release_content.py), поэтому разойтись не могут.
+Правки вёрстки идут в шаблон и в brand/release.css.
+Руками index.html не трогать: он перезаписывается.
 
 В page.json:
-  values      — плейсхолдеры шаблона, кроме собираемых автоматически
+  values      — фактура и плейсхолдеры шаблона, кроме прозы
   artist_links, label_links — списки [иконка, подпись, ссылка];
                 порядок в файле = порядок на странице
-Спрайт пиктограмм, размеры DOCX и PDF подставляются сборщиком.
+Заголовок, лид, основной текст, цитату и справки подставляет сборщик
+из Markdown; спрайт пиктограмм и размеры файлов — тоже.
 """
 import json
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import release_content
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -54,7 +61,17 @@ def main() -> int:
         '<svg xmlns="http://www.w3.org/2000/svg" style="display:none">',
         '<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:none">')
 
+    prose = release_content.load(ROOT, slug)
     values = dict(data["values"])
+    values["HEADLINE"] = prose["title"]
+    values["LEAD"] = release_content.bold_to_html(prose["lead"])
+    values["BODY"] = release_content.blocks_to_html(prose["body"])
+    quote, author = prose["quote"] or ("", "")
+    values["QUOTE"], values["QUOTE_AUTHOR"] = quote, author
+    for heading, blocks in prose["sections"]:
+        key = {"Об артисте": "ABOUT_ARTIST", "О лейбле": "ABOUT_LABEL"}.get(heading)
+        if key:
+            values[key] = release_content.blocks_to_html(blocks)
     values["ICON_SPRITE"] = sprite
     values["ARTIST_LINKS"] = links(data["artist_links"])
     values["LABEL_LINKS"] = links(data["label_links"])

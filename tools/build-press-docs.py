@@ -3,19 +3,19 @@
 
     python3 tools/build-press-docs.py <slug>
 
-Источники:
-    projects/<slug>/output/press-release.md — проза: заголовок, лид, текст,
-        цитаты, «Об артисте», «О лейбле»
-    projects/<slug>/page.json — фактура: обложка, ссылки, контакты, дата.
-        Тот же файл, что кормит страницу, поэтому документ и страница
-        не расходятся по ссылкам.
+Источники ровно те же, что у страницы, и разбираются тем же кодом
+(tools/release_content.py), поэтому заголовок и текст в документе
+и на странице совпадают дословно:
+    projects/<slug>/output/press-release.md — вся проза
+    projects/<slug>/page.json — фактура: обложка, ссылки, контакты, дата
 
 Результат:
     projects/<slug>/output/press-release.{docx,pdf}
     копии рядом со страницей, в docs/releases/<slug>/
 
-Порядок в документе: обложка рядом с названием, под ними ссылки на стриминги
-и на страницу релиза, дальше текст, справки, списки ссылок и контакты.
+Порядок в документе повторяет страницу: обложка рядом с названием, под ними
+ссылки на стриминги и на страницу релиза, дальше текст, справки, списки
+ссылок, контакты. Строка «FANCYMUSIC · Пресс-релиз · дата» — в самом низу.
 
 Обложка вставляется только из локального файла: путь берётся из
 values.COVER_FILE в page.json. Ссылки на чужой домен в документ вложить
@@ -38,41 +38,12 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import release_content
+
 ROOT = Path(__file__).resolve().parent.parent
 INK, RED, GREY = RGBColor(0x2E, 0x2E, 0x2E), RGBColor(0xFF, 0x26, 0x26), RGBColor(0x6F, 0x6F, 0x6F)
 DISPLAY_FONT, TEXT_FONT = "Arial Narrow", "Arial"
-
-
-# ---------------------------------------------------------------- разбор md
-def parse_md(md: str) -> dict:
-    """Делит исходник на заголовок, подзаголовок, вступление и разделы."""
-    blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
-    doc = {"title": "", "subtitle": [], "intro": [], "sections": []}
-    current = None
-    for block in blocks:
-        if block.startswith("# "):
-            doc["title"] = block[2:].strip()
-        elif block.startswith("## "):
-            current = (block[3:].strip(), [])
-            doc["sections"].append(current)
-        elif block.startswith("**") and not doc["intro"] and current is None:
-            doc["subtitle"] = block.splitlines()
-        elif current is not None:
-            current[1].append(block)
-        else:
-            doc["intro"].append(block)
-    # служебные разделы приходят из page.json, а не из прозы
-    doc["sections"] = [(h, b) for h, b in doc["sections"]
-                       if h not in {"Ссылки", "Контакты для прессы"}]
-    return doc
-
-
-def quote_text(block: str) -> tuple[str, str]:
-    lines = [l.lstrip("> ").strip() for l in block.splitlines()]
-    lines = [l for l in lines if l]
-    body = " ".join(l for l in lines if not l.startswith("—"))
-    author = next((l.lstrip("— ").strip() for l in lines if l.startswith("—")), "")
-    return body, author
 
 
 # --------------------------------------------------------------------- DOCX
@@ -145,20 +116,10 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
     else:
         style_run(left.paragraphs[0].add_run("[обложка]"), size=9, color=GREY)
 
-    eyebrow = right.paragraphs[0]
-    eyebrow.paragraph_format.space_after = Pt(2)
-    style_run(eyebrow.add_run(f"FANCYMUSIC · Пресс-релиз · {values['RELEASE_DATE']}"),
-              size=8, color=GREY, caps=True)
-
-    title_p = right.add_paragraph()
+    title_p = right.paragraphs[0]
     title_p.paragraph_format.space_after = Pt(4)
     style_run(title_p.add_run(doc_data["title"]),
               font=DISPLAY_FONT, size=21, color=INK, bold=True, caps=True)
-
-    for line in doc_data["subtitle"]:
-        p = right.add_paragraph()
-        p.paragraph_format.space_after = Pt(1)
-        inline(p, line, size=10, color=GREY)
 
     # --- ссылки-кнопки под шапкой
     document.add_paragraph().paragraph_format.space_after = Pt(0)
@@ -169,10 +130,13 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
         style_run(p.add_run(f"{label}: "), size=10, color=INK, bold=True)
         add_hyperlink(p, url, url)
 
-    # --- вступление и основной текст
+    # --- лид, основной текст, цитата
     document.add_paragraph().paragraph_format.space_after = Pt(0)
-    for block in doc_data["intro"]:
+    inline(document.add_paragraph(), doc_data["lead"])
+    for block in doc_data["body"]:
         render_block(document, block)
+    if doc_data["quote"]:
+        render_quote(document, *doc_data["quote"])
 
     # --- разделы из прозы
     for heading, blocks in doc_data["sections"]:
@@ -198,6 +162,12 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
         else:
             style_run(p.add_run(text), size=10)
 
+    # --- выходные данные внизу, как на странице
+    colophon = document.add_paragraph()
+    colophon.paragraph_format.space_before = Pt(20)
+    style_run(colophon.add_run(f"FANCYMUSIC · Пресс-релиз · {values['RELEASE_DATE']}"),
+              size=8, color=GREY, caps=True)
+
     document.core_properties.title = doc_data["title"]
     document.core_properties.author = "FANCYMUSIC"
     document.save(dst)
@@ -222,18 +192,21 @@ def add_links(document, title: str, items) -> None:
         add_hyperlink(row, url, url)
 
 
+def render_quote(document, body: str, author: str) -> None:
+    p = document.add_paragraph()
+    p.paragraph_format.left_indent = Cm(0.7)
+    p.paragraph_format.space_before = Pt(10)
+    p.paragraph_format.space_after = Pt(2)
+    inline(p, body, font=DISPLAY_FONT, size=13, color=INK, caps=True)
+    if author:
+        a = document.add_paragraph()
+        a.paragraph_format.left_indent = Cm(0.7)
+        style_run(a.add_run(author), size=9, color=GREY)
+
+
 def render_block(document, block: str) -> None:
     if block.startswith(">"):
-        body, author = quote_text(block)
-        p = document.add_paragraph()
-        p.paragraph_format.left_indent = Cm(0.7)
-        p.paragraph_format.space_before = Pt(10)
-        p.paragraph_format.space_after = Pt(2)
-        inline(p, body, font=DISPLAY_FONT, size=13, color=INK, caps=True)
-        if author:
-            a = document.add_paragraph()
-            a.paragraph_format.left_indent = Cm(0.7)
-            style_run(a.add_run(author), size=9, color=GREY)
+        render_quote(document, *release_content.split_quote(block))
     elif all(l.lstrip().startswith(("- ", "* ")) for l in block.splitlines()):
         for line in block.splitlines():
             p = document.add_paragraph(style="List Bullet")
@@ -278,6 +251,10 @@ blockquote footer { font-family: 'FM Text', Inter, Arial, sans-serif;
 .links p { margin: 0 0 1mm; font-size: 9.5pt; }
 a { color: #ff2626; text-decoration: none; }
 .contacts p { margin: 0 0 1mm; font-size: 9.5pt; }
+.colophon { margin-top: 8mm; padding-top: 2mm; border-top: .3pt solid #e8e8e8;
+            font-size: 7.5pt; letter-spacing: .12em; text-transform: uppercase;
+            color: #6f6f6f; }
+.colophon b { color: #ff2626; }
 """
 
 
@@ -285,7 +262,7 @@ def html_blocks(blocks) -> str:
     out = []
     for block in blocks:
         if block.startswith(">"):
-            body, author = quote_text(block)
+            body, author = release_content.split_quote(block)
             out.append(f"<blockquote>{body}<footer>{author}</footer></blockquote>")
         elif all(l.lstrip().startswith(("- ", "* ")) for l in block.splitlines()):
             items = "".join(f"<li>{l.lstrip('-* ').strip()}</li>" for l in block.splitlines())
@@ -308,11 +285,10 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
 
     cover_html = (f'<img src="{cover.resolve().as_uri()}" alt="">' if cover
                   else '<div class="slot">обложка</div>')
-    def bold(text: str) -> str:
-        return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
-
-    subtitle = "".join('<p class="subtitle">' + bold(l) + "</p>"
-                       for l in doc_data["subtitle"])
+    quote_html = ""
+    if doc_data["quote"]:
+        body_q, author_q = doc_data["quote"]
+        quote_html = f"<blockquote>{body_q}<footer>{author_q}</footer></blockquote>"
 
     sections = []
     for heading, blocks in doc_data["sections"]:
@@ -326,22 +302,23 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
 <div class="head">
   {cover_html}
   <div>
-    <p class="eyebrow"><b>FANCYMUSIC</b> · Пресс-релиз · {values['RELEASE_DATE']}</p>
     <h1>{doc_data['title']}</h1>
-    {subtitle}
   </div>
 </div>
 <div class="actions">
   <p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a></p>
   <p><b>Страница релиза:</b> <a href="{values['RELEASE_URL']}">{values['RELEASE_URL']}</a></p>
 </div>
-{html_blocks(doc_data['intro'])}
+<p>{release_content.bold_to_html(doc_data['lead'])}</p>
+{html_blocks(doc_data['body'])}
+{quote_html}
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
 <div class="contacts">
   <p>Email — {values['PRESS_EMAIL']}</p>
   <p>Telegram — {values['PRESS_TELEGRAM']}</p>
 </div>
+<p class="colophon"><b>FANCYMUSIC</b> · Пресс-релиз · {values['RELEASE_DATE']}</p>
 """
     brand = (ROOT / "brand").as_uri()
     html = (f'<!doctype html><html lang="ru"><head><meta charset="utf-8">'
@@ -377,7 +354,7 @@ def main() -> int:
         return 1
 
     page = json.loads(page_path.read_text())
-    doc_data = parse_md(src.read_text())
+    doc_data = release_content.parse(src.read_text())
 
     cover = None
     cover_name = page["values"].get("COVER_FILE")
