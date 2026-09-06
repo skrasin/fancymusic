@@ -172,7 +172,7 @@ a:hover { text-decoration-thickness: 4px; }
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-decoration: none;
-  border: var(--fm-border-strong) solid transparent;
+  border: var(--fm-border) solid transparent;
   border-radius: var(--fm-radius-1);
   cursor: pointer;
   transition: background var(--fm-dur-fast) var(--fm-ease),
