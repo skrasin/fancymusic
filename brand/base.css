@@ -70,7 +70,7 @@ h3, .fm-h3 { font-size: var(--fm-text-h3); }
   text-transform: uppercase;
   color: var(--fm-text-muted);
 }
-.fm-eyebrow b, .fm-eyebrow strong { color: var(--fm-accent-text); font-weight: var(--fm-weight-bold); }
+.fm-eyebrow b, .fm-eyebrow strong { color: var(--fm-accent); font-weight: var(--fm-weight-bold); }
 
 .fm-lead {
   font-size: var(--fm-text-lead);
@@ -85,12 +85,18 @@ p { max-width: var(--fm-measure); }
 p + p { margin-top: var(--fm-space-4); }
 
 a {
-  color: var(--fm-accent-text);
-  text-decoration-thickness: 1px;
+  color: var(--fm-text);
+  text-decoration-color: var(--fm-accent);
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
-  transition: color var(--fm-dur-fast) var(--fm-ease);
+  transition: text-decoration-thickness var(--fm-dur-fast) var(--fm-ease),
+              background var(--fm-dur-fast) var(--fm-ease);
 }
-a:hover { color: var(--fm-accent-hover); }
+a:hover { text-decoration-thickness: 4px; }
+
+/* Ссылка целиком красным — только на крупном кегле: от 24px,
+   или от 19px полужирным. В основном тексте не применять. */
+.fm-link--accent { color: var(--fm-accent); text-decoration-color: currentColor; }
 
 ::selection { background: var(--fm-accent); color: var(--fm-white); }
 
@@ -130,8 +136,7 @@ a:hover { color: var(--fm-accent-hover); }
   --fm-surface: var(--fm-ink-700);
   --fm-text: var(--fm-white);
   --fm-text-muted: var(--fm-ink-300);
-  --fm-accent-text: var(--fm-red);        /* на тёмном ярко-красный читается */
-  --fm-accent-hover: var(--fm-white);
+  --fm-accent-hover: var(--fm-white);     /* на тёмном состояние уходит в белый */
   --fm-rule: var(--fm-ink-700);
   --fm-rule-strong: var(--fm-white);
   --fm-focus: var(--fm-white);
@@ -180,6 +185,7 @@ a:hover { color: var(--fm-accent-hover); }
   color: var(--fm-white);
 }
 .fm-btn--solid:hover { background: var(--fm-accent-hover); border-color: var(--fm-accent-hover); color: var(--fm-white); }
+.fm-btn--solid:active { background: var(--fm-ink-900); border-color: var(--fm-ink-900); }
 
 .fm-btn--outline {
   background: transparent;
@@ -188,8 +194,10 @@ a:hover { color: var(--fm-accent-hover); }
 }
 .fm-btn--outline:hover { background: var(--fm-text); color: var(--fm-bg); }
 
-.fm-btn--ghost { background: transparent; border-color: transparent; color: var(--fm-accent-text); padding-inline: 0; }
-.fm-btn--ghost:hover { color: var(--fm-accent-hover); }
+.fm-btn--ghost { background: transparent; border-color: transparent; color: var(--fm-text);
+  text-decoration: underline; text-decoration-color: var(--fm-accent);
+  text-decoration-thickness: 2px; text-underline-offset: 0.3em; padding-inline: 0; }
+.fm-btn--ghost:hover { text-decoration-thickness: 4px; }
 
 /* ---- Карточка ---------------------------------------------------------- */
 .fm-card {

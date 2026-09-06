@@ -17,7 +17,7 @@
     list-style: none; padding: var(--fm-space-3) 0; margin: 0; }
   .spec-nav a { font-size: var(--fm-text-caption); text-transform: uppercase;
     letter-spacing: var(--fm-tracking-eyebrow); text-decoration: none; color: var(--fm-text-muted); }
-  .spec-nav a:hover { color: var(--fm-accent-text); }
+  .spec-nav a:hover { color: var(--fm-text); }
 
   .swatches { display: grid; gap: var(--fm-space-4);
     grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
@@ -28,7 +28,7 @@
   .swatch dd { margin: 0; font-family: var(--fm-font-mono); }
 
   .pass { color: #1a7f37; font-weight: 700; }
-  .fail { color: var(--fm-accent-text); font-weight: 700; }
+  .fail { color: var(--fm-ink-800); font-weight: 700; }
 
   .scale-row { display: grid; gap: var(--fm-space-2); padding-block: var(--fm-space-4);
     border-bottom: var(--fm-border) solid var(--fm-rule); }
@@ -104,35 +104,24 @@
     </div>
 
     <div>
-      <h3>Красный разведён на три роли</h3>
-      <p>Фирменный <code>#ff2626</code> на белом даёт контраст <b>3.78:1</b>. По WCAG AA
-        этого достаточно крупному тексту (от 24px, или от 19px полужирным), границам
-        и элементам управления — и <b>недостаточно</b> обычному тексту и мелким подписям.
-        Поэтому в системе три красных, и выбор между ними не на глаз, а по роли.</p>
-
-      <div class="swatches" style="margin-top: var(--fm-space-5)">
-        <div class="swatch">
-          <div class="swatch__chip" style="background: var(--fm-red-accent)"></div>
-          <dl><dt>Токен</dt><dd>--fm-red-accent</dd>
-              <dt>Hex</dt><dd>#ff2626</dd>
-              <dt>Контраст</dt><dd>3.78:1</dd>
-              <dt>Куда</dt><dd>плашки, крупные заголовки, линии</dd></dl>
-        </div>
-        <div class="swatch">
-          <div class="swatch__chip" style="background: var(--fm-red-ink)"></div>
-          <dl><dt>Токен</dt><dd>--fm-red-ink</dd>
-              <dt>Hex</dt><dd>#e62222</dd>
-              <dt>Контраст</dt><dd class="pass">4.55:1 — AA</dd>
-              <dt>Куда</dt><dd>красный текст, ссылки</dd></dl>
-        </div>
-        <div class="swatch">
-          <div class="swatch__chip" style="background: var(--fm-red-deep)"></div>
-          <dl><dt>Токен</dt><dd>--fm-red-deep</dd>
-              <dt>Hex</dt><dd>#b81b1b</dd>
-              <dt>Контраст</dt><dd class="pass">6.54:1 — AAA</dd>
-              <dt>Куда</dt><dd>наведение, нажатие</dd></dl>
-        </div>
-      </div>
+      <h3>Красный один</h3>
+      <p>Производных оттенков в системе нет — <code>#ff2626</code> и только он.
+        На белом он даёт контраст <b>3.78:1</b>. По WCAG AA этого достаточно
+        крупному тексту (от 24px, или от 19px полужирным), линиям, границам
+        и элементам управления — и недостаточно обычному тексту и мелким подписям.</p>
+      <p>Поэтому система не набирает мелкий текст красным, а не заводит второй
+        красный «потемнее». Два следствия, уже зашитые в <code>base.css</code>:</p>
+      <ul class="fm-facts" style="margin-top: var(--fm-space-4)">
+        <li><span>Ссылки в тексте</span><span>текст идёт цветом <code>--fm-text</code>,
+          красный уходит в подчёркивание: линия — не текст, ей хватает 3:1</span></li>
+        <li><span>Состояния</span><span>наведение и нажатие уходят
+          в <code>--fm-ink</code>, а не во второй красный</span></li>
+      </ul>
+      <p style="margin-top: var(--fm-space-5)">Вот как это выглядит:
+        <a href="#colour">ссылка внутри абзаца</a> — текст читается, красный виден.
+        Ссылка целиком красным допустима только на крупном кегле:</p>
+      <p class="fm-h3" style="margin-top: var(--fm-space-3)">
+        <a class="fm-link--accent" href="#colour">Слушать новый релиз</a></p>
     </div>
 
     <div>
@@ -140,8 +129,7 @@
       <ul class="fm-facts">
         <li><span>#2e2e2e на белом</span><span><b>13.58:1</b> <span class="pass">AAA</span> — основной текст</span></li>
         <li><span>#6f6f6f на белом</span><span><b>5.02:1</b> <span class="pass">AA</span> — приглушённый текст, светлее не уходить</span></li>
-        <li><span>#e62222 на белом</span><span><b>4.55:1</b> <span class="pass">AA</span> — красный текст</span></li>
-        <li><span>#ff2626 на белом</span><span><b>3.78:1</b> <span class="fail">только крупный текст</span></span></li>
+        <li><span>#ff2626 на белом</span><span><b>3.78:1</b> <span class="fail">только крупный текст, линии и границы</span></span></li>
         <li><span>белый на #ff2626</span><span><b>3.78:1</b> <span class="fail">подпись кнопки — от 19px полужирным</span></span></li>
         <li><span>белый на #2e2e2e</span><span><b>13.58:1</b> <span class="pass">AAA</span> — инверсная секция</span></li>
         <li><span>#ff2626 на #2e2e2e</span><span><b>3.59:1</b> <span class="fail">только акценты, не текст</span></span></li>
@@ -392,7 +380,7 @@
     <ul class="fm-facts">
       <li><span>Не писать цвет</span><span>только <code>var(--fm-*)</code>, hex в разметке — ошибка</span></li>
       <li><span>Не набирать</span><span>дисплейный шрифт строчными</span></li>
-      <li><span>Не ставить</span><span>#ff2626 на мелкий текст — для этого <code>--fm-red-ink</code></span></li>
+      <li><span>Не ставить</span><span>красный на мелкий текст — только от 24px, или от 19px полужирным</span></li>
       <li><span>Не изобретать</span><span>отступы мимо шкалы <code>--fm-space-*</code></span></li>
       <li><span>Не править</span><span><code>fonts.css</code> руками — он собирается скриптом</span></li>
     </ul>
