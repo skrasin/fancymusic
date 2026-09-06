@@ -62,6 +62,11 @@ h1, .fm-h1 { font-size: var(--fm-text-h1); }
 h2, .fm-h2 { font-size: var(--fm-text-h2); }
 h3, .fm-h3 { font-size: var(--fm-text-h3); }
 
+/* Глобальный сброс обнуляет поля, поэтому заголовкам они возвращаются здесь:
+   без этого текст начинается вплотную к заголовку. */
+h2, .fm-h2 { margin-bottom: var(--fm-space-4); }
+h3, .fm-h3 { margin-bottom: var(--fm-space-3); }
+
 .fm-eyebrow {
   font-family: var(--fm-font-text);
   font-size: var(--fm-text-eyebrow);
