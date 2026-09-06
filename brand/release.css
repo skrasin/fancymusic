@@ -14,8 +14,8 @@
 
 /* ---- Левая панель ---------------------------------------------------- */
 .rl-panel {
-  background: var(--fm-ink-800);
-  color: var(--fm-white);
+  background: var(--fm-bg);
+  color: var(--fm-text);
   padding: var(--fm-space-7) var(--fm-gutter);
   display: grid;
   gap: var(--fm-space-5);
@@ -30,17 +30,17 @@
        иначе обложка и ссылки просто обрежутся */
     overflow-y: auto;
     overscroll-behavior: contain;
+    border-inline-end: var(--fm-border) solid var(--fm-rule);
   }
 }
-.rl-panel .fm-eyebrow { color: var(--fm-ink-300); }
-.rl-panel .fm-eyebrow b { color: var(--fm-accent); }
 
 .rl-cover {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  background: var(--fm-ink-800);
+  background: var(--fm-ink-100);
+  border: var(--fm-border) solid var(--fm-rule);
 }
 
 .rl-player { min-width: 0; }
@@ -62,19 +62,6 @@
   letter-spacing: var(--fm-tracking-display);
   text-wrap: balance;
 }
-.rl-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--fm-space-3);
-  margin-top: var(--fm-space-4);
-  font-size: var(--fm-text-caption);
-  text-transform: uppercase;
-  letter-spacing: var(--fm-tracking-eyebrow);
-  color: var(--fm-text-muted);
-}
-/* разделитель прилипает к предыдущему слову, иначе точка переносится на строку */
-.rl-meta span:not(:last-child)::after { content: ' ·'; color: var(--fm-accent); }
-
 .rl-quote {
   border-left: var(--fm-rule-accent) solid var(--fm-accent);
   padding-left: var(--fm-space-4);
@@ -94,6 +81,9 @@
   color: var(--fm-text-muted);
   margin-top: var(--fm-space-3);
 }
+
+/* ---- Кнопки под плеером -------------------------------------------------- */
+.rl-actions { display: flex; flex-wrap: wrap; gap: var(--fm-space-3); }
 
 /* ---- Мелкие ссылки с пиктограммами ------------------------------------- */
 .rl-links {
@@ -119,8 +109,6 @@
 }
 .rl-links a:hover { border-color: var(--fm-accent); color: var(--fm-accent); }
 .rl-links svg { width: 15px; height: 15px; flex: none; }
-.rl-panel .rl-links a { border-color: var(--fm-ink-700); color: var(--fm-white); }
-.rl-panel .rl-links a:hover { border-color: var(--fm-accent); color: var(--fm-accent); }
 
 /* ---- Контакты ------------------------------------------------------------ */
 .rl-contacts { list-style: none; padding: 0; display: grid; gap: var(--fm-space-2); }
@@ -181,10 +169,9 @@
    плеер и кнопки скачивания уходят. */
 @media print {
   .rl-page { display: block; }
-  .rl-panel { background: none; color: var(--fm-ink); position: static;
-              max-height: none; padding: 0; }
-  .rl-panel .rl-links a { color: var(--fm-ink); }
-  .rl-player, .rl-download, .rl-links { display: none; }
+  .rl-panel { position: static; max-height: none; padding: 0;
+              border-inline-end: 0; }
+  .rl-player, .rl-download, .rl-links, .rl-actions { display: none; }
   .rl-body { padding: 0; max-width: none; }
   .rl-cover { max-width: 60mm; }
 }

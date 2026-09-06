@@ -37,9 +37,9 @@
       <!-- <audio controls preload="none" src="preview.mp3">Ваш браузер не поддерживает аудио.</audio> -->
     </div>
 
-    <div>
-      <p class="fm-eyebrow">Артист в сети</p>
-      <ul class="rl-links" style="margin-top: var(--fm-space-3)">{{ARTIST_LINKS}}</ul>
+    <div class="rl-actions">
+      <a class="fm-btn fm-btn--solid" href="{{PREVIEW_URL}}">Ссылки на стриминги</a>
+      <a class="fm-btn fm-btn--outline" href="{{RELEASE_URL}}">Страница релиза</a>
     </div>
   </aside>
 
@@ -48,15 +48,10 @@
 
     <div>
       <h1 class="rl-title">{{HEADLINE}}</h1>
-      <p class="rl-meta"><span>{{GENRE}}</span></p>
-      <div style="display: flex; flex-wrap: wrap; gap: var(--fm-space-3); margin-top: var(--fm-space-5)">
-        <a class="fm-btn fm-btn--solid" href="{{PREVIEW_URL}}">Ссылки на стриминги</a>
-        <a class="fm-btn fm-btn--outline" href="{{RELEASE_URL}}">Страница релиза</a>
-      </div>
     </div>
 
     <div>
-      <p class="fm-lead">{{LEAD}}</p>
+      <p>{{LEAD}}</p>
       {{BODY}}
     </div>
 
@@ -68,6 +63,7 @@
     <div>
       <h2>Об артисте</h2>
       {{ABOUT_ARTIST}}
+      <ul class="rl-links" style="margin-top: var(--fm-space-4)">{{ARTIST_LINKS}}</ul>
     </div>
 
     <div>
