@@ -39,7 +39,9 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  background: var(--fm-ink-100);
+  /* подложка белая: пока обложка грузится, место под неё держит рамка,
+     а не серый прямоугольник */
+  background: var(--fm-bg);
   border: var(--fm-border) solid var(--fm-rule);
 }
 
