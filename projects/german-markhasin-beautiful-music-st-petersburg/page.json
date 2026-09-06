@@ -13,7 +13,8 @@
     "DOCX_URL": "press-release.docx",
     "PDF_URL": "press-release.pdf",
     "COVER_ALT": "Обложка релиза «Прекрасная музыка. Петербург» Германа Мархасина: смазанный снимок петербургского дома на фоне светлого неба с проводами",
-    "COVER_FILE": "cover.jpg"
+    "COVER_FILE": "cover.jpg",
+    "GDOC_URL": "https://docs.google.com/document/d/1rLxKyt7Qs-YvFSEjzSKpln6RL_AWxv_2HnhkHky7O2g/edit?usp=sharing"
   },
   "artist_links": [
     [

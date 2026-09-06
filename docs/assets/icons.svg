@@ -52,6 +52,13 @@
     <path fill="currentColor" d="M10.2 8.8v6.4L15.6 12l-5.4-3.2Z"/>
   </symbol>
 
+  <symbol id="i-external" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          d="M14 4h6v6M20 4l-8.5 8.5"/>
+    <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          d="M18.5 14.5V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V7A1.5 1.5 0 0 1 5 5.5h4.5"/>
+  </symbol>
+
   <symbol id="i-doc" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-width="1.8"
           d="M14 2.5H6.5A1.5 1.5 0 0 0 5 4v16a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 20V7.5L14 2.5Z"/>

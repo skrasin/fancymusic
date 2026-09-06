@@ -100,6 +100,11 @@ def main() -> int:
     values["ICON_SPRITE"] = sprite
     values["ARTIST_LINKS"] = links(data["artist_links"])
     values["LABEL_LINKS"] = links(data["label_links"])
+    gdoc = values.pop("GDOC_URL", "").strip()
+    values["GDOC_BUTTON"] = (
+        f'<a href="{gdoc}" target="_blank" rel="noopener">'
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>'
+        "<span>Google&nbsp;Docs</span></a>") if gdoc else ""
     values["DOCX_SIZE"] = size_kb(out_dir / "press-release.docx")
     values["PDF_SIZE"] = size_kb(out_dir / "press-release.pdf")
 

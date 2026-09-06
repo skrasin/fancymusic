@@ -14,21 +14,66 @@
     "PRESS_EMAIL": "<a href=\"mailto:mail@fancymusic.ru\">mail@fancymusic.ru</a>",
     "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
     "DOCX_URL": "press-release.docx",
-    "PDF_URL": "press-release.pdf"
+    "PDF_URL": "press-release.pdf",
+    "GDOC_URL": ""
   },
   "artist_links": [
-    ["i-ig", "Instagram", "[УТОЧНИТЬ]"],
-    ["i-tg", "Telegram", "[УТОЧНИТЬ]"],
-    ["i-vk", "VK", "[УТОЧНИТЬ]"],
-    ["i-fb", "Facebook", "[УТОЧНИТЬ]"],
-    ["i-web", "сайт-артиста.ru", "[УТОЧНИТЬ]"]
+    [
+      "i-ig",
+      "Instagram",
+      "[УТОЧНИТЬ]"
+    ],
+    [
+      "i-tg",
+      "Telegram",
+      "[УТОЧНИТЬ]"
+    ],
+    [
+      "i-vk",
+      "VK",
+      "[УТОЧНИТЬ]"
+    ],
+    [
+      "i-fb",
+      "Facebook",
+      "[УТОЧНИТЬ]"
+    ],
+    [
+      "i-web",
+      "сайт-артиста.ru",
+      "[УТОЧНИТЬ]"
+    ]
   ],
   "label_links": [
-    ["i-ig", "Instagram", "https://www.instagram.com/fancy_music"],
-    ["i-tg", "Telegram", "https://t.me/fancymusiclabel"],
-    ["i-vk", "VK", "https://vk.com/fancymusicrecords"],
-    ["i-fb", "Facebook", "https://www.facebook.com/fancymusiclabel"],
-    ["i-yt", "YouTube", "https://www.youtube.com/user/TheFancymusic"],
-    ["i-web", "fancymusic.ru", "https://fancymusic.ru"]
+    [
+      "i-ig",
+      "Instagram",
+      "https://www.instagram.com/fancy_music"
+    ],
+    [
+      "i-tg",
+      "Telegram",
+      "https://t.me/fancymusiclabel"
+    ],
+    [
+      "i-vk",
+      "VK",
+      "https://vk.com/fancymusicrecords"
+    ],
+    [
+      "i-fb",
+      "Facebook",
+      "https://www.facebook.com/fancymusiclabel"
+    ],
+    [
+      "i-yt",
+      "YouTube",
+      "https://www.youtube.com/user/TheFancymusic"
+    ],
+    [
+      "i-web",
+      "fancymusic.ru",
+      "https://fancymusic.ru"
+    ]
   ]
 }

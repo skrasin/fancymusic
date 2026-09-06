@@ -11,7 +11,10 @@
 
 Результат:
     projects/<slug>/output/press-release.{docx,pdf}
-    копии рядом со страницей, в docs/releases/<slug>/
+    projects/<slug>/output/press-release.gdoc.html — разметка для импорта
+        в Google Docs: те же блоки, но простой HTML, который переживает
+        конвертацию. В docs/ не публикуется, нужен только для загрузки.
+    копии docx и pdf рядом со страницей, в docs/releases/<slug>/
 
 Порядок в документе повторяет страницу: обложка рядом с названием, под ними
 ссылки на стриминги и на страницу релиза, дальше текст, справки, списки
@@ -341,6 +344,53 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
 
 
 # --------------------------------------------------------------------- main
+GDOC_CSS = """
+body { font-family: Arial, sans-serif; font-size: 11pt; color: #2e2e2e; }
+h1 { font-size: 20pt; text-transform: uppercase; margin: 0 0 6pt; }
+h2 { font-size: 13pt; text-transform: uppercase; color: #ff2626; margin: 18pt 0 4pt; }
+blockquote { border-left: 3pt solid #ff2626; margin: 10pt 0; padding-left: 10pt;
+             font-size: 12pt; text-transform: uppercase; }
+.small { font-size: 8pt; color: #6f6f6f; text-transform: uppercase; }
+"""
+
+
+def build_gdoc_html(doc_data: dict, page: dict, dst: Path) -> None:
+    """Разметка для импорта в Google Docs.
+
+    Google при конвертации выбрасывает почти весь CSS и не тянет картинки
+    по ссылке, поэтому здесь простая разметка без обложки: заголовок,
+    ссылки, текст, справки, списки ссылок, контакты, выходные данные.
+    """
+    values = page["values"]
+    quote = ""
+    if doc_data["quote"]:
+        body_q, author_q = doc_data["quote"]
+        quote = f"<blockquote>{body_q}<br><span class='small'>{author_q}</span></blockquote>"
+
+    sections = []
+    for heading, blocks in doc_data["sections"]:
+        sections.append(f"<h2>{heading}</h2>{html_blocks(blocks)}")
+        if heading == "Об артисте":
+            sections.append(links_html("Ссылки на страницы артиста", page["artist_links"]))
+        elif heading == "О лейбле":
+            sections.append(links_html("Ссылки на страницы лейбла", page["label_links"]))
+
+    html = f"""<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<title>{doc_data['title']}</title><style>{GDOC_CSS}</style></head><body>
+<h1>{doc_data['title']}</h1>
+<p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a><br>
+<b>Страница релиза:</b> <a href="{values['RELEASE_URL']}">{values['RELEASE_URL']}</a></p>
+<p>{release_content.bold_to_html(doc_data['lead'])}</p>
+{html_blocks(doc_data['body'])}
+{quote}
+{''.join(sections)}
+<h2>Контакты для прессы</h2>
+<p>Email — {values['PRESS_EMAIL']}<br>Telegram — {values['PRESS_TELEGRAM']}</p>
+<p class="small">FANCYMUSIC · Пресс-релиз · {values['RELEASE_DATE']}</p>
+</body></html>"""
+    dst.write_text(html)
+
+
 def main() -> int:
     if len(sys.argv) != 2:
         print(__doc__)
@@ -372,13 +422,15 @@ def main() -> int:
     docx_path, pdf_path = out_dir / "press-release.docx", out_dir / "press-release.pdf"
     build_docx(doc_data, page, cover, docx_path)
     build_pdf(doc_data, page, cover, pdf_path)
+    gdoc_path = out_dir / "press-release.gdoc.html"
+    build_gdoc_html(doc_data, page, gdoc_path)
 
     page_dir = ROOT / "docs/releases" / slug
     if page_dir.exists():
         for f in (docx_path, pdf_path):
             shutil.copy(f, page_dir / f.name)
 
-    for f in (docx_path, pdf_path):
+    for f in (docx_path, pdf_path, gdoc_path):
         print(f"{f.relative_to(ROOT)} — {f.stat().st_size // 1024} КБ")
     return 0
 
