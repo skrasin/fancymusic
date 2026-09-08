@@ -1,0 +1,84 @@
+{
+  "source": "https://i-m-i.ru/sources/telegram",
+  "collected_at": "2026-09-08",
+  "note": "Наполняется скриптом tools/fetch-imi-telegram.py. Записи со status manual внесены руками из handoff, status unverified — не подтверждены прямым запросом страницы канала.",
+  "channels": [
+    {
+      "name": "CHILINE",
+      "tme": "https://t.me/chiline",
+      "imi": "https://i-m-i.ru/sources/telegram/chiline",
+      "subscribers": 2422,
+      "category": "Академическая и классика",
+      "genres": ["Академическая"],
+      "author": "Владимир и Владислава Шилины, композитор и музыковед",
+      "description": "Разбор произведений классиков и современных авторов, исторические заметки о композиторах.",
+      "status": "manual"
+    },
+    {
+      "name": "the rest is xz",
+      "tme": "https://t.me/trixz",
+      "imi": "https://i-m-i.ru/sources/telegram/trixz",
+      "subscribers": 1533,
+      "category": "Авангард и эксперимент",
+      "genres": ["Авангард", "Экспериментальная"],
+      "author": "Стас Шарифуллин, музыкант, преподаватель НИУ ВШЭ",
+      "description": "Анонсы релизов авангарда и экспериментальной музыки, авторские плейлисты.",
+      "status": "manual"
+    },
+    {
+      "name": "Одиннадцатое Небо",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/11th-sky",
+      "subscribers": null,
+      "category": "Джаз",
+      "genres": ["Джаз"],
+      "author": "Лев Боровков, юрист, автор Jazzist и колонки на Джаз.ру",
+      "description": "Джазовая критика и заметки.",
+      "status": "unverified"
+    },
+    {
+      "name": "JAZZ по-русски",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/jazz-po-russki",
+      "subscribers": null,
+      "category": "Джаз",
+      "genres": ["Джаз"],
+      "author": null,
+      "description": "Рецензии на джазовые релизы в формате коротких подкастов.",
+      "status": "unverified"
+    },
+    {
+      "name": "Лежбище тюленя",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/lezhbische",
+      "subscribers": null,
+      "category": "Джаз",
+      "genres": ["Джаз", "Импровизационная"],
+      "author": "Руслан Рафиков",
+      "description": "Критические рецензии на российский импров и джаз.",
+      "status": "unverified"
+    },
+    {
+      "name": "Ethereal Grooves",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/ethereal-grooves",
+      "subscribers": null,
+      "category": "Авангард и эксперимент",
+      "genres": ["Авангард"],
+      "author": null,
+      "description": "Нишевая авангардная и эклектичная музыка.",
+      "status": "unverified"
+    },
+    {
+      "name": "DIGITAL JAZZ | Маркет",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/dj-market",
+      "subscribers": null,
+      "category": "Чаты и сообщества",
+      "genres": ["Джаз"],
+      "author": "сообщество Digital Jazz",
+      "description": "Чат для покупки и продажи оборудования. Не контент-канал: релевантность для питчинга под вопросом.",
+      "status": "unverified"
+    }
+  ]
+}
