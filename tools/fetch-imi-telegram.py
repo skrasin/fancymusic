@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 """Собирает каталог Telegram-каналов i-m-i.ru под жанры FANCYMUSIC.
 
-    python3 tools/fetch-imi-telegram.py            # жанровые фильтры из GENRES
-    python3 tools/fetch-imi-telegram.py --all      # весь каталог, без фильтра
-    python3 tools/fetch-imi-telegram.py --dry-run  # только показать, что нашёл
+Три способа получить данные — выбирается тем, откуда есть доступ к сайту:
+
+    python3 tools/fetch-imi-telegram.py                    # сам обходит сайт
+    python3 tools/fetch-imi-telegram.py --import file.json # выгрузка из консоли
+    python3 tools/fetch-imi-telegram.py --from-html dir/   # сохранённые страницы
+
+Первый способ требует, чтобы сайт открывался с этой машины. Если нет —
+собрать из браузера скриптом tools/imi-console-collect.js и скормить
+получившийся imi-telegram.json ключом --import. Совсем крайний случай:
+сохранить страницы каналов через Ctrl+S в папку и разобрать --from-html.
+
+Ключи --all (весь каталог, без жанрового фильтра) и --dry-run
+(ничего не писать) работают с первым способом.
 
 Пишет  projects/pr-telegram-channels/channels.json
        projects/pr-telegram-channels/output/channels.csv
@@ -238,20 +248,67 @@ def write_csv(channels):
                         c.get("status", "")])
 
 
+def from_export(path: Path):
+    """Выгрузка tools/imi-console-collect.js → {slug: запись}."""
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    channels = payload["channels"] if isinstance(payload, dict) else payload
+    out = {}
+    for c in channels:
+        slug = (c.get("imi") or "").rstrip("/").rsplit("/", 1)[-1] or c.get("name")
+        c.setdefault("genres", [])
+        c.setdefault("status", "fetched")
+        out[slug] = c
+    print(f"Из выгрузки прочитано: {len(out)}")
+    return out
+
+
+def from_html(directory: Path):
+    """Сохранённые через Ctrl+S страницы каналов → {slug: запись}."""
+    out = {}
+    files = sorted(p for p in Path(directory).rglob("*.htm*") if p.is_file())
+    for f in files:
+        soup = BeautifulSoup(f.read_text(encoding="utf-8", errors="replace"), "html.parser")
+        link = soup.find("link", rel="canonical") or soup.find("meta", property="og:url")
+        href = (link.get("href") if link and link.has_attr("href")
+                else link.get("content") if link else None)
+        slug = (href or f.stem).rstrip("/").rsplit("/", 1)[-1]
+        card = parse_card(soup, slug)
+        if not card:
+            continue
+        card["category"] = None
+        card["genres"] = []
+        card["status"] = "fetched"
+        out[slug] = card
+        print(f"    {card['name']} — {card['subscribers'] or '?'}")
+    print(f"Из {len(files)} файлов прочитано: {len(out)}")
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true", help="весь каталог, без жанрового фильтра")
     ap.add_argument("--dry-run", action="store_true", help="не писать файлы")
+    ap.add_argument("--import", dest="import_path", metavar="FILE",
+                    help="imi-telegram.json из tools/imi-console-collect.js")
+    ap.add_argument("--from-html", dest="html_dir", metavar="DIR",
+                    help="папка с сохранёнными страницами каналов")
     args = ap.parse_args()
 
     data = json.loads(DATA.read_text(encoding="utf-8")) if DATA.exists() else {"channels": []}
-    session = make_session()
-    rp = robots(session)
 
-    fetched = collect(session, rp, GENRES, args.all)
+    if args.import_path:
+        fetched = from_export(Path(args.import_path))
+    elif args.html_dir:
+        fetched = from_html(Path(args.html_dir))
+    else:
+        session = make_session()
+        rp = robots(session)
+        fetched = collect(session, rp, GENRES, args.all)
+
     if not fetched:
-        sys.exit("Ничего не собрано: сайт недоступен или закрыт robots.txt. "
-                 "Список в channels.json оставлен как был.")
+        sys.exit("Ничего не собрано. Список в channels.json оставлен как был.\n"
+                 "Если сайт с этой машины не открывается — соберите из браузера: "
+                 "tools/imi-console-collect.js, затем --import imi-telegram.json")
 
     channels = merge(data.get("channels", []), fetched)
     print(f"\nВсего в списке: {len(channels)}, из них новых: {len(fetched)}")
