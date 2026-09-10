@@ -2,3 +2,6 @@
 *.print.html
 __pycache__/
 *.pyc
+
+# Исходные материалы партнёров: репозиторий публичный, в git не кладём
+projects/cop17-yerevan-show/raw-materials/*.docx
