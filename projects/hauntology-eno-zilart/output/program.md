@@ -28,4 +28,5 @@
 https://hauntology.ru
 https://t.me/hauntology_dm
 https://www.instagram.com/hauntology.team
+Видео с музыкой Брайана Ино: https://disk.yandex.ru/d/btaO4hUJ2rFLsw
 Фото для анонса: https://disk.yandex.ru/d/Y3a4cvWAzPLVKQ
