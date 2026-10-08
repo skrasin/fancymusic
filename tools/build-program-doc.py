@@ -6,9 +6,10 @@
 Источник: projects/<slug>/output/program.md
 Результат: projects/<slug>/output/program.docx
 
-Документ без оформления: только Arial, чёрный текст, без таблиц, подчёркиваний,
+Документ без оформления: только Arial 10 pt, чёрный текст, без таблиц, подчёркиваний,
 цветов и рамок. Заголовки набраны заглавными, списки — стандартные
-маркированные и нумерованные стили Word. Ссылки выводятся адресом как есть.
+маркированные и нумерованные стили Word. Отступов между абзацами нет:
+абзацы разделены пустыми строками. Ссылки выводятся адресом как есть.
 
 Разметка: «# Название», абзац сразу под ним — подзаголовок, «## Раздел»,
 «**Ключ:** значение» — отдельная строка, «1. пункт» — нумерованный список,
@@ -46,37 +47,54 @@ def build(md: str) -> Document:
 
     for name in ("Normal", "List Bullet", "List Number"):
         st = doc.styles[name]
-        set_font(st, 11, False)
+        set_font(st, 10, False)
         st.font.color.rgb = None
-        st.paragraph_format.space_after = Pt(6)
-        st.paragraph_format.line_spacing = 1.15
+        st.paragraph_format.space_before = Pt(0)
+        st.paragraph_format.space_after = Pt(0)
+        st.paragraph_format.line_spacing = 1.0
 
-    def para(text, style=None, size=None, bold=None, before=0, after=None):
+    def para(text, style=None, bold=None):
         p = doc.add_paragraph(style=style)
         text = re.sub(r"\*\*(.+?)\*\*", r"\1", text)
-        r = p.add_run(text)
-        set_font(r, size, bold)
-        p.paragraph_format.space_before = Pt(before)
-        if after is not None:
-            p.paragraph_format.space_after = Pt(after)
+        set_font(p.add_run(text), 10, bold)
         return p
 
-    first_para = True
-    for ln in (l for l in md.split("\n") if l.strip()):
+    def blank():
+        doc.add_paragraph()
+
+    def kind(ln):
         if ln.startswith("# "):
-            para(ln[2:].upper(), size=16, bold=True, after=4)
-        elif ln.startswith("## "):
-            p = para(ln[3:].upper(), size=12, bold=True, before=14, after=4)
+            return "title"
+        if ln.startswith("## "):
+            return "heading"
+        if ln.startswith("- "):
+            return "bullet"
+        if re.match(r"^\d+\. ", ln):
+            return "number"
+        if re.match(r"^\*\*[^*]+:\*\*", ln):
+            return "fact"
+        return "text"
+
+    lines = [l for l in md.split("\n") if l.strip()]
+    prev = None
+    for ln in lines:
+        k = kind(ln)
+        # пустая строка между блоками; подряд идущие пункты одного списка и факты — вместе,
+        # заголовок прижат к своему тексту
+        if prev and not (k == prev and k in ("bullet", "number", "fact")) and prev != "heading":
+            blank()
+        if k == "title":
+            para(ln[2:].upper(), bold=True)
+        elif k == "heading":
+            p = para(ln[3:].upper(), bold=True)
             p.paragraph_format.keep_with_next = True
-        elif ln.startswith("- "):
+        elif k == "bullet":
             para(ln[2:], style="List Bullet")
-        elif re.match(r"^\d+\. ", ln):
-            para(re.sub(r"^\d+\. ", "", ln).replace(" · ", ", "), style="List Number")
-        elif re.match(r"^\*\*[^*]+:\*\*", ln):
-            para(ln, after=2)
+        elif k == "number":
+            para(re.sub(r"^\d+\. ", "", ln), style="List Number")
         else:
-            para(ln, after=8 if not first_para else 12)
-            first_para = False
+            para(ln)
+        prev = k
     doc.core_properties.title = md.split("\n", 1)[0].lstrip("# ").strip()
     return doc
 
