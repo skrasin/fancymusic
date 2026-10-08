@@ -12,7 +12,10 @@
 
 ## Состав
 
-Никита Агафонов – тенор-саксофон, кларнет; Давид Ежов – виолончель; Катарина Мелик-Овсепян – электроника, глокеншпиль; Дмитрий Мазуров – электроника.
+Никита Агафонов – тенор-саксофон, кларнет
+Давид Ежов – виолончель
+Катарина Мелик-Овсепян – электроника, глокеншпиль
+Дмитрий Мазуров – электроника
 
 ## О проекте
 
@@ -22,4 +25,7 @@
 
 ## Ссылки
 
-Сайт: https://hauntology.ru, Telegram: https://t.me/hauntology_dm, Instagram: https://www.instagram.com/hauntology.team, фото для анонса: https://disk.yandex.ru/d/Y3a4cvWAzPLVKQ
+https://hauntology.ru
+https://t.me/hauntology_dm
+https://www.instagram.com/hauntology.team
+Фото для анонса: https://disk.yandex.ru/d/Y3a4cvWAzPLVKQ

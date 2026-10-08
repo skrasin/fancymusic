@@ -14,8 +14,9 @@
    невалидный settings.xml и служебные части (customXml, миниатюру),
    на которых спотыкается просмотр docx в браузере.
 
-   Разметка: «# Название», «## Раздел», «**Ключ:** значение» — отдельная
-   строка, «- пункт» и «1. пункт» — стандартные списки, остальное — абзацы. */
+   Разметка: «# Название», «## Раздел», «- пункт» и «1. пункт» — стандартные
+   списки, «**жирный**» снимается. Пустая строка в Markdown — пустая строка
+   в документе; строки одного блока идут подряд. */
 const fs = require("fs");
 const path = require("path");
 const { Document, Packer, Paragraph, TextRun, LevelFormat, AlignmentType, NoBreakHyphen } = require("docx");
@@ -47,20 +48,22 @@ const kind = (ln) =>
   /^\d+\. /.test(ln) ? "number" :
   /^\*\*[^*]+:\*\*/.test(ln) ? "fact" : "text";
 
+// Блоки разделены пустой строкой в Markdown и пустой строкой в документе.
+// Строки внутри блока — отдельные абзацы подряд, без пустых строк между ними
+// (факты, состав, ссылки). Заголовок раздела прижат к своему тексту.
 const children = [];
-let prev = null;
-for (const ln of md.split("\n").filter((l) => l.trim())) {
-  const k = kind(ln);
-  // пустая строка между блоками; пункты одного списка и факты идут подряд,
-  // заголовок прижат к своему тексту
-  if (prev && prev !== "heading" && !(k === prev && ["bullet", "number", "fact"].includes(k))) children.push(blank());
-  if (k === "title") children.push(para(ln.slice(2).toUpperCase(), { bold: true }));
-  else if (k === "heading") children.push(para(ln.slice(3).toUpperCase(), { bold: true, keepNext: true }));
-  else if (k === "bullet") children.push(para(ln.slice(2), { numbering: { reference: "bullets", level: 0 } }));
-  else if (k === "number") children.push(para(ln.replace(/^\d+\. /, ""), { numbering: { reference: "numbers", level: 0 } }));
-  else children.push(para(ln));
-  prev = k;
-}
+const blocks = md.split(/\n\s*\n/).map((b) => b.split("\n").filter((l) => l.trim())).filter((b) => b.length);
+blocks.forEach((lines, bi) => {
+  if (bi > 0 && kind(blocks[bi - 1][0]) !== "heading") children.push(blank());
+  for (const ln of lines) {
+    const k = kind(ln);
+    if (k === "title") children.push(para(ln.slice(2).toUpperCase(), { bold: true }));
+    else if (k === "heading") children.push(para(ln.slice(3).toUpperCase(), { bold: true, keepNext: true }));
+    else if (k === "bullet") children.push(para(ln.slice(2), { numbering: { reference: "bullets", level: 0 } }));
+    else if (k === "number") children.push(para(ln.replace(/^\d+\. /, ""), { numbering: { reference: "numbers", level: 0 } }));
+    else children.push(para(ln));
+  }
+});
 
 const level = (format, text) => ({
   level: 0, format, text, alignment: AlignmentType.LEFT,
