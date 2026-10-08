@@ -15,10 +15,10 @@ Brian Eno — Music for Airports. Центральное произведени�
 
 Если захотим дополнить вечер, в анонсе от 6 октября заявлена музыка:
 
-- Morton Feldman — [УТОЧНИТЬ произведение]
-- Meredith Monk — [УТОЧНИТЬ произведение]
-- William Duckworth — [УТОЧНИТЬ произведение]
-- Aphex Twin — [УТОЧНИТЬ произведение]
+- Morton Feldman
+- Meredith Monk
+- William Duckworth
+- Aphex Twin
 
 ## Состав
 
