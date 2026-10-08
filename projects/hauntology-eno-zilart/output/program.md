@@ -48,7 +48,7 @@ Site-specific программа вокруг альбома Music for Airports.
 
 ## Ссылки
 
-- Сайт: [hauntology.ru](https://hauntology.ru)
-- Telegram: [t.me/hauntology_dm](https://t.me/hauntology_dm)
-- Instagram: [instagram.com/hauntology.team](https://www.instagram.com/hauntology.team)
-- Фото для анонса: [Яндекс Диск](https://disk.yandex.ru/d/Y3a4cvWAzPLVKQ)
+- Сайт: https://hauntology.ru
+- Telegram: https://t.me/hauntology_dm
+- Instagram: https://www.instagram.com/hauntology.team
+- Фото для анонса: https://disk.yandex.ru/d/Y3a4cvWAzPLVKQ
