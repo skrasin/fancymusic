@@ -38,6 +38,15 @@ def links(items):
         for icon, label, url in items)
 
 
+def links_block(label: str, items) -> str:
+    """Подпись и чипы. Пустой список — пустой блок, без висящей подписи."""
+    if not items:
+        return ""
+    return (f'<p class="fm-eyebrow" style="margin-top: var(--fm-space-6)">{label}</p>\n'
+            f'      <ul class="rl-links" style="margin-top: var(--fm-space-3)">'
+            f"{links(items)}</ul>")
+
+
 def size_kb(path: Path) -> str:
     return f"{path.stat().st_size // 1024} КБ" if path.exists() else ""
 
@@ -94,12 +103,20 @@ def main() -> int:
     quote, author = prose["quote"] or ("", "")
     values["QUOTE"], values["QUOTE_AUTHOR"] = quote, author
     for heading, blocks in prose["sections"]:
-        key = {"Об артисте": "ABOUT_ARTIST", "О лейбле": "ABOUT_LABEL"}.get(heading)
-        if key:
-            values[key] = release_content.blocks_to_html(blocks)
+        if heading in release_content.ARTIST_SECTIONS:
+            values["ABOUT_ARTIST"] = release_content.blocks_to_html(blocks)
+            values["ABOUT_ARTIST_HEADING"] = heading
+        elif heading in release_content.LABEL_SECTIONS:
+            values["ABOUT_LABEL"] = release_content.blocks_to_html(blocks)
     values["ICON_SPRITE"] = sprite
-    values["ARTIST_LINKS"] = links(data["artist_links"])
-    values["LABEL_LINKS"] = links(data["label_links"])
+    embed = values.pop("PLAYER_EMBED", "").strip()
+    values["PLAYER_BLOCK"] = f'<div class="rl-player">{embed}</div>' if embed else ""
+    values["ARTIST_LINKS_BLOCK"] = links_block(
+        values.pop("ARTIST_LINKS_LABEL", "Ссылки на страницы артиста"),
+        data["artist_links"])
+    values["LABEL_LINKS_BLOCK"] = links_block(
+        values.pop("LABEL_LINKS_LABEL", "Ссылки на страницы лейбла"),
+        data["label_links"])
     gdoc = values.pop("GDOC_URL", "").strip()
     values["GDOC_BUTTON"] = (
         f'<a href="{gdoc}" target="_blank" rel="noopener">'

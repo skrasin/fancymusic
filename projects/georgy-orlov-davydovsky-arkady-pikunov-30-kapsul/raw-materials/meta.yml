@@ -1,0 +1,39 @@
+# Рабочая опись присланных материалов: что получено и чего не хватает.
+slug: georgy-orlov-davydovsky-arkady-pikunov-30-kapsul
+artist: Георгий Орлов-Давыдовский, Аркадий Пикунов
+release_title: 30 Kapsül
+format: Альбом
+genre: Dark Jazz, Electronics, Free Improvisation, Experimental, Noise
+mood: Dark, Cinematic, Noir, Meditative, Hypnotic
+similar: Nils Petter Molvær, Matthew Herbert
+release_date: "[УТОЧНИТЬ]"      # в материалах нет — блокирует публикацию
+
+focus_track: "#3 m. pil."
+recorded: Москва, «Параллельные пересечения», пространство «Невротик», 2025
+
+participants:
+  - Георгий Орлов-Давыдовский — шум, электроника
+  - Аркадий Пикунов — саксофон
+
+quote_artist: "[ЦИТАТА]"        # собственной цитаты артистов в материалах нет
+press: []
+
+links:
+  streaming_all: https://band.link/G8Grf
+  release_page: https://fancymusic.ru/georgy-orlov-davydovsky-arkady-pikunov-30-kapsul/
+  bandcamp_album: "[УТОЧНИТЬ]"
+  bandcamp_embed_id: "[УТОЧНИТЬ]"
+  artist: {}                    # ссылок артистов в материалах нет
+
+cover: cover.jpg                # 1600×1600
+press_photos:
+  - press-1.jpg
+  - press-2.jpg
+photo_credit: SZCZUR.PHOTO
+
+# В присланном .docx были рекламные бюджеты и ссылка на Dropbox.
+# В публичный репозиторий не перенесены.
+
+press_contacts:
+  email: mail@fancymusic.ru
+  telegram: "@s_krasin"

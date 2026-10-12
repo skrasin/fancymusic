@@ -29,13 +29,9 @@
     <img class="rl-cover" src="{{COVER_URL}}"
          alt="{{COVER_ALT}}">
 
-    <div class="rl-player">
-      <!-- Оставить ОДИН вариант:
-           1) встроенный плеер площадки (Bandcamp / Яндекс Музыка / Spotify)
-           2) локальный файл превью -->
-      {{PLAYER_EMBED}}
-      <!-- <audio controls preload="none" src="preview.mp3">Ваш браузер не поддерживает аудио.</audio> -->
-    </div>
+    <!-- Плеер: встроенный плеер площадки (Bandcamp / Яндекс Музыка / Spotify)
+         или <audio> с локальным превью. Если PLAYER_EMBED пуст, блока нет. -->
+    {{PLAYER_BLOCK}}
 
     <div class="rl-actions">
       <a class="fm-btn fm-btn--solid" href="{{PREVIEW_URL}}">Ссылки на стриминги</a>
@@ -61,17 +57,15 @@
     </blockquote>
 
     <div>
-      <h2>Об артисте</h2>
+      <h2>{{ABOUT_ARTIST_HEADING}}</h2>
       {{ABOUT_ARTIST}}
-      <p class="fm-eyebrow" style="margin-top: var(--fm-space-6)">Ссылки на страницы артиста</p>
-      <ul class="rl-links" style="margin-top: var(--fm-space-3)">{{ARTIST_LINKS}}</ul>
+      {{ARTIST_LINKS_BLOCK}}
     </div>
 
     <div>
       <h2>О лейбле</h2>
       {{ABOUT_LABEL}}
-      <p class="fm-eyebrow" style="margin-top: var(--fm-space-6)">Ссылки на страницы лейбла</p>
-      <ul class="rl-links" style="margin-top: var(--fm-space-3)">{{LABEL_LINKS}}</ul>
+      {{LABEL_LINKS_BLOCK}}
     </div>
 
     <div>

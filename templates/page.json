@@ -1,5 +1,5 @@
 {
-  "_комментарий": "Фактура релиза. Проза — в output/press-release.md, здесь её нет. Порядок в artist_links и label_links = порядок чипов на странице. Пиктограммы: i-web, i-tg, i-vk, i-ig, i-fb, i-yt, i-bc, i-sp, i-mail.",
+  "_комментарий": "Фактура релиза. Проза — в output/press-release.md, здесь её нет. Пустые PLAYER_EMBED, GDOC_URL и artist_links просто убирают соответствующий блок. ARTIST_LINKS_LABEL меняется на «Ссылки на страницы артистов» у дуэтов и ансамблей. Порядок в artist_links и label_links = порядок чипов на странице. Пиктограммы: i-web, i-tg, i-vk, i-ig, i-fb, i-yt, i-bc, i-sp, i-mail, i-external.",
   "values": {
     "ARTIST": "Имя артиста",
     "RELEASE_TITLE": "Название релиза",
@@ -15,7 +15,8 @@
     "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
     "DOCX_URL": "press-release.docx",
     "PDF_URL": "press-release.pdf",
-    "GDOC_URL": ""
+    "GDOC_URL": "",
+    "ARTIST_LINKS_LABEL": "Ссылки на страницы артиста"
   },
   "artist_links": [
     [

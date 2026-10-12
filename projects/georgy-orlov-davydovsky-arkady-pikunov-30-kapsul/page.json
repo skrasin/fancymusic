@@ -1,0 +1,54 @@
+{
+  "_комментарий": "Фактура релиза. Проза — в output/press-release.md.",
+  "values": {
+    "ARTIST": "Георгий Орлов-Давыдовский, Аркадий Пикунов",
+    "RELEASE_TITLE": "30 Kapsül",
+    "LEAD_SHORT": "Альбом Георгия Орлова-Давыдовского и Аркадия Пикунова: дарк-джаз, электроника и шум, записанные вживую за одно выступление.",
+    "RELEASE_DATE": "[УТОЧНИТЬ]",
+    "COVER_URL": "cover.jpg",
+    "COVER_FILE": "cover.jpg",
+    "COVER_ALT": "Обложка альбома «30 Kapsül»: размытый чёрно-белый зимний пейзаж со снегом, снятый через запотевшее стекло",
+    "PREVIEW_URL": "https://band.link/G8Grf",
+    "RELEASE_URL": "https://fancymusic.ru/georgy-orlov-davydovsky-arkady-pikunov-30-kapsul/",
+    "PLAYER_EMBED": "",
+    "ARTIST_LINKS_LABEL": "Ссылки на страницы артистов",
+    "PRESS_EMAIL": "<a href=\"mailto:mail@fancymusic.ru\">mail@fancymusic.ru</a>",
+    "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
+    "DOCX_URL": "press-release.docx",
+    "PDF_URL": "press-release.pdf",
+    "GDOC_URL": ""
+  },
+  "artist_links": [],
+  "label_links": [
+    [
+      "i-ig",
+      "Instagram",
+      "https://www.instagram.com/fancy_music"
+    ],
+    [
+      "i-tg",
+      "Telegram",
+      "https://t.me/fancymusiclabel"
+    ],
+    [
+      "i-vk",
+      "VK",
+      "https://vk.com/fancymusicrecords"
+    ],
+    [
+      "i-fb",
+      "Facebook",
+      "https://www.facebook.com/fancymusiclabel"
+    ],
+    [
+      "i-yt",
+      "YouTube",
+      "https://www.youtube.com/user/TheFancymusic"
+    ],
+    [
+      "i-web",
+      "fancymusic.ru",
+      "https://fancymusic.ru"
+    ]
+  ]
+}
