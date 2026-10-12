@@ -109,6 +109,20 @@ def main() -> int:
         elif heading in release_content.LABEL_SECTIONS:
             values["ABOUT_LABEL"] = release_content.blocks_to_html(blocks)
     values["ICON_SPRITE"] = sprite
+    photo = values.pop("PRESS_PHOTO", "").strip()
+    if photo:
+        credit = values.pop("PRESS_PHOTO_CREDIT", "").strip()
+        alt = values.pop("PRESS_PHOTO_ALT", "").strip()
+        caption = f"<span>Фото: {credit}</span>" if credit else "<span></span>"
+        values["PRESS_PHOTO_BLOCK"] = (
+            f'<figure class="rl-photo"><img src="{photo}" alt="{alt}" loading="lazy">'
+            f'<figcaption>{caption}'
+            f'<a href="{photo}" download>Скачать снимок</a></figcaption></figure>')
+    else:
+        values["PRESS_PHOTO_BLOCK"] = ""
+        values.pop("PRESS_PHOTO_CREDIT", None)
+        values.pop("PRESS_PHOTO_ALT", None)
+
     embed = values.pop("PLAYER_EMBED", "").strip()
     values["PLAYER_BLOCK"] = f'<div class="rl-player">{embed}</div>' if embed else ""
     values["ARTIST_LINKS_BLOCK"] = links_block(

@@ -10,13 +10,16 @@
     "COVER_ALT": "Обложка альбома «30 Kapsül»: размытый чёрно-белый зимний пейзаж со снегом, снятый через запотевшее стекло",
     "PREVIEW_URL": "https://band.link/G8Grf",
     "RELEASE_URL": "https://fancymusic.ru/georgy-orlov-davydovsky-arkady-pikunov-30-kapsul/",
-    "PLAYER_EMBED": "",
+    "PLAYER_EMBED": "<iframe style=\"border: 0; width: 100%; height: 42px;\" src=\"https://bandcamp.com/EmbeddedPlayer/album=83383320/size=small/bgcol=ffffff/linkcol=ff2626/artwork=none/transparent=true/\" seamless title=\"30 Kapsül — предпрослушивание на Bandcamp\"><a href=\"https://fancymusic.bandcamp.com/album/30-kaps-l\">30 Kapsül by Georgy Orlov-Davydovsky, Arkady Pikunov</a></iframe>",
     "ARTIST_LINKS_LABEL": "Ссылки на страницы артистов",
     "PRESS_EMAIL": "<a href=\"mailto:mail@fancymusic.ru\">mail@fancymusic.ru</a>",
     "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
     "DOCX_URL": "press-release.docx",
     "PDF_URL": "press-release.pdf",
-    "GDOC_URL": ""
+    "GDOC_URL": "",
+    "PRESS_PHOTO": "press-photo.jpg",
+    "PRESS_PHOTO_CREDIT": "SZCZUR.PHOTO",
+    "PRESS_PHOTO_ALT": "Георгий Орлов-Давыдовский и Аркадий Пикунов на сцене: саксофон, ноутбуки и пульт, чёрно-белый снимок"
   },
   "artist_links": [],
   "label_links": [

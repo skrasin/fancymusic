@@ -44,11 +44,11 @@ Nils Petter Molvær, Matthew Herbert
 - Единая ссылка на стриминги: https://band.link/G8Grf
 - Страница релиза: https://fancymusic.ru/georgy-orlov-davydovsky-arkady-pikunov-30-kapsul/
 - Обложка: 1600×1600, в репозитории `docs/releases/{slug}/cover.jpg`
-- Два пресс-фото, фотограф SZCZUR.PHOTO: `press-1.jpg`, `press-2.jpg`
+- Пресс-фото, фотограф SZCZUR.PHOTO: `press-photo.jpg` — выбран один
+  снимок из двух присланных, второй не публикуется
 
 ## Чего в материалах нет
 
 - **Дата выхода** — блокирует публикацию
-- Код плеера Bandcamp или ссылка на альбом там
 - Ссылки артистов: сайты и соцсети обоих
 - Собственная цитата артистов

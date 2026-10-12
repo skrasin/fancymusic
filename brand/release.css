@@ -92,6 +92,22 @@
 /* ---- Кнопки под плеером -------------------------------------------------- */
 .rl-actions { display: flex; flex-wrap: wrap; gap: var(--fm-space-3); }
 
+/* ---- Пресс-фото ----------------------------------------------------------
+   Снимок во всю ширину текстовой колонки, под ним подпись с автором
+   и ссылка на файл: журналисту нужен сам файл, а не только картинка. */
+.rl-photo figure { margin: 0; }
+.rl-photo img { width: 100%; height: auto; display: block;
+                border: var(--fm-border) solid var(--fm-rule); }
+.rl-photo figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fm-space-2) var(--fm-space-4);
+  justify-content: space-between;
+  margin-top: var(--fm-space-2);
+  font-size: var(--fm-text-caption);
+  color: var(--fm-text-muted);
+}
+
 /* ---- Мелкие ссылки с пиктограммами ------------------------------------- */
 .rl-links {
   list-style: none;

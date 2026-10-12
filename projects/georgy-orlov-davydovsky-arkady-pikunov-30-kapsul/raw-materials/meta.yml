@@ -21,14 +21,13 @@ press: []
 links:
   streaming_all: https://band.link/G8Grf
   release_page: https://fancymusic.ru/georgy-orlov-davydovsky-arkady-pikunov-30-kapsul/
-  bandcamp_album: "[УТОЧНИТЬ]"
-  bandcamp_embed_id: "[УТОЧНИТЬ]"
+  bandcamp_album: https://fancymusic.bandcamp.com/album/30-kaps-l
+  bandcamp_embed_id: "83383320"
   artist: {}                    # ссылок артистов в материалах нет
 
 cover: cover.jpg                # 1600×1600
 press_photos:
-  - press-1.jpg
-  - press-2.jpg
+  - press-photo.jpg   # выбран один снимок из двух присланных, по просьбе
 photo_credit: SZCZUR.PHOTO
 
 # В присланном .docx были рекламные бюджеты и ссылка на Dropbox.
