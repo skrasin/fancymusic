@@ -37,7 +37,8 @@
   .ch-count { font-size: var(--fm-text-small); color: var(--fm-text-muted); }
   .ch-list { list-style: none; margin: var(--fm-space-6) 0 0; padding: 0; }
   .ch-item {
-    display: grid; gap: var(--fm-space-2);
+    display: grid; gap: var(--fm-space-2); min-width: 0;
+    overflow-wrap: anywhere;
     padding: var(--fm-space-5) 0;
     border-top: var(--fm-rule) solid var(--fm-border);
   }
@@ -48,6 +49,7 @@
   .ch-meta { display: flex; flex-wrap: wrap; gap: var(--fm-space-2) var(--fm-space-3); font-size: var(--fm-text-small); color: var(--fm-text-muted); }
   .ch-tag { border: var(--fm-rule) solid var(--fm-border); border-radius: var(--fm-radius-pill); padding: 0 var(--fm-space-3); }
   .ch-flag { color: var(--fm-text); border-color: var(--fm-accent); }
+  .ch-pitch { margin: 0; font-size: var(--fm-text-small); max-width: var(--fm-measure); }
   .ch-links { display: flex; flex-wrap: wrap; gap: var(--fm-space-4); font-size: var(--fm-text-small); }
   .ch-empty { padding: var(--fm-space-7) 0; color: var(--fm-text-muted); }
   @media (min-width: 40rem) { .ch-controls { gap: var(--fm-space-5); } }
@@ -60,8 +62,8 @@
     <p class="fm-eyebrow"><b>FANCYMUSIC</b> · Питчинг</p>
     <h1 class="fm-hero">Telegram-<wbr>каналы</h1>
     <hr class="fm-rule-accent">
-    <p class="fm-lead">Музыкальные каналы под жанры лейбла: академическая и классика, авангард и эксперимент, джаз, арт. Фильтр по категории и жанру, ссылки ведут прямо в канал.</p>
-    <p class="fm-small">Источник — каталог <a href="https://i-m-i.ru/sources/telegram">i-m-i.ru</a>. Данные собраны {{COLLECTED_AT}}, всего в списке {{TOTAL}}.</p>
+    <p class="fm-lead">Музыкальные каналы для питчинга релизов лейбла. Фильтр по категории и жанру, у каждого канала — ссылка, подписчики и контакт для связи.</p>
+    <p class="fm-small">Источники — страницы каналов в Telegram и каталог <a href="https://i-m-i.ru/sources/telegram">i-m-i.ru</a>. Подписчики на {{COLLECTED_AT}}, всего в списке {{TOTAL}}.</p>
   </div>
 </header>
 
@@ -101,7 +103,7 @@
   <div class="fm-container fm-container--narrow">
     <p class="fm-eyebrow">Как обновлять</p>
     <h2>Список собирается скриптом</h2>
-    <p>Данные лежат в <code>projects/pr-telegram-channels/channels.json</code>. Обход каталога — <code>tools/fetch-imi-telegram.py</code>, пересборка этой страницы — <code>tools/build-channels-page.py</code>. Страницу руками не править: она перезаписывается.</p>
+    <p>Данные лежат в <code>projects/pr-telegram-channels/channels.json</code>. Новые каналы по ссылкам t.me — <code>tools/fetch-tme-channels.py</code>, обход каталога i-m-i — <code>tools/fetch-imi-telegram.py</code>, пересборка страницы и CSV — <code>tools/build-channels-page.py</code>. Страницу руками не править: она перезаписывается.</p>
   </div>
 </section>
 
@@ -144,7 +146,7 @@
     if (state.categories.size && !state.categories.has(c.category)) return false;
     if (state.genres.size && !(c.genres || []).some(g => state.genres.has(g))) return false;
     if (!state.q) return true;
-    const hay = [c.name, c.author, c.description, c.category, (c.genres || []).join(' ')]
+    const hay = [c.name, c.author, c.description, c.category, c.contact, c.tme, (c.genres || []).join(' ')]
       .filter(Boolean).join(' ').toLowerCase();
     return hay.includes(state.q);
   }
@@ -198,12 +200,27 @@
         li.appendChild(p);
       }
 
+      if (c.pitch) {
+        const p = document.createElement('p');
+        p.className = 'ch-pitch';
+        const b = document.createElement('b');
+        b.textContent = 'Как прислать музыку: ';
+        p.append(b, document.createTextNode(c.pitch));
+        li.appendChild(p);
+      }
+
       const links = document.createElement('p');
       links.className = 'ch-links';
       if (c.tme) {
         const a = document.createElement('a');
         a.href = c.tme;
         a.textContent = 'Открыть канал';
+        links.appendChild(a);
+      }
+      if (c.contact) {
+        const a = document.createElement('a');
+        a.href = 'https://t.me/' + c.contact.replace(/^@/, '');
+        a.textContent = 'Написать ' + c.contact;
         links.appendChild(a);
       }
       if (c.imi) {

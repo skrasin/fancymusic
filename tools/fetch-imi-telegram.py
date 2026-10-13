@@ -16,7 +16,6 @@
 (ничего не писать) работают с первым способом.
 
 Пишет  projects/pr-telegram-channels/channels.json
-       projects/pr-telegram-channels/output/channels.csv
 
 Уже собранные записи не затираются: если канал есть в channels.json со
 status manual, ручные поля (описание, автор, категория) остаются, а
@@ -29,7 +28,6 @@ status manual, ручные поля (описание, автор, катего
 собрать руками. Между запросами пауза, запросы последовательные.
 """
 import argparse
-import csv
 import json
 import re
 import sys
@@ -47,7 +45,6 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 PROJECT = ROOT / "projects" / "pr-telegram-channels"
 DATA = PROJECT / "channels.json"
-CSV_OUT = PROJECT / "output" / "channels.csv"
 
 BASE = "https://i-m-i.ru"
 LISTING = f"{BASE}/sources/telegram"
@@ -234,19 +231,6 @@ def merge(existing, fetched):
     return out
 
 
-def write_csv(channels):
-    CSV_OUT.parent.mkdir(parents=True, exist_ok=True)
-    with CSV_OUT.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(["Название", "Ссылка t.me", "Подписчики", "Категория",
-                    "Жанры", "Автор", "Описание", "Страница i-m-i", "Статус"])
-        for c in channels:
-            w.writerow([c.get("name", ""), c.get("tme") or "",
-                        c.get("subscribers") or "", c.get("category") or "",
-                        ", ".join(c.get("genres") or []), c.get("author") or "",
-                        c.get("description") or "", c.get("imi") or "",
-                        c.get("status", "")])
-
 
 def from_export(path: Path):
     """Выгрузка tools/imi-console-collect.js → {slug: запись}."""
@@ -318,8 +302,7 @@ def main():
     data["channels"] = channels
     data["collected_at"] = time.strftime("%Y-%m-%d")
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    write_csv(channels)
-    print(f"Записано: {DATA.relative_to(ROOT)}, {CSV_OUT.relative_to(ROOT)}")
+    print(f"Записано: {DATA.relative_to(ROOT)}")
     print("Дальше: python3 tools/build-channels-page.py")
 
 

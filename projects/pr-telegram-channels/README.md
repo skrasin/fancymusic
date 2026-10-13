@@ -3,7 +3,23 @@
 Данные — `channels.json`, выгрузка для таблицы — `output/channels.csv`,
 страница — `docs/pr/telegram/`.
 
-## Как собрать данные
+## Добавить каналы по ссылкам t.me
+
+Самый простой путь — t.me открывается и из облачного окружения:
+
+```
+python3 tools/fetch-tme-channels.py https://t.me/allthatjazz https://t.me/warhol
+python3 tools/fetch-tme-channels.py --refresh      # обновить подписчиков у всех
+python3 tools/build-channels-page.py
+```
+
+Скрипт забирает со страницы канала название, описание и подписчиков.
+Категорию, жанры, контакт и правила приёма музыки (`category`, `genres`,
+`contact`, `pitch`) проставляют руками в `channels.json` — по описанию
+канала и его последним постам на `t.me/s/<имя>`. Такие записи помечены
+`genres_source: fancymusic`: классификация наша, не источника.
+
+## Как собрать данные из каталога i-m-i.ru
 
 Каталог i-m-i.ru закрыт сетевой политикой рабочего окружения Claude Code
 на web, поэтому сбор идёт с машины, где сайт открывается. Любой из трёх
@@ -30,7 +46,7 @@ python3 tools/fetch-imi-telegram.py          # читает robots.txt, идёт
 ## Дальше
 
 ```
-python3 tools/build-channels-page.py         # пересобирает docs/pr/telegram/
+python3 tools/build-channels-page.py         # пересобирает страницу и output/channels.csv
 ```
 
 Ручные поля (автор, описание, категория) при повторном сборе не затираются,
