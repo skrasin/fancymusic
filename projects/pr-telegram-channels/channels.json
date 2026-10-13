@@ -1,0 +1,400 @@
+{
+  "source": "https://i-m-i.ru/sources/telegram",
+  "collected_at": "2026-10-13",
+  "note": "Наполняется скриптом tools/fetch-imi-telegram.py. Записи со status manual внесены руками из handoff, status unverified — не подтверждены прямым запросом страницы канала.",
+  "channels": [
+    {
+      "name": "Привет, не хочешь сходить?",
+      "tme": "https://t.me/privetpoidem",
+      "subscribers": 60674,
+      "category": "Афиша и концерты",
+      "genres": [],
+      "description": "Живое городское медиа от команды, которая искренне любит Москву. Мы меняем реальность города: объединяем людей через события и вдохновляем на эстетичный отдых. По анонсам: @privetpoideminfo Сбежим из Москвы: @do450km",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@privetpoideminfo",
+      "pitch": "контакт в описании указан для анонсов"
+    },
+    {
+      "name": "Унежить душу",
+      "tme": "https://t.me/neohota",
+      "subscribers": 49602,
+      "category": "Арт и культура",
+      "genres": [
+        "Арт"
+      ],
+      "description": "Русь, красота и рок-н-ролл #русскийдиджиталарт #русскийгеймдев #иллюстрация #русскийшрифт #предметныйдизайн #русскаяодежда #русскийинтерьер #трэкдня #полиграфия #русскаяживопись #брендинг #русскаяархитектура Связь: @LukinskyN",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@LukinskyN"
+    },
+    {
+      "name": "Фестивали и концерты в Москве",
+      "tme": "https://t.me/concerts_moscow",
+      "subscribers": 47930,
+      "category": "Афиша и концерты",
+      "genres": [],
+      "description": "Главный канал с анонсами 💳 Реклама: @y_ryd 📁 Наши каналы: • Филиал в Питере: t.me/spb_conc • Бесплатные концерты в Москве: t.me/free_concerts Биржа: telega.in/c/concerts_moscow Наши соцсети: taplink.cc/concerts_moscow",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@y_ryd",
+      "pitch": "контакт в описании указан для рекламы"
+    },
+    {
+      "name": "WARHOL",
+      "tme": "https://t.me/warhol",
+      "subscribers": 27349,
+      "category": "Арт и культура",
+      "genres": [
+        "Арт"
+      ],
+      "description": "WARHOL — серьезный молодежный журнал об актуальной музыке, визуальном искусстве и мировой культуре. Связь: @mitryakov",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@mitryakov"
+    },
+    {
+      "name": "Главный Концертный",
+      "tme": "https://t.me/maingig",
+      "subscribers": 10940,
+      "category": "Афиша и концерты",
+      "genres": [],
+      "description": "Максимально оперативные анонсы лучших концертов России и Беларуси. Пойду на них сам и вам советую! #НаОчереди | #Статьи | #Дайджест По всем вопросам: @nekkhab",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@nekkhab"
+    },
+    {
+      "name": "новая музыка. максимально коротко",
+      "tme": "https://t.me/musicinanutshell",
+      "subscribers": 9512,
+      "category": "Музыкальные медиа",
+      "genres": [],
+      "description": "меня зовут Шурик Горбачев, тут коротко про музыку а тут — длинно про тексты: https://t.me/thedailyprophet хотите прислать музыку? сначала прочитайте это: https://t.me/musicinanutshell/666 реклама — сразу нет. для связи — @shurikgorbachev",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@shurikgorbachev",
+      "pitch": "перед отправкой прочитать правила: https://t.me/musicinanutshell/666; рекламу не берёт"
+    },
+    {
+      "name": "0107 музыка",
+      "tme": "https://t.me/music0107",
+      "subscribers": 9173,
+      "category": "Музыкальные медиа",
+      "genres": [],
+      "description": "Легендарное медиа про музыку (с) Новости, релизы, обзоры, тейки, анонсы ВК: vk.com/music0107 Как опубликоваться: clck.ru/3TZLVc Главред: @churchnskate (писать только по рекламе/сотрудничеству). Бартер не интересует.",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@churchnskate",
+      "pitch": "как опубликоваться: https://clck.ru/3TZLVc; главреду писать только по рекламе и сотрудничеству"
+    },
+    {
+      "name": "По фактам",
+      "tme": "https://t.me/pofactam",
+      "subscribers": 7503,
+      "category": "Музыкальные медиа",
+      "genres": [],
+      "description": "Трек дня с коротким разбором, заметки об истории релизов, новости музыкальной индустрии.",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@oldtelegraphist"
+    },
+    {
+      "name": "All that jazz",
+      "tme": "https://t.me/allthatjazz",
+      "subscribers": 6545,
+      "category": "Джаз",
+      "genres": [
+        "Джаз",
+        "Соул",
+        "R&B",
+        "Фанк"
+      ],
+      "description": "Jazz, soul, r&b, funk - новости,события, обзоры вышедших релизов , современная джазовая,около джазовая и не джазовая сцена. Инфо: @Oartswan Альтернативные площадки: ВКонтакте - https://vk.ru/jazzsoul Дзен - https://dzen.ru/allthatjazz",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@Oartswan"
+    },
+    {
+      "name": "Сергей Пименов",
+      "tme": "https://t.me/pimenov_ru",
+      "subscribers": 6525,
+      "category": "Индустрия",
+      "genres": [],
+      "description": "🚀 Продюсер будущего. PPK «ResuRection» UK Charts 2001. Сделал сотни проектов за последние 30 лет. Продюсирую и консультирую 👉 @pimenov Женат, трое детей. Мой сайт: pimenov.ai",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@pimenov"
+    },
+    {
+      "name": "What's That Noise?",
+      "tme": "https://t.me/whats_that_noise",
+      "subscribers": 5207,
+      "category": "Авангард и эксперимент",
+      "genres": [
+        "Экспериментальная"
+      ],
+      "description": "Заметки о странной музыке Связь: @cluster_88 Чат: @w_t_n_chat Другие ресурсы: https://taplink.cc/whats_that_noise",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@cluster_88"
+    },
+    {
+      "name": "oliverdead channel",
+      "tme": "https://t.me/oliverdeadchannel",
+      "subscribers": 3458,
+      "category": "Музыкальные медиа",
+      "genres": [],
+      "description": "Канал о музыке и не только. Обзоры вне жанровых рамок, ежемесячные дайджесты и авторские плейлисты. Субъективно, эмоционально, по-честному. Добро пожаловать! ВК: vk.com/oliverdead По всем вопросам: @oliverdead4real",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@oliverdead4real"
+    },
+    {
+      "name": "МУЗ. КРУЖОК ⭕️",
+      "tme": "https://t.me/muzakrug",
+      "subscribers": 3282,
+      "category": "Музыкальные медиа",
+      "genres": [],
+      "description": "Трек с коротким комментарием — от Mujuice и Robert Glasper до Nirvana и Летова.",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@mutorno1993"
+    },
+    {
+      "name": "лессехор",
+      "tme": "https://t.me/lessehor",
+      "subscribers": 2495,
+      "category": "Авангард и эксперимент",
+      "genres": [
+        "Авангард",
+        "Экспериментальная",
+        "Нойз-рок",
+        "Пост-панк",
+        "Эмбиент"
+      ],
+      "description": "Обзоры свежих релизов авангарда, экспериментальной музыки, нойз-рока и пост-панка: лейбл, год, ссылки на стриминги. Филиал паблика vk.com/lessehor.",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic"
+    },
+    {
+      "name": "Selected Goosebumps",
+      "tme": "https://t.me/sgbumps",
+      "subscribers": 2467,
+      "category": "Авангард и эксперимент",
+      "genres": [
+        "Эмбиент",
+        "Авангард"
+      ],
+      "description": "Selected goosebumps: новинки необычной музыки. От воздушного эмбиента ☁️ до кромешного авангарда 🔥. Только самое экстраординарное. С мурашками! автор: @dimeramid",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@dimeramid"
+    },
+    {
+      "name": "CHILINE",
+      "tme": "https://t.me/chiline",
+      "imi": "https://i-m-i.ru/sources/telegram/chiline",
+      "subscribers": 2404,
+      "category": "Академическая и классика",
+      "genres": [
+        "Академическая"
+      ],
+      "author": "Владимир и Владислава Шилины, композитор и музыковед",
+      "description": "Разбор произведений классиков и современных авторов, исторические заметки о композиторах.",
+      "status": "manual"
+    },
+    {
+      "name": "Ушла в музычество",
+      "tme": "https://t.me/musichestvo",
+      "subscribers": 2276,
+      "category": "Музыкальные медиа",
+      "genres": [],
+      "description": "Рассказываю с душой о жемчужинах русскоязычной музыки поддержать донатом: https://pay.cloudtips.ru/p/035a38b0 @gloomy_child",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@gloomy_child"
+    },
+    {
+      "name": "Музыковеточка",
+      "tme": "https://t.me/muzicovetochka",
+      "subscribers": 2005,
+      "category": "Музыкальные медиа",
+      "genres": [],
+      "description": "Медиа girly girls из Петербурга о творчестве, трендах и креативе в современной музыкальной индустрии 💅🏻 релизы, коллабы, реклама, купить блокноты: @diprots подкаст, донаты, ютуб: bart.id/muzicovetochka",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@diprots",
+      "pitch": "релизы и коллабы — через этот контакт"
+    },
+    {
+      "name": "the rest is xz",
+      "tme": "https://t.me/trixz",
+      "imi": "https://i-m-i.ru/sources/telegram/trixz",
+      "subscribers": 1517,
+      "category": "Авангард и эксперимент",
+      "genres": [
+        "Авангард",
+        "Экспериментальная"
+      ],
+      "author": "Стас Шарифуллин, музыкант, преподаватель НИУ ВШЭ",
+      "description": "Анонсы релизов авангарда и экспериментальной музыки, авторские плейлисты.",
+      "status": "manual"
+    },
+    {
+      "name": "мать русского инди",
+      "tme": "https://t.me/indiemama",
+      "subscribers": 1488,
+      "category": "Индустрия",
+      "genres": [
+        "Инди"
+      ],
+      "description": "Привет, меня зовут Женя @janealien. Я делаю концерты, рекламу и фестивали. Пишу о них и обо всём, что остаётся за сценой. Поддержать автора канала: https://tbank.ru/cf/6SuP5OGjKrJ ⚠️ Это личный канал и я НЕ размещаю в нём рекламу.",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@janealien",
+      "pitch": "рекламу в канале не размещает"
+    },
+    {
+      "name": "Urban Noises",
+      "tme": "https://t.me/urbanoises",
+      "subscribers": 771,
+      "category": "Музыкальные медиа",
+      "genres": [],
+      "description": "Музыка с инструкциями по применению, которые не стоит воспринимать буквально. Связь: @Mr_Kind_Fox",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@Mr_Kind_Fox"
+    },
+    {
+      "name": "Малоизвестная музыка",
+      "tme": "https://t.me/mlzvstn",
+      "subscribers": 547,
+      "category": "Музыкальные медиа",
+      "genres": [
+        "Инди"
+      ],
+      "description": "Малоизвестные российские релизы с разбором — от DIY-инди до индастриала; редакция устраивает стримы с прослушиванием музыки подписчиков.",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "pitch": "редакция слушает присланную музыку на стримах"
+    },
+    {
+      "name": "Непохоже",
+      "tme": "https://t.me/shersti_musiku",
+      "subscribers": 412,
+      "category": "Музыкальные медиа",
+      "genres": [
+        "Рок",
+        "Поп",
+        "Хип-хоп",
+        "Соул",
+        "Джаз",
+        "Инди",
+        "Метал"
+      ],
+      "description": "Ловлю равновесие на зыбкой поверхности современной музыки. #новаямузыка #newmusic #rock #pop #hiphop #soul #jazz #indie #metal Вопросы и предложения: @hybbgo",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic",
+      "contact": "@hybbgo"
+    },
+    {
+      "name": "куда пойти",
+      "tme": "https://t.me/go_moskva",
+      "subscribers": 285,
+      "category": "Афиша и концерты",
+      "genres": [],
+      "description": "Публикаций в канале нет, описания нет. Категория — по названию.",
+      "kind": "channel",
+      "status": "tme",
+      "genres_source": "fancymusic"
+    },
+    {
+      "name": "DIGITAL JAZZ | Маркет",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/dj-market",
+      "subscribers": null,
+      "category": "Чаты и сообщества",
+      "genres": [
+        "Джаз"
+      ],
+      "author": "сообщество Digital Jazz",
+      "description": "Чат для покупки и продажи оборудования. Не контент-канал: релевантность для питчинга под вопросом.",
+      "status": "unverified"
+    },
+    {
+      "name": "Ethereal Grooves",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/ethereal-grooves",
+      "subscribers": null,
+      "category": "Авангард и эксперимент",
+      "genres": [
+        "Авангард"
+      ],
+      "author": null,
+      "description": "Нишевая авангардная и эклектичная музыка.",
+      "status": "unverified"
+    },
+    {
+      "name": "JAZZ по-русски",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/jazz-po-russki",
+      "subscribers": null,
+      "category": "Джаз",
+      "genres": [
+        "Джаз"
+      ],
+      "author": null,
+      "description": "Рецензии на джазовые релизы в формате коротких подкастов.",
+      "status": "unverified"
+    },
+    {
+      "name": "Лежбище тюленя",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/lezhbische",
+      "subscribers": null,
+      "category": "Джаз",
+      "genres": [
+        "Джаз",
+        "Импровизационная"
+      ],
+      "author": "Руслан Рафиков",
+      "description": "Критические рецензии на российский импров и джаз.",
+      "status": "unverified"
+    },
+    {
+      "name": "Одиннадцатое Небо",
+      "tme": null,
+      "imi": "https://i-m-i.ru/sources/telegram/11th-sky",
+      "subscribers": null,
+      "category": "Джаз",
+      "genres": [
+        "Джаз"
+      ],
+      "author": "Лев Боровков, юрист, автор Jazzist и колонки на Джаз.ру",
+      "description": "Джазовая критика и заметки.",
+      "status": "unverified"
+    }
+  ]
+}

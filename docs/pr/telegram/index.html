@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telegram-каналы для питчинга — FANCYMUSIC</title>
+<meta name="description" content="Список музыкальных Telegram-каналов для питчинга релизов FANCYMUSIC: категории, жанры, подписчики, прямые ссылки.">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/fonts.css">
+<link rel="stylesheet" href="../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<style>
+  .ch-controls { display: grid; gap: var(--fm-space-4); margin-top: var(--fm-space-6); }
+  .ch-search {
+    width: 100%; box-sizing: border-box;
+    padding: var(--fm-space-3) var(--fm-space-4);
+    font: inherit; color: var(--fm-text);
+    background: var(--fm-bg);
+    border: var(--fm-rule) solid var(--fm-border-strong);
+    border-radius: var(--fm-radius-0);
+  }
+  .ch-search:focus-visible { outline: var(--fm-focus); }
+  .ch-chips { display: flex; flex-wrap: wrap; gap: var(--fm-space-2); }
+  .ch-chip {
+    font-family: var(--fm-font-text); font-size: var(--fm-text-small);
+    font-weight: var(--fm-weight-medium); color: var(--fm-text);
+    padding: var(--fm-space-2) var(--fm-space-4);
+    background: var(--fm-bg); cursor: pointer;
+    border: var(--fm-rule) solid var(--fm-border-strong);
+    border-radius: var(--fm-radius-pill);
+    transition: background var(--fm-dur-fast) var(--fm-ease);
+  }
+  .ch-chip:hover { background: var(--fm-bg-subtle); }
+  .ch-chip[aria-pressed="true"] { background: var(--fm-accent); border-color: var(--fm-accent); color: var(--fm-white); }
+  .ch-chip:focus-visible { outline: var(--fm-focus); }
+  .ch-bar { display: flex; flex-wrap: wrap; gap: var(--fm-space-4); align-items: baseline; justify-content: space-between; }
+  .ch-count { font-size: var(--fm-text-small); color: var(--fm-text-muted); }
+  .ch-list { list-style: none; margin: var(--fm-space-6) 0 0; padding: 0; }
+  .ch-item {
+    display: grid; gap: var(--fm-space-2); min-width: 0;
+    overflow-wrap: anywhere;
+    padding: var(--fm-space-5) 0;
+    border-top: var(--fm-rule) solid var(--fm-border);
+  }
+  .ch-head { display: flex; flex-wrap: wrap; gap: var(--fm-space-3); align-items: baseline; justify-content: space-between; }
+  .ch-name { font-family: var(--fm-font-display); font-size: var(--fm-text-h3); font-weight: var(--fm-weight-display); line-height: var(--fm-leading-heading); text-transform: uppercase; margin: 0; }
+  .ch-subs { font-family: var(--fm-font-text); font-size: var(--fm-text-small); color: var(--fm-text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .ch-desc { margin: 0; max-width: var(--fm-measure); }
+  .ch-meta { display: flex; flex-wrap: wrap; gap: var(--fm-space-2) var(--fm-space-3); font-size: var(--fm-text-small); color: var(--fm-text-muted); }
+  .ch-tag { border: var(--fm-rule) solid var(--fm-border); border-radius: var(--fm-radius-pill); padding: 0 var(--fm-space-3); }
+  .ch-flag { color: var(--fm-text); border-color: var(--fm-accent); }
+  .ch-pitch { margin: 0; font-size: var(--fm-text-small); max-width: var(--fm-measure); }
+  .ch-links { display: flex; flex-wrap: wrap; gap: var(--fm-space-4); font-size: var(--fm-text-small); }
+  .ch-empty { padding: var(--fm-space-7) 0; color: var(--fm-text-muted); }
+  @media (min-width: 40rem) { .ch-controls { gap: var(--fm-space-5); } }
+</style>
+</head>
+<body>
+
+<header class="fm-section">
+  <div class="fm-container">
+    <p class="fm-eyebrow"><b>FANCYMUSIC</b> · Питчинг</p>
+    <h1 class="fm-hero">Telegram-<wbr>каналы</h1>
+    <hr class="fm-rule-accent">
+    <p class="fm-lead">Музыкальные каналы для питчинга релизов лейбла. Фильтр по категории и жанру, у каждого канала — ссылка, подписчики и контакт для связи.</p>
+    <p class="fm-small">Источники — страницы каналов в Telegram и каталог <a href="https://i-m-i.ru/sources/telegram">i-m-i.ru</a>. Подписчики на 13 октября 2026, всего в списке 29 каналов.</p>
+  </div>
+</header>
+
+<section class="fm-section">
+  <div class="fm-container">
+
+    <div class="ch-controls">
+      <label class="fm-visually-hidden" for="ch-search">Поиск по названию, автору и описанию</label>
+      <input id="ch-search" class="ch-search" type="search" placeholder="Поиск: название, автор, описание" autocomplete="off">
+
+      <div>
+        <p class="fm-eyebrow">Категория</p>
+        <div class="ch-chips" id="ch-categories" role="group" aria-label="Категории"></div>
+      </div>
+
+      <div>
+        <p class="fm-eyebrow">Жанр</p>
+        <div class="ch-chips" id="ch-genres" role="group" aria-label="Жанры"></div>
+      </div>
+
+      <div class="ch-bar">
+        <div class="ch-chips" role="group" aria-label="Сортировка">
+          <button class="ch-chip" type="button" data-sort="subs" aria-pressed="true">По подписчикам</button>
+          <button class="ch-chip" type="button" data-sort="name" aria-pressed="false">По алфавиту</button>
+          <button class="ch-chip" type="button" id="ch-reset">Сбросить</button>
+        </div>
+        <p class="ch-count" id="ch-count" role="status"></p>
+      </div>
+    </div>
+
+    <ul class="ch-list" id="ch-list"></ul>
+    <p class="ch-empty" id="ch-empty" hidden>Ничего не нашлось. Снимите часть фильтров.</p>
+  </div>
+</section>
+
+<section class="fm-section fm-invert">
+  <div class="fm-container fm-container--narrow">
+    <p class="fm-eyebrow">Как обновлять</p>
+    <h2>Список собирается скриптом</h2>
+    <p>Данные лежат в <code>projects/pr-telegram-channels/channels.json</code>. Новые каналы по ссылкам t.me — <code>tools/fetch-tme-channels.py</code>, обход каталога i-m-i — <code>tools/fetch-imi-telegram.py</code>, пересборка страницы и CSV — <code>tools/build-channels-page.py</code>. Страницу руками не править: она перезаписывается.</p>
+  </div>
+</section>
+
+<script id="ch-data" type="application/json">[{"name": "Привет, не хочешь сходить?", "tme": "https://t.me/privetpoidem", "subscribers": 60674, "category": "Афиша и концерты", "description": "Живое городское медиа от команды, которая искренне любит Москву. Мы меняем реальность города: объединяем людей через события и вдохновляем на эстетичный отдых. По анонсам: @privetpoideminfo Сбежим из Москвы: @do450km", "contact": "@privetpoideminfo", "pitch": "контакт в описании указан для анонсов", "status": "tme", "genres": []}, {"name": "Унежить душу", "tme": "https://t.me/neohota", "subscribers": 49602, "category": "Арт и культура", "genres": ["Арт"], "description": "Русь, красота и рок-н-ролл #русскийдиджиталарт #русскийгеймдев #иллюстрация #русскийшрифт #предметныйдизайн #русскаяодежда #русскийинтерьер #трэкдня #полиграфия #русскаяживопись #брендинг #русскаяархитектура Связь: @LukinskyN", "contact": "@LukinskyN", "status": "tme"}, {"name": "Фестивали и концерты в Москве", "tme": "https://t.me/concerts_moscow", "subscribers": 47930, "category": "Афиша и концерты", "description": "Главный канал с анонсами 💳 Реклама: @y_ryd 📁 Наши каналы: • Филиал в Питере: t.me/spb_conc • Бесплатные концерты в Москве: t.me/free_concerts Биржа: telega.in/c/concerts_moscow Наши соцсети: taplink.cc/concerts_moscow", "contact": "@y_ryd", "pitch": "контакт в описании указан для рекламы", "status": "tme", "genres": []}, {"name": "WARHOL", "tme": "https://t.me/warhol", "subscribers": 27349, "category": "Арт и культура", "genres": ["Арт"], "description": "WARHOL — серьезный молодежный журнал об актуальной музыке, визуальном искусстве и мировой культуре. Связь: @mitryakov", "contact": "@mitryakov", "status": "tme"}, {"name": "Главный Концертный", "tme": "https://t.me/maingig", "subscribers": 10940, "category": "Афиша и концерты", "description": "Максимально оперативные анонсы лучших концертов России и Беларуси. Пойду на них сам и вам советую! #НаОчереди | #Статьи | #Дайджест По всем вопросам: @nekkhab", "contact": "@nekkhab", "status": "tme", "genres": []}, {"name": "новая музыка. максимально коротко", "tme": "https://t.me/musicinanutshell", "subscribers": 9512, "category": "Музыкальные медиа", "description": "меня зовут Шурик Горбачев, тут коротко про музыку а тут — длинно про тексты: https://t.me/thedailyprophet хотите прислать музыку? сначала прочитайте это: https://t.me/musicinanutshell/666 реклама — сразу нет. для связи — @shurikgorbachev", "contact": "@shurikgorbachev", "pitch": "перед отправкой прочитать правила: https://t.me/musicinanutshell/666; рекламу не берёт", "status": "tme", "genres": []}, {"name": "0107 музыка", "tme": "https://t.me/music0107", "subscribers": 9173, "category": "Музыкальные медиа", "description": "Легендарное медиа про музыку (с) Новости, релизы, обзоры, тейки, анонсы ВК: vk.com/music0107 Как опубликоваться: clck.ru/3TZLVc Главред: @churchnskate (писать только по рекламе/сотрудничеству). Бартер не интересует.", "contact": "@churchnskate", "pitch": "как опубликоваться: https://clck.ru/3TZLVc; главреду писать только по рекламе и сотрудничеству", "status": "tme", "genres": []}, {"name": "По фактам", "tme": "https://t.me/pofactam", "subscribers": 7503, "category": "Музыкальные медиа", "description": "Трек дня с коротким разбором, заметки об истории релизов, новости музыкальной индустрии.", "contact": "@oldtelegraphist", "status": "tme", "genres": []}, {"name": "All that jazz", "tme": "https://t.me/allthatjazz", "subscribers": 6545, "category": "Джаз", "genres": ["Джаз", "Соул", "R&B", "Фанк"], "description": "Jazz, soul, r&b, funk - новости,события, обзоры вышедших релизов , современная джазовая,около джазовая и не джазовая сцена. Инфо: @Oartswan Альтернативные площадки: ВКонтакте - https://vk.ru/jazzsoul Дзен - https://dzen.ru/allthatjazz", "contact": "@Oartswan", "status": "tme"}, {"name": "Сергей Пименов", "tme": "https://t.me/pimenov_ru", "subscribers": 6525, "category": "Индустрия", "description": "🚀 Продюсер будущего. PPK «ResuRection» UK Charts 2001. Сделал сотни проектов за последние 30 лет. Продюсирую и консультирую 👉 @pimenov Женат, трое детей. Мой сайт: pimenov.ai", "contact": "@pimenov", "status": "tme", "genres": []}, {"name": "What's That Noise?", "tme": "https://t.me/whats_that_noise", "subscribers": 5207, "category": "Авангард и эксперимент", "genres": ["Экспериментальная"], "description": "Заметки о странной музыке Связь: @cluster_88 Чат: @w_t_n_chat Другие ресурсы: https://taplink.cc/whats_that_noise", "contact": "@cluster_88", "status": "tme"}, {"name": "oliverdead channel", "tme": "https://t.me/oliverdeadchannel", "subscribers": 3458, "category": "Музыкальные медиа", "description": "Канал о музыке и не только. Обзоры вне жанровых рамок, ежемесячные дайджесты и авторские плейлисты. Субъективно, эмоционально, по-честному. Добро пожаловать! ВК: vk.com/oliverdead По всем вопросам: @oliverdead4real", "contact": "@oliverdead4real", "status": "tme", "genres": []}, {"name": "МУЗ. КРУЖОК ⭕️", "tme": "https://t.me/muzakrug", "subscribers": 3282, "category": "Музыкальные медиа", "description": "Трек с коротким комментарием — от Mujuice и Robert Glasper до Nirvana и Летова.", "contact": "@mutorno1993", "status": "tme", "genres": []}, {"name": "лессехор", "tme": "https://t.me/lessehor", "subscribers": 2495, "category": "Авангард и эксперимент", "genres": ["Авангард", "Экспериментальная", "Нойз-рок", "Пост-панк", "Эмбиент"], "description": "Обзоры свежих релизов авангарда, экспериментальной музыки, нойз-рока и пост-панка: лейбл, год, ссылки на стриминги. Филиал паблика vk.com/lessehor.", "status": "tme"}, {"name": "Selected Goosebumps", "tme": "https://t.me/sgbumps", "subscribers": 2467, "category": "Авангард и эксперимент", "genres": ["Эмбиент", "Авангард"], "description": "Selected goosebumps: новинки необычной музыки. От воздушного эмбиента ☁️ до кромешного авангарда 🔥. Только самое экстраординарное. С мурашками! автор: @dimeramid", "contact": "@dimeramid", "status": "tme"}, {"name": "CHILINE", "tme": "https://t.me/chiline", "imi": "https://i-m-i.ru/sources/telegram/chiline", "subscribers": 2404, "category": "Академическая и классика", "genres": ["Академическая"], "author": "Владимир и Владислава Шилины, композитор и музыковед", "description": "Разбор произведений классиков и современных авторов, исторические заметки о композиторах.", "status": "manual"}, {"name": "Ушла в музычество", "tme": "https://t.me/musichestvo", "subscribers": 2276, "category": "Музыкальные медиа", "description": "Рассказываю с душой о жемчужинах русскоязычной музыки поддержать донатом: https://pay.cloudtips.ru/p/035a38b0 @gloomy_child", "contact": "@gloomy_child", "status": "tme", "genres": []}, {"name": "Музыковеточка", "tme": "https://t.me/muzicovetochka", "subscribers": 2005, "category": "Музыкальные медиа", "description": "Медиа girly girls из Петербурга о творчестве, трендах и креативе в современной музыкальной индустрии 💅🏻 релизы, коллабы, реклама, купить блокноты: @diprots подкаст, донаты, ютуб: bart.id/muzicovetochka", "contact": "@diprots", "pitch": "релизы и коллабы — через этот контакт", "status": "tme", "genres": []}, {"name": "the rest is xz", "tme": "https://t.me/trixz", "imi": "https://i-m-i.ru/sources/telegram/trixz", "subscribers": 1517, "category": "Авангард и эксперимент", "genres": ["Авангард", "Экспериментальная"], "author": "Стас Шарифуллин, музыкант, преподаватель НИУ ВШЭ", "description": "Анонсы релизов авангарда и экспериментальной музыки, авторские плейлисты.", "status": "manual"}, {"name": "мать русского инди", "tme": "https://t.me/indiemama", "subscribers": 1488, "category": "Индустрия", "genres": ["Инди"], "description": "Привет, меня зовут Женя @janealien. Я делаю концерты, рекламу и фестивали. Пишу о них и обо всём, что остаётся за сценой. Поддержать автора канала: https://tbank.ru/cf/6SuP5OGjKrJ ⚠️ Это личный канал и я НЕ размещаю в нём рекламу.", "contact": "@janealien", "pitch": "рекламу в канале не размещает", "status": "tme"}, {"name": "Urban Noises", "tme": "https://t.me/urbanoises", "subscribers": 771, "category": "Музыкальные медиа", "description": "Музыка с инструкциями по применению, которые не стоит воспринимать буквально. Связь: @Mr_Kind_Fox", "contact": "@Mr_Kind_Fox", "status": "tme", "genres": []}, {"name": "Малоизвестная музыка", "tme": "https://t.me/mlzvstn", "subscribers": 547, "category": "Музыкальные медиа", "genres": ["Инди"], "description": "Малоизвестные российские релизы с разбором — от DIY-инди до индастриала; редакция устраивает стримы с прослушиванием музыки подписчиков.", "pitch": "редакция слушает присланную музыку на стримах", "status": "tme"}, {"name": "Непохоже", "tme": "https://t.me/shersti_musiku", "subscribers": 412, "category": "Музыкальные медиа", "genres": ["Рок", "Поп", "Хип-хоп", "Соул", "Джаз", "Инди", "Метал"], "description": "Ловлю равновесие на зыбкой поверхности современной музыки. #новаямузыка #newmusic #rock #pop #hiphop #soul #jazz #indie #metal Вопросы и предложения: @hybbgo", "contact": "@hybbgo", "status": "tme"}, {"name": "куда пойти", "tme": "https://t.me/go_moskva", "subscribers": 285, "category": "Афиша и концерты", "description": "Публикаций в канале нет, описания нет. Категория — по названию.", "status": "tme", "genres": []}, {"name": "DIGITAL JAZZ | Маркет", "imi": "https://i-m-i.ru/sources/telegram/dj-market", "category": "Чаты и сообщества", "genres": ["Джаз"], "author": "сообщество Digital Jazz", "description": "Чат для покупки и продажи оборудования. Не контент-канал: релевантность для питчинга под вопросом.", "status": "unverified"}, {"name": "Ethereal Grooves", "imi": "https://i-m-i.ru/sources/telegram/ethereal-grooves", "category": "Авангард и эксперимент", "genres": ["Авангард"], "description": "Нишевая авангардная и эклектичная музыка.", "status": "unverified"}, {"name": "JAZZ по-русски", "imi": "https://i-m-i.ru/sources/telegram/jazz-po-russki", "category": "Джаз", "genres": ["Джаз"], "description": "Рецензии на джазовые релизы в формате коротких подкастов.", "status": "unverified"}, {"name": "Лежбище тюленя", "imi": "https://i-m-i.ru/sources/telegram/lezhbische", "category": "Джаз", "genres": ["Джаз", "Импровизационная"], "author": "Руслан Рафиков", "description": "Критические рецензии на российский импров и джаз.", "status": "unverified"}, {"name": "Одиннадцатое Небо", "imi": "https://i-m-i.ru/sources/telegram/11th-sky", "category": "Джаз", "genres": ["Джаз"], "author": "Лев Боровков, юрист, автор Jazzist и колонки на Джаз.ру", "description": "Джазовая критика и заметки.", "status": "unverified"}]</script>
+<script>
+(function () {
+  const channels = JSON.parse(document.getElementById('ch-data').textContent);
+  const list = document.getElementById('ch-list');
+  const empty = document.getElementById('ch-empty');
+  const count = document.getElementById('ch-count');
+  const search = document.getElementById('ch-search');
+  const state = { q: '', categories: new Set(), genres: new Set(), sort: 'subs' };
+
+  const uniq = (key) => [...new Set(channels.flatMap(c => {
+    const v = c[key];
+    return v == null ? [] : (Array.isArray(v) ? v : [v]);
+  }))].sort((a, b) => a.localeCompare(b, 'ru'));
+
+  function chips(host, values, bucket) {
+    host.innerHTML = '';
+    values.forEach(value => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'ch-chip';
+      b.textContent = value;
+      b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', () => {
+        bucket.has(value) ? bucket.delete(value) : bucket.add(value);
+        b.setAttribute('aria-pressed', String(bucket.has(value)));
+        render();
+      });
+      host.appendChild(b);
+    });
+  }
+
+  const fmt = (n) => n == null ? 'подписчики не собраны' :
+    new Intl.NumberFormat('ru-RU').format(n) + ' подписчиков';
+
+  function matches(c) {
+    if (state.categories.size && !state.categories.has(c.category)) return false;
+    if (state.genres.size && !(c.genres || []).some(g => state.genres.has(g))) return false;
+    if (!state.q) return true;
+    const hay = [c.name, c.author, c.description, c.category, c.contact, c.tme, (c.genres || []).join(' ')]
+      .filter(Boolean).join(' ').toLowerCase();
+    return hay.includes(state.q);
+  }
+
+  function render() {
+    const rows = channels.filter(matches).sort((a, b) => state.sort === 'name'
+      ? a.name.localeCompare(b.name, 'ru')
+      : (b.subscribers || 0) - (a.subscribers || 0) || a.name.localeCompare(b.name, 'ru'));
+
+    list.innerHTML = '';
+    rows.forEach(c => {
+      const li = document.createElement('li');
+      li.className = 'ch-item';
+
+      const head = document.createElement('div');
+      head.className = 'ch-head';
+      const h = document.createElement('h2');
+      h.className = 'ch-name';
+      h.textContent = c.name;
+      const subs = document.createElement('span');
+      subs.className = 'ch-subs';
+      subs.textContent = fmt(c.subscribers);
+      head.append(h, subs);
+
+      const meta = document.createElement('p');
+      meta.className = 'ch-meta';
+      [...new Set([c.category, ...(c.genres || [])].filter(Boolean))].forEach(t => {
+        const s = document.createElement('span');
+        s.className = 'ch-tag';
+        s.textContent = t;
+        meta.appendChild(s);
+      });
+      if (c.status === 'unverified') {
+        const s = document.createElement('span');
+        s.className = 'ch-tag ch-flag';
+        s.textContent = 'не подтверждено';
+        meta.appendChild(s);
+      }
+      if (c.author) {
+        const s = document.createElement('span');
+        s.textContent = c.author;
+        meta.appendChild(s);
+      }
+
+      li.append(head, meta);
+
+      if (c.description) {
+        const p = document.createElement('p');
+        p.className = 'ch-desc';
+        p.textContent = c.description;
+        li.appendChild(p);
+      }
+
+      if (c.pitch) {
+        const p = document.createElement('p');
+        p.className = 'ch-pitch';
+        const b = document.createElement('b');
+        b.textContent = 'Как прислать музыку: ';
+        p.append(b, document.createTextNode(c.pitch));
+        li.appendChild(p);
+      }
+
+      const links = document.createElement('p');
+      links.className = 'ch-links';
+      if (c.tme) {
+        const a = document.createElement('a');
+        a.href = c.tme;
+        a.textContent = 'Открыть канал';
+        links.appendChild(a);
+      }
+      if (c.contact) {
+        const a = document.createElement('a');
+        a.href = 'https://t.me/' + c.contact.replace(/^@/, '');
+        a.textContent = 'Написать ' + c.contact;
+        links.appendChild(a);
+      }
+      if (c.imi) {
+        const a = document.createElement('a');
+        a.href = c.imi;
+        a.textContent = 'Карточка на i-m-i';
+        links.appendChild(a);
+      }
+      if (links.children.length) li.appendChild(links);
+
+      list.appendChild(li);
+    });
+
+    empty.hidden = rows.length > 0;
+    const total = rows.reduce((n, c) => n + (c.subscribers || 0), 0);
+    count.textContent = rows.length + ' из ' + channels.length +
+      (total ? ' · охват ' + new Intl.NumberFormat('ru-RU').format(total) : '');
+  }
+
+  chips(document.getElementById('ch-categories'), uniq('category'), state.categories);
+  chips(document.getElementById('ch-genres'), uniq('genres'), state.genres);
+
+  search.addEventListener('input', () => {
+    state.q = search.value.trim().toLowerCase();
+    render();
+  });
+
+  document.querySelectorAll('[data-sort]').forEach(b => {
+    b.addEventListener('click', () => {
+      state.sort = b.dataset.sort;
+      document.querySelectorAll('[data-sort]').forEach(o =>
+        o.setAttribute('aria-pressed', String(o === b)));
+      render();
+    });
+  });
+
+  document.getElementById('ch-reset').addEventListener('click', () => {
+    state.q = '';
+    state.categories.clear();
+    state.genres.clear();
+    search.value = '';
+    document.querySelectorAll('.ch-chip[aria-pressed]').forEach(b => {
+      if (!b.dataset.sort) b.setAttribute('aria-pressed', 'false');
+    });
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
