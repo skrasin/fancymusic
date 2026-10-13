@@ -41,7 +41,8 @@ def parse(md: str) -> dict:
     # ни тем более в DOCX и PDF, где они видны обычным текстом
     md = re.sub(r"<!--.*?-->", "", md, flags=re.S)
     blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
-    doc = {"title": "", "lead": "", "body": [], "quote": None, "sections": []}
+    doc = {"title": "", "lead": "", "body": [], "quote": None,
+           "quote_first": False, "sections": []}
     current = None
     for block in blocks:
         if block.startswith("# "):
@@ -55,6 +56,8 @@ def parse(md: str) -> dict:
             current[1].append(block)
         elif block.startswith(">"):
             doc["quote"] = split_quote(block)
+            # цитата выше лида — эпиграф: идёт сразу под заголовком
+            doc["quote_first"] = not doc["lead"]
         elif not doc["lead"]:
             doc["lead"] = one_line(block)
         else:

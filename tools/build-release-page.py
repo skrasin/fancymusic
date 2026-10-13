@@ -111,10 +111,17 @@ def main() -> int:
     values["LEAD"] = release_content.bold_to_html(prose["lead"])
     values["BODY"] = release_content.blocks_to_html(prose["body"])
     quote_body, author = prose["quote"] or ([], "")
-    values["QUOTE"] = "<br>".join(release_content.bold_to_html(l) for l in quote_body)
-    values["QUOTE_AUTHOR"] = author
-    values["QUOTE_CLASS"] = ("rl-quote rl-quote--verse"
-                             if release_content.is_verse(quote_body) else "rl-quote")
+    quote_html = ""
+    if quote_body:
+        cls = ("rl-quote rl-quote--verse"
+               if release_content.is_verse(quote_body) else "rl-quote")
+        text = "<br>".join(release_content.bold_to_html(l) for l in quote_body)
+        footer = f"<footer>{author}</footer>" if author else ""
+        quote_html = f'<blockquote class="{cls}">{text}{footer}</blockquote>'
+    # место цитаты задаёт исходник: выше лида — эпиграф под заголовком
+    first = prose["quote_first"]
+    values["QUOTE_BEFORE"] = quote_html if first else ""
+    values["QUOTE_AFTER"] = "" if first else quote_html
     for heading, blocks in prose["sections"]:
         if heading in release_content.ARTIST_SECTIONS:
             values["ABOUT_ARTIST"] = release_content.blocks_to_html(blocks)

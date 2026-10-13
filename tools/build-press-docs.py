@@ -124,6 +124,10 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
     style_run(title_p.add_run(doc_data["title"]),
               font=DISPLAY_FONT, size=21, color=INK, bold=True, caps=True)
 
+    # --- эпиграф сразу под заголовком, до ссылок
+    if doc_data["quote"] and doc_data["quote_first"]:
+        render_quote(document, *doc_data["quote"])
+
     # --- ссылки-кнопки под шапкой
     document.add_paragraph().paragraph_format.space_after = Pt(0)
     for label, url in (("Ссылки на стриминги", values["PREVIEW_URL"]),
@@ -133,12 +137,12 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
         style_run(p.add_run(f"{label}: "), size=10, color=INK, bold=True)
         add_hyperlink(p, url, url)
 
-    # --- лид, основной текст, цитата
+    # --- лид, основной текст, цитата (эпиграф — перед лидом)
     document.add_paragraph().paragraph_format.space_after = Pt(0)
     inline(document.add_paragraph(), doc_data["lead"])
     for block in doc_data["body"]:
         render_block(document, block)
-    if doc_data["quote"]:
+    if doc_data["quote"] and not doc_data["quote_first"]:
         render_quote(document, *doc_data["quote"])
 
     # --- разделы из прозы
@@ -332,13 +336,14 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
     <h1>{doc_data['title']}</h1>
   </div>
 </div>
+{quote_html if doc_data['quote_first'] else ''}
 <div class="actions">
   <p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a></p>
   <p><b>Страница релиза:</b> <a href="{values['RELEASE_URL']}">{values['RELEASE_URL']}</a></p>
 </div>
 <p>{release_content.bold_to_html(doc_data['lead'])}</p>
 {html_blocks(doc_data['body'])}
-{quote_html}
+{'' if doc_data['quote_first'] else quote_html}
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
 <div class="contacts">
@@ -414,11 +419,12 @@ def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
 <title>{doc_data['title']}</title><style>{GDOC_CSS}</style></head><body>
 {cover_html}
 <h1>{doc_data['title']}</h1>
+{quote if doc_data['quote_first'] else ''}
 <p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a><br>
 <b>Страница релиза:</b> <a href="{values['RELEASE_URL']}">{values['RELEASE_URL']}</a></p>
 <p>{release_content.bold_to_html(doc_data['lead'])}</p>
 {html_blocks(doc_data['body'])}
-{quote}
+{'' if doc_data['quote_first'] else quote}
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
 <p>Email — {values['PRESS_EMAIL']}<br>Telegram — {values['PRESS_TELEGRAM']}</p>
