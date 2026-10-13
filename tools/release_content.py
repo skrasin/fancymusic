@@ -66,12 +66,23 @@ def one_line(block: str) -> str:
     return " ".join(l.strip() for l in block.splitlines())
 
 
-def split_quote(block: str) -> tuple[str, str]:
+def split_quote(block: str) -> tuple[list[str], str]:
+    """Возвращает строки цитаты и автора.
+
+    Переносы строк сохраняются: цитата в одну строку — проза, в несколько —
+    стихи. От этого зависит и вёрстка: прозаическая цитата набирается
+    дисплейным шрифтом в прописных, стихи — как есть, строчными и построчно.
+    Поэтому прозаическую цитату в исходнике писать одной строкой.
+    """
     lines = [l.lstrip("> ").strip() for l in block.splitlines()]
     lines = [l for l in lines if l]
-    body = " ".join(l for l in lines if not l.startswith("—"))
+    body = [l for l in lines if not l.startswith("—")]
     author = next((l.lstrip("— ").strip() for l in lines if l.startswith("—")), "")
     return body, author
+
+
+def is_verse(body: list[str]) -> bool:
+    return len(body) > 1
 
 
 def bold_to_html(text: str) -> str:
@@ -85,9 +96,11 @@ def blocks_to_html(blocks, *, quote_class="rl-quote") -> str:
         if block.startswith(">"):
             body, author = split_quote(block)
             footer = f"<footer>{author}</footer>" if author else ""
-            out.append(f'<blockquote class="{quote_class}" '
+            cls = quote_class + (" rl-quote--verse" if is_verse(body) else "")
+            text = "<br>".join(bold_to_html(l) for l in body)
+            out.append(f'<blockquote class="{cls}" '
                        f'style="font-size: var(--fm-text-h3); margin-top: var(--fm-space-5)">'
-                       f"{body}{footer}</blockquote>")
+                       f"{text}{footer}</blockquote>")
         elif all(l.lstrip().startswith(("- ", "* ")) for l in block.splitlines()):
             items = "".join(f"<li>{bold_to_html(l.lstrip('-* ').strip())}</li>"
                             for l in block.splitlines())

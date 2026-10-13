@@ -100,8 +100,11 @@ def main() -> int:
     values["HEADLINE"] = prose["title"]
     values["LEAD"] = release_content.bold_to_html(prose["lead"])
     values["BODY"] = release_content.blocks_to_html(prose["body"])
-    quote, author = prose["quote"] or ("", "")
-    values["QUOTE"], values["QUOTE_AUTHOR"] = quote, author
+    quote_body, author = prose["quote"] or ([], "")
+    values["QUOTE"] = "<br>".join(release_content.bold_to_html(l) for l in quote_body)
+    values["QUOTE_AUTHOR"] = author
+    values["QUOTE_CLASS"] = ("rl-quote rl-quote--verse"
+                             if release_content.is_verse(quote_body) else "rl-quote")
     for heading, blocks in prose["sections"]:
         if heading in release_content.ARTIST_SECTIONS:
             values["ABOUT_ARTIST"] = release_content.blocks_to_html(blocks)

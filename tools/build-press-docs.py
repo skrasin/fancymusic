@@ -195,12 +195,17 @@ def add_links(document, title: str, items) -> None:
         add_hyperlink(row, url, url)
 
 
-def render_quote(document, body: str, author: str) -> None:
-    p = document.add_paragraph()
-    p.paragraph_format.left_indent = Cm(0.7)
-    p.paragraph_format.space_before = Pt(10)
-    p.paragraph_format.space_after = Pt(2)
-    inline(p, body, font=DISPLAY_FONT, size=13, color=INK, caps=True)
+def render_quote(document, body, author: str) -> None:
+    verse = release_content.is_verse(body)
+    for i, line in enumerate(body):
+        p = document.add_paragraph()
+        p.paragraph_format.left_indent = Cm(0.7)
+        p.paragraph_format.space_before = Pt(10 if i == 0 else 0)
+        p.paragraph_format.space_after = Pt(2 if i == len(body) - 1 else 0)
+        if verse:
+            inline(p, line, size=11, color=INK)
+        else:
+            inline(p, line, font=DISPLAY_FONT, size=13, color=INK, caps=True)
     if author:
         a = document.add_paragraph()
         a.paragraph_format.left_indent = Cm(0.7)
@@ -246,6 +251,8 @@ p { margin: 0 0 3mm; }
 blockquote { margin: 4mm 0; padding-left: 3mm; border-left: 2pt solid #ff2626;
              font-family: 'FM Display', Impact, sans-serif; font-weight: 400;
              text-transform: uppercase; font-size: 13pt; line-height: 1.1; }
+blockquote.verse { font-family: 'FM Text', Inter, Arial, sans-serif; font-weight: 400;
+                   text-transform: none; font-size: 11pt; line-height: 1.4; }
 blockquote footer { font-family: 'FM Text', Inter, Arial, sans-serif;
                     text-transform: none; font-size: 8.5pt; color: #6f6f6f; margin-top: 1.5mm; }
 .links { margin: 3mm 0 0; }
@@ -266,7 +273,9 @@ def html_blocks(blocks) -> str:
     for block in blocks:
         if block.startswith(">"):
             body, author = release_content.split_quote(block)
-            out.append(f"<blockquote>{body}<footer>{author}</footer></blockquote>")
+            cls = ' class="verse"' if release_content.is_verse(body) else ""
+            text = "<br>".join(body)
+            out.append(f"<blockquote{cls}>{text}<footer>{author}</footer></blockquote>")
         elif all(l.lstrip().startswith(("- ", "* ")) for l in block.splitlines()):
             items = "".join(f"<li>{l.lstrip('-* ').strip()}</li>" for l in block.splitlines())
             out.append(f"<ul>{items}</ul>")
@@ -291,7 +300,9 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
     quote_html = ""
     if doc_data["quote"]:
         body_q, author_q = doc_data["quote"]
-        quote_html = f"<blockquote>{body_q}<footer>{author_q}</footer></blockquote>"
+        cls = ' class="verse"' if release_content.is_verse(body_q) else ""
+        quote_html = (f"<blockquote{cls}>{'<br>'.join(body_q)}"
+                      f"<footer>{author_q}</footer></blockquote>")
 
     sections = []
     for heading, blocks in doc_data["sections"]:
@@ -351,7 +362,7 @@ body { font-family: Arial, sans-serif; font-size: 11pt; color: #2e2e2e; }
 h1 { font-size: 20pt; text-transform: uppercase; margin: 0 0 6pt; }
 h2 { font-size: 13pt; text-transform: uppercase; color: #ff2626; margin: 18pt 0 4pt; }
 blockquote { border-left: 3pt solid #ff2626; margin: 10pt 0; padding-left: 10pt;
-             font-size: 12pt; text-transform: uppercase; }
+             font-size: 11pt; }
 .small { font-size: 8pt; color: #6f6f6f; text-transform: uppercase; }
 """
 
@@ -373,7 +384,10 @@ def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
     quote = ""
     if doc_data["quote"]:
         body_q, author_q = doc_data["quote"]
-        quote = f"<blockquote>{body_q}<br><span class='small'>{author_q}</span></blockquote>"
+        style = ("" if release_content.is_verse(body_q)
+                 else " style='text-transform:uppercase;font-size:12pt'")
+        quote = (f"<blockquote{style}>{'<br>'.join(body_q)}"
+                 f"<br><span class='small'>{author_q}</span></blockquote>")
 
     sections = []
     for heading, blocks in doc_data["sections"]:
