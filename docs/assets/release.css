@@ -164,6 +164,11 @@
   border-top: var(--fm-border) solid var(--fm-rule);
 }
 
+/* группы ссылок у дуэтов и ансамблей: имя участника над его рядом чипов */
+.rl-links-groups { display: grid; gap: var(--fm-space-4); margin-top: var(--fm-space-3); }
+.rl-links-name { font-size: var(--fm-text-small); font-weight: var(--fm-weight-medium);
+                 margin-bottom: var(--fm-space-2); }
+
 /* ---- Скачивание пресс-релиза -------------------------------------------- */
 .rl-download {
   display: flex;

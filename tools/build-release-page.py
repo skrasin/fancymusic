@@ -39,12 +39,22 @@ def links(items):
 
 
 def links_block(label: str, items) -> str:
-    """Подпись и чипы. Пустой список — пустой блок, без висящей подписи."""
+    """Подпись и чипы. Пустой список — пустой блок, без висящей подписи.
+
+    items — либо плоский список [иконка, подпись, ссылка], либо список групп
+    {"name": ..., "links": [...]}: у дуэта и ансамбля ссылки каждого участника
+    идут отдельным рядом под его именем, иначе одинаковые чипы не различить.
+    """
     if not items:
         return ""
-    return (f'<p class="fm-eyebrow" style="margin-top: var(--fm-space-6)">{label}</p>\n'
-            f'      <ul class="rl-links" style="margin-top: var(--fm-space-3)">'
-            f"{links(items)}</ul>")
+    head = f'<p class="fm-eyebrow" style="margin-top: var(--fm-space-6)">{label}</p>\n'
+    if isinstance(items[0], dict):
+        rows = "".join(
+            f'<p class="rl-links-name">{g["name"]}</p>'
+            f'<ul class="rl-links">{links(g["links"])}</ul>' for g in items)
+        return head + f'<div class="rl-links-groups">{rows}</div>'
+    return head + (f'      <ul class="rl-links" style="margin-top: var(--fm-space-3)">'
+                   f"{links(items)}</ul>")
 
 
 def size_kb(path: Path) -> str:

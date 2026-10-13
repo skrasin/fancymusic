@@ -24,7 +24,16 @@ links:
   release_page: https://fancymusic.ru/georgy-orlov-davydovsky-arkady-pikunov-30-kapsul/
   bandcamp_album: https://fancymusic.bandcamp.com/album/30-kaps-l
   bandcamp_embed_id: "83383320"
-  artist: {}                    # ссылок артистов в материалах нет
+  artist:                       # присланы 13.10.2026, трекинговые параметры срезаны
+    orlov-davydovsky:
+      instagram: https://www.instagram.com/geoorlov
+      telegram: https://t.me/orlovdavydovsky
+      vk: https://vk.ru/orlovdavydovsky
+    pikunov:
+      instagram: https://www.instagram.com/arkadius_pc
+      telegram: https://t.me/arkadiussaxophonist
+      vk: https://vk.ru/arkadius_pc97
+      facebook: https://www.facebook.com/share/1N9ECFnZEw/
 
 cover: cover.jpg                # 1600×1600
 press_photos:

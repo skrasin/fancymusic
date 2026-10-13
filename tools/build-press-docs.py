@@ -146,9 +146,9 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
         add_heading(document, heading)
         for block in blocks:
             render_block(document, block)
-        if heading == "Об артисте":
-            add_links(document, "Ссылки на страницы артиста", page["artist_links"])
-        elif heading == "О лейбле":
+        if heading in release_content.ARTIST_SECTIONS:
+            add_links(document, page["values"].get("ARTIST_LINKS_LABEL", "Ссылки на страницы артиста"), page["artist_links"])
+        elif heading in release_content.LABEL_SECTIONS:
             add_links(document, "Ссылки на страницы лейбла", page["label_links"])
 
     # --- контакты
@@ -183,7 +183,17 @@ def add_heading(document, text: str) -> None:
     style_run(p.add_run(text), font=DISPLAY_FONT, size=13, color=RED, bold=True, caps=True)
 
 
+def flat_links(items):
+    """Группы {name, links} разворачиваются в «Имя · Площадка»."""
+    if items and isinstance(items[0], dict):
+        return [(i, f"{g['name']} · {l}", u) for g in items for i, l, u in g["links"]]
+    return items
+
+
 def add_links(document, title: str, items) -> None:
+    items = flat_links(items)
+    if not items:
+        return
     p = document.add_paragraph()
     p.paragraph_format.space_before = Pt(8)
     p.paragraph_format.space_after = Pt(3)
@@ -287,6 +297,9 @@ def html_blocks(blocks) -> str:
 
 
 def links_html(title: str, items) -> str:
+    items = flat_links(items)
+    if not items:
+        return ""
     rows = "".join(f'<p>{label} — <a href="{url}">{url}</a></p>' for _i, label, url in items)
     return f'<div class="links"><p class="label">{title}</p>{rows}</div>'
 
@@ -307,9 +320,9 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
     sections = []
     for heading, blocks in doc_data["sections"]:
         sections.append(f"<h2>{heading}</h2>{html_blocks(blocks)}")
-        if heading == "Об артисте":
-            sections.append(links_html("Ссылки на страницы артиста", page["artist_links"]))
-        elif heading == "О лейбле":
+        if heading in release_content.ARTIST_SECTIONS:
+            sections.append(links_html(page["values"].get("ARTIST_LINKS_LABEL", "Ссылки на страницы артиста"), page["artist_links"]))
+        elif heading in release_content.LABEL_SECTIONS:
             sections.append(links_html("Ссылки на страницы лейбла", page["label_links"]))
 
     body = f"""
@@ -392,9 +405,9 @@ def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
     sections = []
     for heading, blocks in doc_data["sections"]:
         sections.append(f"<h2>{heading}</h2>{html_blocks(blocks)}")
-        if heading == "Об артисте":
-            sections.append(links_html("Ссылки на страницы артиста", page["artist_links"]))
-        elif heading == "О лейбле":
+        if heading in release_content.ARTIST_SECTIONS:
+            sections.append(links_html(page["values"].get("ARTIST_LINKS_LABEL", "Ссылки на страницы артиста"), page["artist_links"]))
+        elif heading in release_content.LABEL_SECTIONS:
             sections.append(links_html("Ссылки на страницы лейбла", page["label_links"]))
 
     html = f"""<!doctype html><html lang="ru"><head><meta charset="utf-8">

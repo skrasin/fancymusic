@@ -21,7 +21,53 @@
     "PRESS_PHOTO_CREDIT": "SZCZUR.PHOTO",
     "PRESS_PHOTO_ALT": "Георгий Орлов-Давыдовский и Аркадий Пикунов на сцене: саксофон, ноутбуки и пульт, чёрно-белый снимок"
   },
-  "artist_links": [],
+  "artist_links": [
+    {
+      "name": "Георгий Орлов-Давыдовский",
+      "links": [
+        [
+          "i-ig",
+          "Instagram",
+          "https://www.instagram.com/geoorlov"
+        ],
+        [
+          "i-tg",
+          "Telegram",
+          "https://t.me/orlovdavydovsky"
+        ],
+        [
+          "i-vk",
+          "VK",
+          "https://vk.ru/orlovdavydovsky"
+        ]
+      ]
+    },
+    {
+      "name": "Аркадий Пикунов",
+      "links": [
+        [
+          "i-ig",
+          "Instagram",
+          "https://www.instagram.com/arkadius_pc"
+        ],
+        [
+          "i-tg",
+          "Telegram",
+          "https://t.me/arkadiussaxophonist"
+        ],
+        [
+          "i-vk",
+          "VK",
+          "https://vk.ru/arkadius_pc97"
+        ],
+        [
+          "i-fb",
+          "Facebook",
+          "https://www.facebook.com/share/1N9ECFnZEw/"
+        ]
+      ]
+    }
+  ],
   "label_links": [
     [
       "i-ig",

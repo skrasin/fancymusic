@@ -103,13 +103,9 @@
     <img class="rl-cover" src="cover.jpg"
          alt="Обложка релиза «Прекрасная музыка. Петербург» Германа Мархасина: смазанный снимок петербургского дома на фоне светлого неба с проводами">
 
-    <div class="rl-player">
-      <!-- Оставить ОДИН вариант:
-           1) встроенный плеер площадки (Bandcamp / Яндекс Музыка / Spotify)
-           2) локальный файл превью -->
-      <iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=2651736364/size=small/bgcol=ffffff/linkcol=ff2626/artwork=none/transparent=true/" seamless title="Прекрасная музыка. Петербург — предпрослушивание на Bandcamp"><a href="https://fancymusic.bandcamp.com/album/beautiful-music-st-petersburg">Beautiful Music. St. Petersburg by German Markhasin</a></iframe>
-      <!-- <audio controls preload="none" src="preview.mp3">Ваш браузер не поддерживает аудио.</audio> -->
-    </div>
+    <!-- Плеер: встроенный плеер площадки (Bandcamp / Яндекс Музыка / Spotify)
+         или <audio> с локальным превью. Если PLAYER_EMBED пуст, блока нет. -->
+    <div class="rl-player"><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=2651736364/size=small/bgcol=ffffff/linkcol=ff2626/artwork=none/transparent=true/" seamless title="Прекрасная музыка. Петербург — предпрослушивание на Bandcamp"><a href="https://fancymusic.bandcamp.com/album/beautiful-music-st-petersburg">Beautiful Music. St. Petersburg by German Markhasin</a></iframe></div>
 
     <div class="rl-actions">
       <a class="fm-btn fm-btn--solid" href="https://band.link/i5gTx">Ссылки на стриминги</a>
@@ -136,6 +132,8 @@
       Мархасин виртуозно лавировал между разными композиторскими эстетиками и очень убедительно играл на всех частях инструмента.
       <footer>«Музыкальная жизнь»</footer>
     </blockquote>
+
+    
 
     <div>
       <h2>Об артисте</h2>
