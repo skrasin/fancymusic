@@ -2,7 +2,7 @@ OpensoundOrchestra - String Quartets vol. 2
 
 Послушать: [УТОЧНИТЬ]
 
-Шесть пьес для струнного квартета от шести современных российских композиторов. Второй альбом солистов OpensoundOrchestra.
+Шесть сочинений современных российских композиторов в исполнении солистов OpensoundOrchestra. Второй альбом коллектива.
 
 Второй альбом солистов OpensoundOrchestra продолжает антологию современной российской музыки, которую коллектив начал первым релизом в 2024 году. Программа сложилась в поездках музыкантов по стране, из знакомств и открытий. В ней шесть разных взглядов на жанр струнного квартета.
 
@@ -22,7 +22,8 @@ __
 Инна Зильберман: скрипка
 Ксения Жулева: альт
 Ольга Калинова: виолончель
-Сергей Карачун: контрабас
+Сергей Карачун: контрабас [5]
+Анастасия Дружинина: электроника [5]
 
 Запись, сведение, мастеринг: Михаил Спасский
 Фото на обложке: Сергей Досталев
@@ -32,7 +33,7 @@ OpensoundOrchestra - String Quartets vol. 2
 
 Listen: [УТОЧНИТЬ]
 
-Six pieces for string quartet by six contemporary Russian composers. The second album from the soloists of OpensoundOrchestra.
+Six works by contemporary Russian composers performed by the soloists of OpensoundOrchestra. The ensemble's second album.
 
 The second album from the soloists of OpensoundOrchestra continues the anthology of contemporary Russian music the ensemble began with its first release in 2024. The programme took shape on the musicians' travels around the country, out of encounters and discoveries. It offers six different takes on the string quartet.
 
@@ -52,7 +53,8 @@ Stanislav Malyshev: violin
 Inna Zilberman: violin
 Ksenia Zhuleva: viola
 Olga Kalinova: cello
-Sergey Karachun: double bass
+Sergey Karachun: double bass [5]
+Anastasia Druzhinina: electronics [5]
 
 Recorded, mixed, mastered by: Mikhail Spassky
 Cover photo by: Sergey Dostalev
