@@ -21,7 +21,7 @@ __
 Запись: [УТОЧНИТЬ]
 Сведение: Геннадий Лаврентьев
 Мастеринг: [УТОЧНИТЬ]
-Обложка: [УТОЧНИТЬ]
+Обложка: Дарья Лузик
 __
 
 [УТОЧНИТЬ: artist] - Triangular Dream
@@ -47,4 +47,4 @@ Written by: Kirill Osherov [1, 2, 4, 6, 7, 8], Gennady Lavrentiev [2, 5], Paata 
 Recorded by: [УТОЧНИТЬ]
 Mixed by: Gennady Lavrentiev
 Mastered by: [УТОЧНИТЬ]
-Cover by: [УТОЧНИТЬ]
+Cover by: Daria Luzik
