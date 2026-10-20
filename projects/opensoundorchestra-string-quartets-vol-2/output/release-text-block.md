@@ -25,8 +25,7 @@ __
 Сергей Карачун: контрабас
 
 Запись, сведение, мастеринг: Михаил Спасский
-Обложка: [УТОЧНИТЬ]
-Фото: Сергей Досталев
+Фото на обложке: Сергей Досталев
 __
 
 OpensoundOrchestra - String Quartets vol. 2
@@ -56,5 +55,4 @@ Olga Kalinova: cello
 Sergey Karachun: double bass
 
 Recorded, mixed, mastered by: Mikhail Spassky
-Cover by: [УТОЧНИТЬ]
-Photo by: Sergey Dostalev
+Cover photo by: Sergey Dostalev
