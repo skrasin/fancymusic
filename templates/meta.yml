@@ -37,4 +37,4 @@ checklist:                  # чеклист выпуска
   bandcamp: false
   site: false
   server_archives: false    # архивы с музыкой на сервер
-  press_release: false
+  press_release: false      # собирается в отдельной ветке чата: скилл press-release, страница docs/releases/{slug}

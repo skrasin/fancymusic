@@ -83,7 +83,7 @@ checklist:
   bandcamp: false
   site: false
   server_archives: false
-  press_release: false
+  press_release: false      # собирается в отдельной ветке чата: скилл press-release, страница docs/releases/{slug}
 
 # Для вычитки (в исходнике не правим):
 # - «патриарха отечественной музыки» — пафос, против тона бренда;
