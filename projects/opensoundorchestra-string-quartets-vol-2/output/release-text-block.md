@@ -11,12 +11,12 @@ OpensoundOrchestra - String Quartets vol. 2
 Диапазон альбома — от академического авангарда до архаики. Квартет № 3 «Страна городов» Сергея Зятькова из Сургута обращается к мифологии Южного Урала. «Васюганское болото» екатеринбуржца Дмитрия Мургина сделано на стыке с саунд-дизайном: струнные выстраивают акустический ландшафт Сибири и дыхание «лёгких планеты».
 __
 
-1. Павел Карманов — String quaREtet (1997)
-2. Юрий Каспаров — Пурпурные облака (2025)
-3. Дмитрий Мургин — Васюганское болото (2025)
-4. Сергей Зятьков — Квартет № 3 «Страна городов» (2016/2023)
-5. Анастасия Дружинина — Эхо пяти желаний (2025)
-6. Алексей Айги — Fall ([УТОЧНИТЬ])
+1. Павел Карманов — String quaREtet
+2. Юрий Каспаров — Пурпурные облака
+3. Дмитрий Мургин — Васюганское болото
+4. Сергей Зятьков — Квартет № 3 «Страна городов»
+5. Анастасия Дружинина — Эхо пяти желаний
+6. Алексей Айги — Fall
 
 Станислав Малышев: скрипка
 Инна Зильберман: скрипка
@@ -43,12 +43,12 @@ The album brings together established works — Pavel Karmanov's post-minimalist
 The album ranges from academic avant-garde to the archaic. String Quartet No. 3 "Land of Cities" by Surgut composer Sergey Zyatkov turns to the mythology of the Southern Urals. Vasyugan Swamp by Yekaterinburg composer Dmitry Murgin sits on the border with sound design: the strings build an acoustic landscape of Siberia and the breathing of "the lungs of the planet".
 __
 
-1. Pavel Karmanov — String quaREtet (1997)
-2. Yuri Kasparov — Purple Clouds (2025)
-3. Dmitry Murgin — Vasyugan Swamp (2025)
-4. Sergey Zyatkov — String Quartet No. 3 "Land of Cities" (2016/2023)
-5. Anastasia Druzhinina — Echo of Five Wishes (2025)
-6. Alexei Aigi — Fall ([УТОЧНИТЬ])
+1. Pavel Karmanov — String quaREtet
+2. Yuri Kasparov — Purple Clouds
+3. Dmitry Murgin — Vasyugan Swamp
+4. Sergey Zyatkov — String Quartet No. 3 "Land of Cities"
+5. Anastasia Druzhinina — Echo of Five Wishes
+6. Alexei Aigi — Fall
 
 Stanislav Malyshev: violin
 Inna Zilberman: violin
