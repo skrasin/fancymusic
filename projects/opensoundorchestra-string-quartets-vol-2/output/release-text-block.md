@@ -24,8 +24,7 @@ __
 Ольга Калинова: виолончель
 Сергей Карачун: контрабас
 
-Запись: [УТОЧНИТЬ]
-Сведение, мастеринг: [УТОЧНИТЬ]
+Запись, сведение, мастеринг: Михаил Спасский
 Обложка: [УТОЧНИТЬ]
 Фото: Сергей Досталев
 __
@@ -56,7 +55,6 @@ Ksenia Zhuleva: viola
 Olga Kalinova: cello
 Sergey Karachun: double bass
 
-Recorded by: [УТОЧНИТЬ]
-Mixed, mastered by: [УТОЧНИТЬ]
+Recorded, mixed, mastered by: Mikhail Spassky
 Cover by: [УТОЧНИТЬ]
 Photo by: Sergey Dostalev
