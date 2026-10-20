@@ -28,17 +28,20 @@ press_contacts:
   email: mail@fancymusic.ru
   telegram: "@s_krasin"
 
-checklist:                  # чеклист выпуска
-  release_info: false       # информация о релизе RU/EN: название, ссылка, описание, аннотация, выходные данные
+checklist:                  # порядок и сроки — templates/release-checklist.md
+  # подготовка
+  masters: false            # финальные мастер-файлы всех треков, WAV
+  cover: false              # обложка релиза, файл + автор
   metadata: false           # треклист, точные имена исполнителей, авторов, композиторов
-  masters: false            # финальные мастер-файлы всех треков
-  cover: false              # обложка релиза, файл
-  distribution: false       # загрузка в дистрибьюцию (стриминги)
+  release_info: false       # информация о релизе RU/EN: название, ссылка, описание, аннотация, выходные данные
+  # выпуск — не позже чем за 14 дней до релиза
+  distribution: false       # загрузка в дистрибьюцию → band.link
   bandcamp: false
   site: false
   server_archives: false    # архивы с музыкой на сервер
+  # продвижение — промо за 7 дней до релиза
+  press_release: false      # собирается в отдельной ветке чата: скилл press-release, страница docs/releases/{slug}
   promo:
-    texts: false            # промо-тексты: пишем сами
+    texts: false            # промо-тексты: пишем сами, отдаём ещё и .docx
     artist_photo: false     # фото артистов, файл + автор фото
   promo_content: false      # контент для промо: фото и видео об артистах и альбоме, оживлённая обложка
-  press_release: false      # собирается в отдельной ветке чата: скилл press-release, страница docs/releases/{slug}
