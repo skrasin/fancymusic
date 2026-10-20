@@ -75,7 +75,7 @@ press_contacts:
   telegram: "@s_krasin"
 
 checklist:
-  texts_ru_en: false        # название, ссылка, описание, аннотация, выходные данные
+  release_info: false       # информация о релизе RU/EN: название, ссылка, описание, аннотация, выходные данные
   metadata: false
   cover: true               # готова; файл в проект — [УТОЧНИТЬ]
   artist_photo: false       # фото артистов для промо, файл + автор фото
