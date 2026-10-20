@@ -1,10 +1,9 @@
 # Факты релиза. Всё, чего нет в присланных материалах, — [УТОЧНИТЬ].
-# Слаг рабочий: поменяем на artist-release-name, когда будет артист.
-slug: fancy240-triangular-dream
+slug: triangular-dream-triangular-dream
 catalog_number: FANCY240
 artist: Треугольный сон
 artist_en: Triangular Dream   # [УТОЧНИТЬ] какое написание на площадках
-release_title: Треугольный сон      # [УТОЧНИТЬ] альбом одноимённый или название другое
+release_title: Треугольный сон      # одноимённый альбом
 release_title_en: Triangular Dream
 format: Альбом
 tracks_count: 8
