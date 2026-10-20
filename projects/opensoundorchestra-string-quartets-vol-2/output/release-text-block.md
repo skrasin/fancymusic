@@ -22,7 +22,7 @@ __
 Инна Зильберман: скрипка
 Ксения Жулева: альт
 Ольга Калинова: виолончель
-Сергей Карачун: контрабас [5]
+Сергей Карачун: контрабас [6]
 Анастасия Дружинина: электроника [5]
 
 Запись, сведение, мастеринг: Михаил Спасский
@@ -53,7 +53,7 @@ Stanislav Malyshev: violin
 Inna Zilberman: violin
 Ksenia Zhuleva: viola
 Olga Kalinova: cello
-Sergey Karachun: double bass [5]
+Sergey Karachun: double bass [6]
 Anastasia Druzhinina: electronics [5]
 
 Recorded, mixed, mastered by: Mikhail Spassky
