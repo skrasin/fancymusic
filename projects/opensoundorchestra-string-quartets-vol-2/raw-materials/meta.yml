@@ -85,6 +85,10 @@ checklist:
   promo:
     texts: false            # промо-тексты: пишем сами
     artist_photo: false     # фото артистов, файл + автор фото
+  promo_content:             # контент для промо
+    photo: false            # фото об артистах и об альбоме
+    video: false            # видео об артистах и об альбоме
+    animated_cover: false   # оживлённая обложка
   press_release: false      # собирается в отдельной ветке чата: скилл press-release, страница docs/releases/{slug}
 
 # Для вычитки (в исходнике не правим):
