@@ -31,6 +31,7 @@ press_contacts:
 checklist:                  # чеклист выпуска
   release_info: false       # информация о релизе RU/EN: название, ссылка, описание, аннотация, выходные данные
   metadata: false           # треклист, точные имена исполнителей, авторов, композиторов
+  masters: false            # финальные мастер-файлы всех треков
   cover: false              # обложка релиза, файл
   distribution: false       # загрузка в дистрибьюцию (стриминги)
   bandcamp: false

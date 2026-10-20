@@ -79,7 +79,8 @@ press_contacts:
 
 checklist:
   release_info: false       # информация о релизе RU/EN: название, ссылка, описание, аннотация, выходные данные
-  metadata: false
+  metadata: true            # треклист, композиторы, исполнители, артист, дата
+  masters: true             # финальные мастер-файлы всех треков
   cover: true               # готова; файл в проект — [УТОЧНИТЬ]
   distribution: false       # загрузка в дистрибьюцию (стриминги); на 20.10.2026 не загружен
   bandcamp: false
