@@ -76,6 +76,8 @@ press_contacts:
 checklist:
   texts_ru_en: false        # название, ссылка, описание, аннотация, выходные данные
   metadata: false
+  cover: false              # обложка релиза, файл
+  artist_photo: false       # фото артистов для промо, файл + автор фото
   distribution: false       # загрузка в дистрибьюцию (стриминги)
   bandcamp: false
   site: false
