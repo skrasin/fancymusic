@@ -36,17 +36,17 @@ Six pieces for string quartet by six contemporary Russian composers. The second 
 
 The second album from the soloists of OpensoundOrchestra continues the anthology of contemporary Russian music the ensemble began with its first release in 2024. The programme took shape on the musicians' travels around the country, out of encounters and discoveries. It offers six different takes on the string quartet.
 
-The album brings together established works — Pavel Karmanov's post-minimalist String QuaREtet and Alexei Aigi's neoclassical Fall — alongside music commissioned by the ensemble: Yuri Kasparov's Purple Clouds and Echo of Five Wishes, a dive into Buddhist philosophy by the young Buryat composer Anastasia Druzhinina, written as part of the Notes and Quotas programme.
+The album brings together established works — Pavel Karmanov's post-minimalist String QuaREtet and Alexey Aigi's neoclassical Fall — alongside music commissioned by the ensemble: Yury Kasparov's Purple Clouds and Echo of Five Wishes, a dive into Buddhist philosophy by the young Buryat composer Anastasia Druzhinina, written as part of the Notes and Quotas programme.
 
 The album ranges from academic avant-garde to the archaic. String Quartet No. 3 "Land of Cities" by Surgut composer Sergey Zyatkov turns to the mythology of the Southern Urals. Vasyugan Swamp by Yekaterinburg composer Dmitry Murgin sits on the border with sound design: the strings build an acoustic landscape of Siberia and the breathing of "the lungs of the planet".
 __
 
 1. Pavel Karmanov — String QuaREtet
-2. Yuri Kasparov — Purple Clouds
+2. Yury Kasparov — Purple Clouds
 3. Dmitry Murgin — Vasyugan Swamp
 4. Sergey Zyatkov — String Quartet No. 3 "Land of Cities"
 5. Anastasia Druzhinina — Echo of Five Wishes
-6. Alexei Aigi — Fall
+6. Alexey Aigi — Fall
 
 Stanislav Malyshev: violin
 Inna Zilberman: violin

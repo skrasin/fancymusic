@@ -1,7 +1,7 @@
 # Факты релиза. Всё, чего нет в присланных материалах, — [УТОЧНИТЬ].
 slug: opensoundorchestra-string-quartets-vol-2
 catalog_number: FANCY239
-artist: OpensoundOrchestra   # в текстах «Солисты OpensoundOrchestra» — [УТОЧНИТЬ] написание на площадках
+artist: OpensoundOrchestra   # подтверждено: так на площадках, как у первого альбома
 release_title: String Quartets vol. 2   # [УТОЧНИТЬ] есть ли русский вариант названия
 release_title_en: String Quartets vol. 2
 format: Альбом              # второй альбом солистов OpensoundOrchestra
@@ -22,6 +22,7 @@ tracklist:
     title: String QuaREtet          # подтверждено: как в треклисте PDF
     year: "1997"
   - composer: Юрий Каспаров
+    composer_en: Yury Kasparov
     title: Пурпурные облака
     year: "2025"
     note: написано по заказу коллектива
@@ -37,6 +38,7 @@ tracklist:
     year: "2025"
     note: написано по заказу коллектива, программа «Ноты и квоты»
   - composer: Алексей Айги
+    composer_en: Alexey Aigi
     title: Fall
     year: "[УТОЧНИТЬ]"
 
