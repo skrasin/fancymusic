@@ -18,7 +18,7 @@ __
 
 Авторы: Кирилл Ошеров [1, 2, 4, 6, 7, 8], Геннадий Лаврентьев [2, 5], Паата Чакаберия [2, 3], Андрей Демиденко [7]
 
-Запись: [УТОЧНИТЬ]
+Запись: Игорь Лутберг, Яков Захваткин
 Сведение: Геннадий Лаврентьев
 Мастеринг: [УТОЧНИТЬ]
 Обложка: Дарья Лузик
@@ -44,7 +44,7 @@ Kelly Thoma: Cretan lyra [7]
 
 Written by: Kirill Osherov [1, 2, 4, 6, 7, 8], Gennady Lavrentiev [2, 5], Paata Chakaberia [2, 3], Andrey Demidenko [7]
 
-Recorded by: [УТОЧНИТЬ]
+Recorded by: Igor Lutberg, Yakov Zakhvatkin
 Mixed by: Gennady Lavrentiev
 Mastered by: [УТОЧНИТЬ]
 Cover by: Daria Luzik
