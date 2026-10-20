@@ -7,7 +7,7 @@ release_title_en: String Quartets vol. 2
 format: Альбом              # второй альбом солистов OpensoundOrchestra
 tracks_count: 6             # если ни одно произведение не делится на части — [УТОЧНИТЬ]
 genre: Современная академическая музыка, струнный квартет   # классификация выведена из материалов
-release_date: "[УТОЧНИТЬ]"
+release_date: "06.11.2026"   # планируемая
 previous_release: "[УТОЧНИТЬ]"   # первый альбом, 2024: название, номер FANCY и ссылка
 
 presentation:               # концерт-презентация альбома, см. promo-presentation.md
