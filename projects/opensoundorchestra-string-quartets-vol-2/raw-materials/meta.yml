@@ -19,7 +19,7 @@ presentation:               # концерт-презентация альбом
 # Треклист в порядке присланного: композитор — произведение (год)
 tracklist:
   - composer: Павел Карманов
-    title: String QuaREtet          # в аннотации «String quaREtet» — [УТОЧНИТЬ] написание
+    title: String QuaREtet          # подтверждено: как в треклисте PDF
     year: "1997"
   - composer: Юрий Каспаров
     title: Пурпурные облака
@@ -58,6 +58,7 @@ credits:                    # звукорежиссёр, сведение, ма
   - "[УТОЧНИТЬ]"
 
 focus_track: "[УТОЧНИТЬ]"
+text_author: нет            # подписи автора текста не будет
 quote_artist: "[ЦИТАТА]"
 press: []
 
