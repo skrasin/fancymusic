@@ -32,9 +32,11 @@ checklist:                  # чеклист выпуска
   release_info: false       # информация о релизе RU/EN: название, ссылка, описание, аннотация, выходные данные
   metadata: false           # треклист, точные имена исполнителей, авторов, композиторов
   cover: false              # обложка релиза, файл
-  artist_photo: false       # фото артистов для промо, файл + автор фото
   distribution: false       # загрузка в дистрибьюцию (стриминги)
   bandcamp: false
   site: false
   server_archives: false    # архивы с музыкой на сервер
+  promo:
+    texts: false            # промо-тексты: пишем сами
+    artist_photo: false     # фото артистов, файл + автор фото
   press_release: false      # собирается в отдельной ветке чата: скилл press-release, страница docs/releases/{slug}

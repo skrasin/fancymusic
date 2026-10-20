@@ -78,11 +78,13 @@ checklist:
   release_info: false       # информация о релизе RU/EN: название, ссылка, описание, аннотация, выходные данные
   metadata: false
   cover: true               # готова; файл в проект — [УТОЧНИТЬ]
-  artist_photo: false       # фото артистов для промо, файл + автор фото
   distribution: false       # загрузка в дистрибьюцию (стриминги)
   bandcamp: false
   site: false
   server_archives: false
+  promo:
+    texts: false            # промо-тексты: пишем сами
+    artist_photo: false     # фото артистов, файл + автор фото
   press_release: false      # собирается в отдельной ветке чата: скилл press-release, страница docs/releases/{slug}
 
 # Для вычитки (в исходнике не правим):
