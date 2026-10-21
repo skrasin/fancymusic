@@ -45,4 +45,4 @@ Written by: Kirill Osherov [1, 2, 4, 6, 7, 8], Gennady Lavrentiev [2, 5], Paata 
 
 Recorded by: Yakov Zakhvatkin at Sinelab [1]; Igor Lutberg at Divian Sound [2-8]
 Mixed, mastered by: Gennady Lavrentiev
-Cover by: Daria Luzik
+Cover art by: Daria Luzik
