@@ -19,8 +19,6 @@ __
 Анастасия Дружинина: электроника [5]
 Сергей Карачун: контрабас [6]
 
-Композиторы: Павел Карманов [1], Юрий Каспаров [2], Дмитрий Мургин [3], Сергей Зятьков [4], Анастасия Дружинина [5], Алексей Айги [6]
-
 Запись, сведение, мастеринг: Михаил Спасский
 Фото на обложке: Сергей Досталев
 __
@@ -45,8 +43,6 @@ Olga Kalinova: cello
 
 Anastasia Druzhinina: electronics [5]
 Sergey Karachun: double bass [6]
-
-Composed by: Pavel Karmanov [1], Yury Kasparov [2], Dmitry Murgin [3], Sergey Zyatkov [4], Anastasia Druzhinina [5], Alexey Aigi [6]
 
 Recorded, mixed, mastered by: Mikhail Spassky
 Cover photo by: Sergey Dostalev
