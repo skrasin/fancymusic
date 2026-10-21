@@ -84,7 +84,7 @@ links:
   bandcamp_embed_id: "[УТОЧНИТЬ]"
   artist: {}
 
-cover: "[УТОЧНИТЬ]"         # обложка готова, файл ещё не прислан
+cover: raw-materials/cover.jpg   # 1600×1600, прислан в чат 21.10.2026
 
 press_contacts:
   email: mail@fancymusic.ru
@@ -94,7 +94,7 @@ checklist:
   release_info: false       # информация о релизе RU/EN: название, ссылка, описание, аннотация, выходные данные
   metadata: true            # треклист, композиторы, исполнители, артист, дата
   masters: true             # финальные мастер-файлы всех треков
-  cover: true               # готова; файл в проект — [УТОЧНИТЬ]
+  cover: true               # файл в raw-materials/cover.jpg
   distribution: false       # загрузка в дистрибьюцию (стриминги); загружается 21.10.2026
   bandcamp: false
   site: false
