@@ -95,13 +95,13 @@ checklist:
   metadata: true            # треклист, композиторы, исполнители, артист, дата
   masters: true             # финальные мастер-файлы всех треков
   cover: true               # файл в raw-materials/cover.jpg
-  distribution: false       # загрузка в дистрибьюцию (стриминги); загружается 21.10.2026
-  bandcamp: false
+  distribution: true        # отправлено 21.10.2026; ждём band.link
+  bandcamp: true            # загружено 21.10.2026
   site: false
   server_archives: false
   promo:
-    texts: false            # промо-тексты: пишем сами
-    artist_photo: false     # фото артистов, файл + автор фото
+    texts: true             # готовы 21.10.2026, фокус-трек #6 Fall
+    artist_photo: true      # есть
   promo_content: false      # контент для промо: фото и видео об артистах и альбоме, оживлённая обложка
   press_release: false      # собирается в отдельной ветке чата: скилл press-release, страница docs/releases/{slug}
 
