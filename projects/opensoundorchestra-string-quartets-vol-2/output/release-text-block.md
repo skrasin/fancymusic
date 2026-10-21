@@ -20,6 +20,7 @@ __
 Сергей Карачун: контрабас [6]
 
 Запись, сведение, мастеринг: Михаил Спасский
+Место записи: Академия хорового искусства имени Попова
 Фото на обложке: Сергей Досталев
 __
 
@@ -45,4 +46,5 @@ Anastasia Druzhinina: electronics [5]
 Sergey Karachun: double bass [6]
 
 Recorded, mixed, mastered by: Mikhail Spassky
+Recorded at: Popov Academy of Choral Art
 Cover photo by: Sergey Dostalev
