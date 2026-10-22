@@ -7,32 +7,32 @@
 # 1 String QuaREtet
 __
 
-Название: Purple Clouds
+Название: Пурпурные облака
 Автор: Yury Kasparov
 Исполнитель: OpensoundOrchestra
 
-# 2 Purple Clouds
+# 2 Пурпурные облака
 __
 
-Название: Vasyugan Swamp
+Название: Васюганское болото
 Автор: Dmitry Murgin
 Исполнитель: OpensoundOrchestra
 
-# 3 Vasyugan Swamp
+# 3 Васюганское болото
 __
 
-Название: String Quartet No. 3 «Land of Cities»
+Название: Квартет № 3 «Страна городов»
 Автор: Sergey Zyatkov
 Исполнитель: OpensoundOrchestra
 
-# 4 String Quartet No. 3 «Land of Cities»
+# 4 Квартет № 3 «Страна городов»
 __
 
-Название: Echo of Five Wishes
+Название: Эхо пяти желаний
 Автор: Anastasia Druzhinina
 Исполнитель: OpensoundOrchestra, Anastasia Druzhinina
 
-# 5 Echo of Five Wishes
+# 5 Эхо пяти желаний
 __
 
 Название: Fall
