@@ -1,6 +1,6 @@
 OpensoundOrchestra - String Quartets vol. 2
 
-Послушать: [УТОЧНИТЬ]
+Послушать: https://band.link/cr75y
 
 Шесть сочинений современных российских композиторов в исполнении солистов OpensoundOrchestra. Второй альбом коллектива.
 
@@ -26,7 +26,7 @@ __
 
 OpensoundOrchestra - String Quartets vol. 2
 
-Listen: [УТОЧНИТЬ]
+Listen: https://band.link/cr75y
 
 Six works by contemporary Russian composers performed by the soloists of OpensoundOrchestra. The ensemble's second album.
 

@@ -86,7 +86,7 @@ quote_artist: "[ЦИТАТА]"
 press: []
 
 links:
-  streaming_all: "[УТОЧНИТЬ]"   # band.link появится после загрузки в дистрибьюцию
+  streaming_all: https://band.link/cr75y
   release_page: "[УТОЧНИТЬ]"
   bandcamp_album: "[УТОЧНИТЬ]"
   bandcamp_embed_id: "[УТОЧНИТЬ]"
