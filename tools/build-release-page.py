@@ -209,6 +209,11 @@ def main() -> int:
         print("НЕЗАКРЫТЫЕ ПЛЕЙСХОЛДЕРЫ:", ", ".join(left))
         return 1
 
+    # версия у стилей по содержимому: браузер не держит старый CSS из кэша
+    import hashlib
+    for css in ("fonts.css", "design-tokens.css", "base.css", "release.css"):
+        digest = hashlib.sha1((ROOT / "docs/assets" / css).read_bytes()).hexdigest()[:8]
+        page = page.replace(f'assets/{css}"', f'assets/{css}?v={digest}"')
     # нет страницы релиза — кнопка не нужна
     page = page.replace('<a class="fm-btn fm-btn--outline" href="">Страница релиза</a>', "")
     (out_dir / "index.html").write_text(page)
