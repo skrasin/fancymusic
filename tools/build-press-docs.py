@@ -59,6 +59,13 @@ def style_run(run, *, font=TEXT_FONT, size=11, color=INK, bold=False, caps=False
     return run
 
 
+def lead_link_html(values):
+    url = values.get("LEAD_LINK_URL", "").strip()
+    if not url:
+        return ""
+    return f'<p><a href="{url}">{values.get("LEAD_LINK_LABEL") or url}</a></p>'
+
+
 def inline(paragraph, text, **kw):
     bold_all = kw.pop("bold", False)
     for i, chunk in enumerate(re.split(r"\*\*(.+?)\*\*", text)):
@@ -141,7 +148,11 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
 
     # --- лид, основной текст, цитата (эпиграф — перед лидом)
     document.add_paragraph().paragraph_format.space_after = Pt(0)
-    inline(document.add_paragraph(), doc_data["lead"])
+    inline(document.add_paragraph(), doc_data["lead"], size=13, bold=True)
+    lead_url = values.get("LEAD_LINK_URL", "").strip()
+    if lead_url:
+        p = document.add_paragraph()
+        add_hyperlink(p, lead_url, values.get("LEAD_LINK_LABEL") or lead_url, size=11)
     for block in doc_data["body"]:
         render_block(document, block)
     if doc_data["quote"] and not doc_data["quote_first"]:
@@ -328,6 +339,7 @@ h2 { font-family: 'FM Display', Impact, sans-serif; font-weight: 400;
      text-transform: uppercase; font-size: 12.5pt; color: #ff2626;
      margin: 6mm 0 2mm; letter-spacing: .01em; break-after: avoid; }
 p { margin: 0 0 3mm; }
+.lead { font-size: 12.5pt; line-height: 1.4; }
 blockquote { margin: 4mm 0; padding-left: 3mm; border-left: 2pt solid #ff2626;
              font-family: 'FM Display', Impact, sans-serif; font-weight: 400;
              text-transform: uppercase; font-size: 13pt; line-height: 1.1; }
@@ -407,7 +419,7 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
   <p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a></p>
   {f'<p><b>Страница релиза:</b> <a href="{values["RELEASE_URL"]}">{values["RELEASE_URL"]}</a></p>' if values['RELEASE_URL'] else ''}
 </div>
-<p>{release_content.bold_to_html(doc_data['lead'])}</p>
+<p class="lead"><b>{release_content.bold_to_html(doc_data['lead'])}</b></p>{lead_link_html(values)}
 {html_blocks(doc_data['body'])}
 {'' if doc_data['quote_first'] else quote_html}
 {event_html(page.get('event'))}
@@ -488,7 +500,7 @@ def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
 <h1>{doc_data['title']}</h1>
 {quote if doc_data['quote_first'] else ''}
 <p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a>{f'<br>{chr(10)}<b>Страница релиза:</b> <a href="{values["RELEASE_URL"]}">{values["RELEASE_URL"]}</a>' if values['RELEASE_URL'] else ''}</p>
-<p>{release_content.bold_to_html(doc_data['lead'])}</p>
+<p class="lead"><b>{release_content.bold_to_html(doc_data['lead'])}</b></p>{lead_link_html(values)}
 {html_blocks(doc_data['body'])}
 {'' if doc_data['quote_first'] else quote}
 {event_html(page.get('event'))}

@@ -18,7 +18,9 @@
     "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
     "DOCX_URL": "press-release.docx",
     "PDF_URL": "press-release.pdf",
-    "GDOC_URL": ""
+    "GDOC_URL": "",
+    "LEAD_LINK_URL": "https://dkrassvet.space/events/quartets/",
+    "LEAD_LINK_LABEL": "Презентация на сайте ДК «Рассвет»"
   },
   "event": {
     "title": "Презентация альбома",

@@ -143,6 +143,11 @@ def main() -> int:
         else '<link rel="icon" href="../../favicon.svg" type="image/svg+xml">'
     values["HEADLINE"] = prose["title"]
     values["LEAD"] = release_content.bold_to_html(prose["lead"])
+    # ссылка сразу после лида (например, на страницу события); пусто — нет строки
+    lead_url = values.get("LEAD_LINK_URL", "").strip()
+    values["LEAD_LINK"] = (
+        '<p class="rl-lead-link"><a href="' + lead_url + '">'
+        + (values.get("LEAD_LINK_LABEL") or lead_url) + ' →</a></p>' if lead_url else "")
     values["BODY"] = release_content.blocks_to_html(prose["body"])
     quote_body, author = prose["quote"] or ([], "")
     quote_html = ""

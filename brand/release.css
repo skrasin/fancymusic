@@ -230,3 +230,12 @@
   .rl-body { padding: 0; max-width: none; }
   .rl-cover { max-width: 60mm; }
 }
+
+/* ---- Лид: крупнее и плотнее основного текста ----------------------------- */
+.rl-lead {
+  font-size: var(--fm-text-lead);
+  font-weight: 600;
+  line-height: 1.45;
+}
+.rl-lead-link { font-weight: 600; }
+.rl-lead-link a { color: var(--fm-red); }
