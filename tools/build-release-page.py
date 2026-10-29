@@ -176,7 +176,7 @@ def main() -> int:
         values["PRESS_PHOTO_BLOCK"] = (
             f'<figure class="rl-photo"><img src="{photo}" alt="{alt}" loading="lazy">'
             f'<figcaption>{caption}'
-            f'<a href="{photo}" download>Скачать снимок</a></figcaption></figure>')
+            f'<a href="{photo}" download>Скачать фото</a></figcaption></figure>')
     else:
         values["PRESS_PHOTO_BLOCK"] = ""
         values.pop("PRESS_PHOTO_CREDIT", None)
