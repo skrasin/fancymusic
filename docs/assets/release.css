@@ -237,5 +237,4 @@
   font-weight: 600;
   line-height: 1.45;
 }
-.rl-lead-link { font-weight: 600; }
-.rl-lead-link a { color: var(--fm-red); }
+.rl-lead-link { margin: 0 0 1.5em; }
