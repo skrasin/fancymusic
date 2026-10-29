@@ -132,6 +132,8 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
     document.add_paragraph().paragraph_format.space_after = Pt(0)
     for label, url in (("Ссылки на стриминги", values["PREVIEW_URL"]),
                        ("Страница релиза", values["RELEASE_URL"])):
+        if not url:
+            continue
         p = document.add_paragraph()
         p.paragraph_format.space_after = Pt(3)
         style_run(p.add_run(f"{label}: "), size=10, color=INK, bold=True)
@@ -403,7 +405,7 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
 {quote_html if doc_data['quote_first'] else ''}
 <div class="actions">
   <p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a></p>
-  <p><b>Страница релиза:</b> <a href="{values['RELEASE_URL']}">{values['RELEASE_URL']}</a></p>
+  {f'<p><b>Страница релиза:</b> <a href="{values["RELEASE_URL"]}">{values["RELEASE_URL"]}</a></p>' if values['RELEASE_URL'] else ''}
 </div>
 <p>{release_content.bold_to_html(doc_data['lead'])}</p>
 {html_blocks(doc_data['body'])}
@@ -485,8 +487,7 @@ def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
 {cover_html}
 <h1>{doc_data['title']}</h1>
 {quote if doc_data['quote_first'] else ''}
-<p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a><br>
-<b>Страница релиза:</b> <a href="{values['RELEASE_URL']}">{values['RELEASE_URL']}</a></p>
+<p><b>Ссылки на стриминги:</b> <a href="{values['PREVIEW_URL']}">{values['PREVIEW_URL']}</a>{f'<br>{chr(10)}<b>Страница релиза:</b> <a href="{values["RELEASE_URL"]}">{values["RELEASE_URL"]}</a>' if values['RELEASE_URL'] else ''}</p>
 <p>{release_content.bold_to_html(doc_data['lead'])}</p>
 {html_blocks(doc_data['body'])}
 {'' if doc_data['quote_first'] else quote}

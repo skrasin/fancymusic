@@ -204,6 +204,8 @@ def main() -> int:
         print("НЕЗАКРЫТЫЕ ПЛЕЙСХОЛДЕРЫ:", ", ".join(left))
         return 1
 
+    # нет страницы релиза — кнопка не нужна
+    page = page.replace('<a class="fm-btn fm-btn--outline" href="">Страница релиза</a>', "")
     (out_dir / "index.html").write_text(page)
     print(f"собрано: docs/releases/{slug}/index.html")
     return 0
