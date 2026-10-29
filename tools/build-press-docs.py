@@ -63,7 +63,7 @@ def lead_link_html(values):
     url = values.get("LEAD_LINK_URL", "").strip()
     if not url:
         return ""
-    return f'<p><a href="{url}">{values.get("LEAD_LINK_LABEL") or url}</a></p>'
+    return f'<p style="margin-bottom:16pt"><a href="{url}">{values.get("LEAD_LINK_LABEL") or url}</a></p>'
 
 
 def inline(paragraph, text, **kw):
@@ -152,6 +152,7 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
     lead_url = values.get("LEAD_LINK_URL", "").strip()
     if lead_url:
         p = document.add_paragraph()
+        p.paragraph_format.space_after = Pt(16)
         add_hyperlink(p, lead_url, values.get("LEAD_LINK_LABEL") or lead_url, size=11)
     for block in doc_data["body"]:
         render_block(document, block)
