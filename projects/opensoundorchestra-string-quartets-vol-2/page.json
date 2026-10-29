@@ -1,0 +1,106 @@
+{
+  "values": {
+    "ARTIST": "OpensoundOrchestra",
+    "RELEASE_TITLE": "String Quartets vol. 2",
+    "LEAD_SHORT": "Второй альбом солистов OpensoundOrchestra: шесть сочинений современных российских композиторов — от постминимализма Карманова до мифов Южного Урала и ландшафтов Сибири.",
+    "RELEASE_DATE": "[УТОЧНИТЬ]",
+    "COVER_URL": "cover.jpg",
+    "COVER_FILE": "cover.jpg",
+    "COVER_ALT": "Обложка альбома «String Quartets vol. 2»: размытый в движении снимок струнного квартета на тёмной сцене, тёплый жёлтый свет",
+    "PREVIEW_URL": "https://band.link/cr75y",
+    "RELEASE_URL": "[УТОЧНИТЬ]",
+    "PLAYER_EMBED": "",
+    "PRESS_PHOTO": "press-photo.jpg",
+    "PRESS_PHOTO_CREDIT": "",
+    "PRESS_PHOTO_ALT": "Солисты OpensoundOrchestra с инструментами: две скрипки, альт и виолончель, тёмная сцена",
+    "ARTIST_LINKS_LABEL": "Ссылки на страницы ансамбля",
+    "PRESS_EMAIL": "<a href=\"mailto:mail@fancymusic.ru\">mail@fancymusic.ru</a>",
+    "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
+    "DOCX_URL": "press-release.docx",
+    "PDF_URL": "press-release.pdf",
+    "GDOC_URL": ""
+  },
+  "event": {
+    "title": "Презентация альбома",
+    "when": "26 ноября 2026, четверг, 19:30",
+    "venue": "ДК «Рассвет»",
+    "address": "Москва, Столярный пер., 3к15",
+    "intro": "Солисты OpensoundOrchestra впервые сыграют программу альбома целиком.",
+    "program": [
+      "Павел Карманов. String QuaREtet",
+      "Алексей Айги. Fall",
+      "Юрий Каспаров. Пурпурные облака",
+      "Анастасия Дружинина. Эхо пяти желаний",
+      "Сергей Зятьков. Страна городов",
+      "Дмитрий Мургин. Васюганское болото"
+    ],
+    "lineup": [
+      "Станислав Малышев, скрипка",
+      "Инна Зильберман, скрипка",
+      "Ксения Жулева, альт",
+      "Ольга Калинова, виолончель"
+    ],
+    "note": "В программе вечера — музыкальный сюрприз, который музыканты держат в секрете и представят только тем, кто будет в зале.",
+    "url": "https://dkrassvet.space/events/quartets/",
+    "price": "1800 ₽"
+  },
+  "artist_links": [
+    [
+      "i-ig",
+      "Instagram",
+      "https://www.instagram.com/opensoundorchestra/"
+    ],
+    [
+      "i-tg",
+      "Telegram",
+      "https://t.me/opensoundorchestra"
+    ],
+    [
+      "i-vk",
+      "VK",
+      "https://vk.ru/opensoundorchestra"
+    ],
+    [
+      "i-fb",
+      "Facebook",
+      "https://www.facebook.com/opensoundorchestra"
+    ],
+    [
+      "i-web",
+      "opensoundorchestra.ru",
+      "https://opensoundorchestra.ru"
+    ]
+  ],
+  "label_links": [
+    [
+      "i-ig",
+      "Instagram",
+      "https://www.instagram.com/fancy_music"
+    ],
+    [
+      "i-tg",
+      "Telegram",
+      "https://t.me/fancymusiclabel"
+    ],
+    [
+      "i-vk",
+      "VK",
+      "https://vk.com/fancymusicrecords"
+    ],
+    [
+      "i-fb",
+      "Facebook",
+      "https://www.facebook.com/fancymusiclabel"
+    ],
+    [
+      "i-yt",
+      "YouTube",
+      "https://www.youtube.com/user/TheFancymusic"
+    ],
+    [
+      "i-web",
+      "fancymusic.ru",
+      "https://fancymusic.ru"
+    ]
+  ]
+}

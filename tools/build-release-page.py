@@ -38,6 +38,40 @@ def links(items):
         for icon, label, url in items)
 
 
+def event_block(ev) -> str:
+    """Блок события: презентация, концерт. Пустой event — блока нет."""
+    if not ev:
+        return ""
+
+    def column(title, rows):
+        if not rows:
+            return ""
+        lis = "".join("<li>" + r + "</li>" for r in rows)
+        return '<div><p class="fm-eyebrow">' + title + "</p><ul>" + lis + "</ul></div>"
+
+    parts = ['<section class="rl-event">',
+             "<h2>" + ev.get("title", "Презентация альбома") + "</h2>",
+             '<p class="rl-event__when">' + ev.get("when", "") + "</p>"]
+    where = " · ".join(x for x in (ev.get("venue"), ev.get("address")) if x)
+    if where:
+        parts.append('<p class="rl-event__where">' + where + "</p>")
+    if ev.get("intro"):
+        parts.append("<p>" + ev["intro"] + "</p>")
+    cols = column("Программа", ev.get("program")) + column("Исполнители", ev.get("lineup"))
+    if cols:
+        parts.append('<div class="rl-event__cols">' + cols + "</div>")
+    if ev.get("note"):
+        parts.append('<p class="rl-event__note">' + ev["note"] + "</p>")
+    if ev.get("url"):
+        label = ev.get("button", "Купить билет")
+        if ev.get("price"):
+            label += " · " + ev["price"]
+        parts.append('<a class="fm-btn fm-btn--solid" href="' + ev["url"] +
+                     '" target="_blank" rel="noopener">' + label + "</a>")
+    parts.append("</section>")
+    return "".join(parts)
+
+
 def links_block(label: str, items) -> str:
     """Подпись и чипы. Пустой список — пустой блок, без висящей подписи.
 
@@ -142,6 +176,8 @@ def main() -> int:
         values["PRESS_PHOTO_BLOCK"] = ""
         values.pop("PRESS_PHOTO_CREDIT", None)
         values.pop("PRESS_PHOTO_ALT", None)
+
+    values["EVENT_BLOCK"] = event_block(data.get("event"))
 
     embed = values.pop("PLAYER_EMBED", "").strip()
     values["PLAYER_BLOCK"] = f'<div class="rl-player">{embed}</div>' if embed else ""

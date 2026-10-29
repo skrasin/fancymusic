@@ -145,6 +145,8 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
     if doc_data["quote"] and not doc_data["quote_first"]:
         render_quote(document, *doc_data["quote"])
 
+    add_event_docx(document, page.get("event"))
+
     # --- разделы из прозы
     for heading, blocks in doc_data["sections"]:
         add_heading(document, heading)
@@ -207,6 +209,68 @@ def add_links(document, title: str, items) -> None:
         row.paragraph_format.space_after = Pt(1)
         style_run(row.add_run(f"{label} — "), size=10, color=INK)
         add_hyperlink(row, url, url)
+
+
+def event_rows(ev):
+    """Событие как последовательность строк — общая для DOCX, PDF и Google Docs."""
+    if not ev:
+        return None
+    where = " · ".join(x for x in (ev.get("venue"), ev.get("address")) if x)
+    rows = {"title": ev.get("title", "Презентация альбома"),
+            "when": ev.get("when", ""), "where": where, "intro": ev.get("intro", ""),
+            "program": ev.get("program") or [], "lineup": ev.get("lineup") or [],
+            "note": ev.get("note", ""), "url": ev.get("url", ""), "price": ev.get("price", "")}
+    return rows
+
+
+def add_event_docx(document, ev) -> None:
+    ev = event_rows(ev)
+    if not ev:
+        return
+    add_heading(document, ev["title"])
+    p = document.add_paragraph()
+    p.paragraph_format.space_after = Pt(2)
+    style_run(p.add_run(ev["when"]), font=DISPLAY_FONT, size=14, color=INK, bold=True, caps=True)
+    if ev["where"]:
+        style_run(document.add_paragraph().add_run(ev["where"]), size=10, color=GREY)
+    if ev["intro"]:
+        inline(document.add_paragraph(), ev["intro"])
+    for title, rows in (("Программа", ev["program"]), ("Исполнители", ev["lineup"])):
+        if not rows:
+            continue
+        h = document.add_paragraph()
+        h.paragraph_format.space_before = Pt(6)
+        h.paragraph_format.space_after = Pt(2)
+        style_run(h.add_run(title), size=8, color=GREY, caps=True)
+        for r in rows:
+            li = document.add_paragraph()
+            li.paragraph_format.space_after = Pt(1)
+            style_run(li.add_run(r), size=10)
+    if ev["note"]:
+        inline(document.add_paragraph(), ev["note"])
+    if ev["url"]:
+        p = document.add_paragraph()
+        label = "Билеты" + (f" ({ev['price']})" if ev["price"] else "") + ": "
+        style_run(p.add_run(label), size=10, color=INK, bold=True)
+        add_hyperlink(p, ev["url"], ev["url"])
+
+
+def event_html(ev) -> str:
+    ev = event_rows(ev)
+    if not ev:
+        return ""
+    out = [f"<h2>{ev['title']}</h2>", f"<p><b>{ev['when']}</b><br>{ev['where']}</p>"]
+    if ev["intro"]:
+        out.append(f"<p>{ev['intro']}</p>")
+    for title, rows in (("Программа", ev["program"]), ("Исполнители", ev["lineup"])):
+        if rows:
+            out.append(f"<p class='small'>{title}</p><p>" + "<br>".join(rows) + "</p>")
+    if ev["note"]:
+        out.append(f"<p>{ev['note']}</p>")
+    if ev["url"]:
+        price = f" ({ev['price']})" if ev["price"] else ""
+        out.append(f"<p><b>Билеты{price}:</b> <a href=\"{ev['url']}\">{ev['url']}</a></p>")
+    return "\n".join(out)
 
 
 def render_quote(document, body, author: str) -> None:
@@ -344,6 +408,7 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
 <p>{release_content.bold_to_html(doc_data['lead'])}</p>
 {html_blocks(doc_data['body'])}
 {'' if doc_data['quote_first'] else quote_html}
+{event_html(page.get('event'))}
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
 <div class="contacts">
@@ -425,6 +490,7 @@ def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
 <p>{release_content.bold_to_html(doc_data['lead'])}</p>
 {html_blocks(doc_data['body'])}
 {'' if doc_data['quote_first'] else quote}
+{event_html(page.get('event'))}
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
 <p>Email — {values['PRESS_EMAIL']}<br>Telegram — {values['PRESS_TELEGRAM']}</p>
