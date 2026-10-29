@@ -222,7 +222,7 @@ def add_links(document, title: str, items) -> None:
     for _icon, label, url in items:
         row = document.add_paragraph()
         row.paragraph_format.space_after = Pt(1)
-        style_run(row.add_run(f"{label} — "), size=10, color=INK)
+        style_run(row.add_run(f"{label} – "), size=10, color=INK)
         add_hyperlink(row, url, url)
 
 
@@ -384,7 +384,7 @@ def links_html(title: str, items) -> str:
     items = flat_links(items)
     if not items:
         return ""
-    rows = "".join(f'<p>{label} — <a href="{url}">{url}</a></p>' for _i, label, url in items)
+    rows = "".join(f'<p>{label} – <a href="{url}">{url}</a></p>' for _i, label, url in items)
     return f'<div class="links"><p class="label">{title}</p>{rows}</div>'
 
 
@@ -428,14 +428,14 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
 <div class="contacts">
-  <p>Email — {values['PRESS_EMAIL']}</p>
-  <p>Telegram — {values['PRESS_TELEGRAM']}</p>
+  <p>Email – {values['PRESS_EMAIL']}</p>
+  <p>Telegram – {values['PRESS_TELEGRAM']}</p>
 </div>
 <p class="colophon"><b>FANCYMUSIC</b> · Пресс-релиз · {values['RELEASE_DATE']}</p>
 """
     brand = (ROOT / "brand").as_uri()
     html = (f'<!doctype html><html lang="ru"><head><meta charset="utf-8">'
-            f"<title>{doc_data['title']} — пресс-релиз FANCYMUSIC</title>"
+            f"<title>{doc_data['title']} – пресс-релиз FANCYMUSIC</title>"
             f'<link rel="stylesheet" href="{brand}/fonts.css">'
             f"<style>{PRINT_CSS}</style></head><body>{body}</body></html>")
 
@@ -508,7 +508,7 @@ def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
 {event_html(page.get('event'))}
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
-<p>Email — {values['PRESS_EMAIL']}<br>Telegram — {values['PRESS_TELEGRAM']}</p>
+<p>Email – {values['PRESS_EMAIL']}<br>Telegram – {values['PRESS_TELEGRAM']}</p>
 <p class="small">FANCYMUSIC · Пресс-релиз · {values['RELEASE_DATE']}</p>
 </body></html>"""
     dst.write_text(html)

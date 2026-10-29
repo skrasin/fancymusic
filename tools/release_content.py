@@ -79,8 +79,8 @@ def split_quote(block: str) -> tuple[list[str], str]:
     """
     lines = [l.lstrip("> ").strip() for l in block.splitlines()]
     lines = [l for l in lines if l]
-    body = [l for l in lines if not l.startswith("—")]
-    author = next((l.lstrip("— ").strip() for l in lines if l.startswith("—")), "")
+    body = [l for l in lines if not l.startswith(("—", "–"))]
+    author = next((l.lstrip("—– ").strip() for l in lines if l.startswith(("—", "–"))), "")
     return body, author
 
 
