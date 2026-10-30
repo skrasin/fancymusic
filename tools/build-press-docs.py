@@ -174,6 +174,10 @@ def build_docx(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> Non
 
     # --- контакты
     add_heading(document, "Контакты для прессы")
+    if values.get("PRESS_CONTACT"):
+        p = document.add_paragraph()
+        p.paragraph_format.space_after = Pt(2)
+        style_run(p.add_run(values["PRESS_CONTACT"]), size=10, color=INK, bold=True)
     for label, value, url in (("Email", values["PRESS_EMAIL"], None),
                               ("Telegram", values["PRESS_TELEGRAM"], None)):
         text = re.sub(r"<[^>]+>", "", value)
@@ -428,6 +432,7 @@ def build_pdf(doc_data: dict, page: dict, cover: Path | None, dst: Path) -> None
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
 <div class="contacts">
+  {f"<p><b>{values['PRESS_CONTACT']}</b></p>" if values.get('PRESS_CONTACT') else ''}
   <p>Email – {values['PRESS_EMAIL']}</p>
   <p>Telegram – {values['PRESS_TELEGRAM']}</p>
 </div>
@@ -508,7 +513,7 @@ def build_gdoc_html(doc_data: dict, page: dict, slug: str, dst: Path) -> None:
 {event_html(page.get('event'))}
 {''.join(sections)}
 <h2>Контакты для прессы</h2>
-<p>Email – {values['PRESS_EMAIL']}<br>Telegram – {values['PRESS_TELEGRAM']}</p>
+<p>{f"<b>{values['PRESS_CONTACT']}</b><br>" if values.get('PRESS_CONTACT') else ''}Email – {values['PRESS_EMAIL']}<br>Telegram – {values['PRESS_TELEGRAM']}</p>
 <p class="small">FANCYMUSIC · Пресс-релиз · {values['RELEASE_DATE']}</p>
 </body></html>"""
     dst.write_text(html)

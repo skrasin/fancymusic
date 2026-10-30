@@ -14,13 +14,14 @@
     "PRESS_PHOTO_CREDIT": "",
     "PRESS_PHOTO_ALT": "Солисты OpensoundOrchestra с инструментами: две скрипки, альт и виолончель, тёмная сцена",
     "ARTIST_LINKS_LABEL": "Ссылки на страницы ансамбля",
-    "PRESS_EMAIL": "<a href=\"mailto:mail@fancymusic.ru\">mail@fancymusic.ru</a>",
-    "PRESS_TELEGRAM": "<a href=\"https://t.me/s_krasin\">@s_krasin</a>",
+    "PRESS_EMAIL": "<a href=\"mailto:maryfomichenko@yandex.ru\">maryfomichenko@yandex.ru</a>",
+    "PRESS_TELEGRAM": "<a href=\"https://t.me/Maria_Fomichenko\">@Maria_Fomichenko</a>",
     "DOCX_URL": "press-release.docx",
     "PDF_URL": "press-release.pdf",
     "GDOC_URL": "",
     "LEAD_LINK_URL": "https://dkrassvet.space/events/quartets/",
-    "LEAD_LINK_LABEL": "Ссылка на мероприятие"
+    "LEAD_LINK_LABEL": "Ссылка на мероприятие",
+    "PRESS_CONTACT": "Мария, менеджер OpensoundOrchestra"
   },
   "event": {
     "title": "Презентация альбома",

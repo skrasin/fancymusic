@@ -201,6 +201,9 @@ def main() -> int:
     values["PDF_SIZE"] = size_kb(out_dir / "press-release.pdf")
 
     page = template
+    contact = values.pop("PRESS_CONTACT", "").strip()
+    values["PRESS_CONTACT_ROW"] = (
+        "<li><span>Контакт</span><span>" + contact + "</span></li>" if contact else "")
     for key, value in values.items():
         page = page.replace("{{" + key + "}}", value)
 
